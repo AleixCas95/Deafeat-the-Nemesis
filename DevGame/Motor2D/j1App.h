@@ -3,6 +3,8 @@
 
 #include "p2List.h"
 #include "j1Module.h"
+#include "j1Timer.h"
+#include "j1PerfTimer.h"
 #include "PugiXml\src\pugixml.hpp"
 
 // Modules
@@ -14,7 +16,6 @@ class j1Audio;
 class j1Scene;
 class j1Map;
 class ModuleFadeToBlack;
-//class ModulePlayer;
 class j1Entities;
 
 class j1App
@@ -86,7 +87,7 @@ private:
 public:
 
 	// Modules
-	j1Window * win;
+	j1Window *			win;
 	j1Input*			input;
 	j1Render*			render;
 	j1Textures*			tex;
@@ -94,8 +95,8 @@ public:
 	j1Scene*			scene;
 	j1Map*				map;
 	ModuleFadeToBlack*  fade;
-	//ModulePlayer*		player;
-	j1Entities* entities;
+	j1Entities*			entities;
+
 
 private:
 
@@ -112,6 +113,14 @@ private:
 	bool				want_to_load;
 	p2SString			load_game;
 	mutable p2SString	save_game;
+
+	j1PerfTimer			ptimer;
+	uint64				frame_count = 0;
+	j1Timer				startup_time;
+	j1Timer				frame_time;
+	j1Timer				last_sec_frame_time;
+	uint32				last_sec_frame_count = 0;
+	uint32				prev_last_sec_frame_count = 0;
 };
 
 extern j1App* App; // No student is asking me about that ... odd :-S

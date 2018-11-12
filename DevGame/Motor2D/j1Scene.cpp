@@ -65,6 +65,7 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
+	// TODO 6: Make the camera movement independent of framerate
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 		LoadScene(1);
@@ -134,12 +135,12 @@ bool j1Scene::Update(float dt)
 
 
 	// "Map:%dx%d Tiles:%dx%d Tilesets:%d"
-	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
+	/*p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
 		App->map->data.width, App->map->data.height,
 		App->map->data.tile_width, App->map->data.tile_height,
 		App->map->data.tilesets.count());
 
-	App->win->SetTitle(title.GetString());
+	App->win->SetTitle(title.GetString());*/
 
 	return true;
 }
