@@ -76,10 +76,6 @@ bool j1App::Awake()
 {
 	PERF_START(ptimer);
 
-	pugi::xml_document	config_file;
-	pugi::xml_node		config;
-	pugi::xml_node		app_config;
-
 	bool ret = false;
 
 	config = LoadConfig(config_file);
@@ -203,13 +199,21 @@ void j1App::FinishUpdate()
 	uint32 frames_on_last_update = prev_last_sec_frame_count;
 
 	static char title[256];
+	//something wrong down
+
 	sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %02u Last sec frames: %i  Time since startup: %.3f Frame Count: %lu ",
-		avg_fps, last_frame_ms, frames_on_last_update, seconds_since_startup, frame_count);
+		avg_fps*1000, last_frame_ms, frames_on_last_update, seconds_since_startup, frame_count);
 	App->win->SetTitle(title);
 
 	// TODO 2: Use SDL_Delay to make sure you get your capped framerate
+	while (last_frame_ms > framerate_cap)
+	{
+		last_frame_ms -= framerate_cap;
+	}
 	
-	//SDL_Delay(framerate_cap - last_frame_ms);
+	wait_time = framerate_cap - last_frame_ms;
+
+	SDL_Delay(wait_time);
 	
 
 	// TODO3: Measure accurately the amount of time it SDL_Delay actually waits compared to what was expected

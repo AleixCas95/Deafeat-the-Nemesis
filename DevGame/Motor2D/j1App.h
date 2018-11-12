@@ -112,6 +112,7 @@ private:
 	
 	uint				framerate_cap = 0u;
 	uint				wait_time = 0u;
+	j1PerfTimer			real_waiting_time;
 
 	mutable bool		want_to_save;
 	bool				want_to_load;
