@@ -385,15 +385,15 @@ COLLISION_TYPE ModulePlayer::CheckCollision(int x) const
 	default:
 		break;
 
-	case 25:
+	case 57:
 		return COLLISION_TYPE::GROUND;
 		break;
 
-	case 26:
+	case 59:
 		return COLLISION_TYPE::DEATH;
 		break;
 
-	case 34:
+	case 81:
 		return COLLISION_TYPE::WIN;
 		break;
 	}	
@@ -406,7 +406,7 @@ void ModulePlayer::FindPlayerSpawn()
 	p2List_item<MapLayer*>* layer = App->map->data.layers.end;
 	for (int i = 0; i < (layer->data->width * layer->data->height); i++)
 	{
-		if (layer->data->data[i] == 27)
+		if (layer->data->data[i] == 82)
 		{
 			spawn = App->map->TileToWorld(i);
 		}
