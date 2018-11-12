@@ -17,6 +17,7 @@ class j1Scene;
 class j1Map;
 class ModuleFadeToBlack;
 class j1Entities;
+class j1PathFinding;
 
 class j1App
 {
@@ -96,7 +97,7 @@ public:
 	j1Map*				map;
 	ModuleFadeToBlack*  fade;
 	j1Entities*			entities;
-
+	j1PathFinding*		pathfinding;
 
 private:
 
@@ -108,6 +109,9 @@ private:
 
 	p2SString			title;
 	p2SString			organization;
+	
+	uint				framerate_cap = 0u;
+	uint				wait_time = 0u;
 
 	mutable bool		want_to_save;
 	bool				want_to_load;

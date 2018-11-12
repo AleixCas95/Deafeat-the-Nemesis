@@ -12,6 +12,7 @@
 #include "j1Scene.h"
 #include "j1Map.h"
 #include "j1App.h"
+#include "j1Pathfinding.h"
 #include "ModuleFadeToBlack.h"
 #include "j1Entities.h"
 
@@ -29,6 +30,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	map = new j1Map();
 	fade = new ModuleFadeToBlack();
 	entities = new j1Entities();
+	pathfinding = new j1PathFinding();
 	
 
 
@@ -40,6 +42,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(map);
 	AddModule(scene);
+	AddModule(pathfinding);
 	AddModule(entities);
 	AddModule(render);
 	AddModule(fade);
@@ -73,6 +76,10 @@ bool j1App::Awake()
 {
 	PERF_START(ptimer);
 
+	pugi::xml_document	config_file;
+	pugi::xml_node		config;
+	pugi::xml_node		app_config;
+
 	bool ret = false;
 
 	config = LoadConfig(config_file);
@@ -84,7 +91,7 @@ bool j1App::Awake()
 		app_config = config.child("app");
 		title.create(app_config.child("title").child_value());
 		organization.create(app_config.child("organization").child_value());
-
+		framerate_cap = app_config.attribute("framerate_cap").as_uint();
 		// TODO 1: Read from config file your framerate cap
 	}
 
@@ -201,8 +208,13 @@ void j1App::FinishUpdate()
 	App->win->SetTitle(title);
 
 	// TODO 2: Use SDL_Delay to make sure you get your capped framerate
+	
+	//SDL_Delay(framerate_cap - last_frame_ms);
+	
 
 	// TODO3: Measure accurately the amount of time it SDL_Delay actually waits compared to what was expected
+
+
 }
 
 // Call modules before each loop iteration
