@@ -12,7 +12,8 @@
 #include "j1Map.h"
 #include "j1App.h"
 #include "ModuleFadeToBlack.h"
-#include "ModulePlayer.h"
+//#include "ModulePlayer.h"
+#include "j1Entities.h"
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -28,7 +29,9 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	scene = new j1Scene();
 	map = new j1Map();
 	fade = new ModuleFadeToBlack();
-	player = new ModulePlayer();
+	//player = new ModulePlayer();
+	entities = new j1Entities();
+
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -37,11 +40,13 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(map);
-	AddModule(scene);
-	AddModule(player);
 
+	AddModule(scene);
+	//AddModule(player);
+	AddModule(entities);
 	// render last to swap buffer
 	AddModule(render);
+	AddModule(fade);
 }
 
 // Destructor
@@ -50,7 +55,7 @@ j1App::~j1App()
 	// release modules
 	p2List_item<j1Module*>* item = modules.end;
 
-	while(item != NULL)
+	while (item != NULL)
 	{
 		RELEASE(item->data);
 		item = item->prev;
@@ -70,10 +75,10 @@ bool j1App::Awake()
 {
 
 	bool ret = false;
-		
+
 	config = LoadConfig(config_file);
 
-	if(config.empty() == false)
+	if (config.empty() == false)
 	{
 		// self-config
 		ret = true;
@@ -82,12 +87,12 @@ bool j1App::Awake()
 		organization.create(app_config.child("organization").child_value());
 	}
 
-	if(ret == true)
+	if (ret == true)
 	{
 		p2List_item<j1Module*>* item;
 		item = modules.start;
 
-		while(item != NULL && ret == true)
+		while (item != NULL && ret == true)
 		{
 			ret = item->data->Awake(config.child(item->data->name.GetString()));
 			item = item->next;
@@ -104,7 +109,7 @@ bool j1App::Start()
 	p2List_item<j1Module*>* item;
 	item = modules.start;
 
-	while(item != NULL && ret == true)
+	while (item != NULL && ret == true)
 	{
 		ret = item->data->Start();
 		item = item->next;
@@ -119,16 +124,16 @@ bool j1App::Update()
 	bool ret = true;
 	PrepareUpdate();
 
-	if(input->GetWindowEvent(WE_QUIT) == true)
+	if (input->GetWindowEvent(WE_QUIT) == true)
 		ret = false;
 
-	if(ret == true)
+	if (ret == true)
 		ret = PreUpdate();
 
-	if(ret == true)
+	if (ret == true)
 		ret = DoUpdate();
 
-	if(ret == true)
+	if (ret == true)
 		ret = PostUpdate();
 
 	FinishUpdate();
@@ -142,7 +147,7 @@ pugi::xml_node j1App::LoadConfig(pugi::xml_document& config_file) const
 
 	pugi::xml_parse_result result = config_file.load_file("config.xml");
 
-	if(result == NULL)
+	if (result == NULL)
 		LOG("Could not load map xml file config.xml. pugi error: %s", result.description());
 	else
 		ret = config_file.child("config");
@@ -158,10 +163,10 @@ void j1App::PrepareUpdate()
 // ---------------------------------------------
 void j1App::FinishUpdate()
 {
-	if(want_to_save == true)
+	if (want_to_save == true)
 		SavegameNow();
 
-	if(want_to_load == true)
+	if (want_to_load == true)
 		LoadGameNow();
 }
 
@@ -173,11 +178,11 @@ bool j1App::PreUpdate()
 	item = modules.start;
 	j1Module* pModule = NULL;
 
-	for(item = modules.start; item != NULL && ret == true; item = item->next)
+	for (item = modules.start; item != NULL && ret == true; item = item->next)
 	{
 		pModule = item->data;
 
-		if(pModule->active == false) {
+		if (pModule->active == false) {
 			continue;
 		}
 
@@ -195,11 +200,11 @@ bool j1App::DoUpdate()
 	item = modules.start;
 	j1Module* pModule = NULL;
 
-	for(item = modules.start; item != NULL && ret == true; item = item->next)
+	for (item = modules.start; item != NULL && ret == true; item = item->next)
 	{
 		pModule = item->data;
 
-		if(pModule->active == false) {
+		if (pModule->active == false) {
 			continue;
 		}
 
@@ -216,11 +221,11 @@ bool j1App::PostUpdate()
 	p2List_item<j1Module*>* item;
 	j1Module* pModule = NULL;
 
-	for(item = modules.start; item != NULL && ret == true; item = item->next)
+	for (item = modules.start; item != NULL && ret == true; item = item->next)
 	{
 		pModule = item->data;
 
-		if(pModule->active == false) {
+		if (pModule->active == false) {
 			continue;
 		}
 
@@ -237,7 +242,7 @@ bool j1App::CleanUp()
 	p2List_item<j1Module*>* item;
 	item = modules.end;
 
-	while(item != NULL && ret == true)
+	while (item != NULL && ret == true)
 	{
 		ret = item->data->CleanUp();
 		item = item->prev;
@@ -255,7 +260,7 @@ int j1App::GetArgc() const
 // ---------------------------------------
 const char* j1App::GetArgv(int index) const
 {
-	if(index < argc)
+	if (index < argc)
 		return args[index];
 	else
 		return NULL;
@@ -337,18 +342,18 @@ bool j1App::SavegameNow() const
 	// xml object were we will store all data
 	pugi::xml_document data;
 	pugi::xml_node root;
-	
+
 	root = data.append_child("game_state");
 
 	p2List_item<j1Module*>* item = modules.start;
 
-	while(item != NULL && ret == true)
+	while (item != NULL && ret == true)
 	{
 		ret = item->data->Save(root.append_child(item->data->name.GetString()));
 		item = item->next;
 	}
 
-	if(ret == true)
+	if (ret == true)
 	{
 		data.save_file("save_game.xml");
 		LOG("... finished saving", );
@@ -358,5 +363,18 @@ bool j1App::SavegameNow() const
 
 	data.reset();
 	want_to_save = false;
+	return ret;
+}
+
+pugi::xml_node j1App::LoadEntitiesAnimation(pugi::xml_document& config_file) const
+{
+	pugi::xml_node ret;
+
+	pugi::xml_parse_result result = config_file.load_file("animation.xml");
+
+	if (result == NULL)
+		LOG("Could not load xml file entities.xml. pugi error: %s", result.description());
+	else
+		ret = config_file.child("entities");
 	return ret;
 }
