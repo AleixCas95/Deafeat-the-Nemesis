@@ -16,7 +16,7 @@ class j1Audio;
 class j1Scene;
 class j1Map;
 class ModuleFadeToBlack;
-class ModuleEntities;
+class ModulePlayer;
 
 class j1App
 {
@@ -94,7 +94,7 @@ public:
 	j1Scene*			scene;
 	j1Map*				map;
 	ModuleFadeToBlack*  fade;
-	ModuleEntities*		entities;
+	ModulePlayer*		player;
 
 private:
 

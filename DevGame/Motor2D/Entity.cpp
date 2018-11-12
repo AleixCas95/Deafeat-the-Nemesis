@@ -44,6 +44,11 @@ void Entity::Draw()
 	SDL_Rect anim_rect = animation->GetCurrentFrame();
 	if (animation != nullptr)
 	{
-		App->render->Blit(texture, pos.x, pos.y, &anim_rect, 1, flip);
+		if (flip)
+		{
+			App->render->Blit(texture, pos.x, pos.y, &anim_rect, 1, SDL_RendererFlip::SDL_FLIP_HORIZONTAL);
+		}
+		else
+			App->render->Blit(texture, pos.x, pos.y, &anim_rect, 1, SDL_RendererFlip::SDL_FLIP_NONE);
 	}
 }

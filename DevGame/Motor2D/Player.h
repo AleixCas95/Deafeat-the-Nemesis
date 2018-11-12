@@ -10,18 +10,28 @@
 
 struct SDL_Texture;
 
+enum COLLISION_TYPE
+{
+	GROUND,
+	AIR,
+	DEATH,
+	WIN
+};
+
 class Player : public Entity
 {
 public:
 
 	Player(int x, int y, ENTITY_TYPE type);
-	~Player();
+	~Player() {};
 
 	bool Start();
 	bool Update(float dt);
 	bool CleanUp();
 
 	int GetPlayerTile(fPoint pos) const;
+
+	COLLISION_TYPE CheckCollision(int x) const;
 
 	bool Load(pugi::xml_node& data);
 
@@ -36,6 +46,9 @@ public:
 	void SpawnPLayer();
 
 public:
+
+	Animation* animation = nullptr;
+
 	Animation idle = Animation();
 	Animation running = Animation();
 	Animation jumping = Animation();
@@ -71,6 +84,8 @@ public:
 	bool can_jump;
 	bool on_the_floor;
 
+	SDL_RendererFlip flip = SDL_FLIP_NONE;
+
 	bool ability_boost = false;
 
 	bool looking_right = false;
@@ -83,7 +98,8 @@ public:
 
 	p2Point<int> spawn;
 
-	EntityData playerData;
+	SDL_Texture* texture = nullptr;
+
 };
 
 #endif // !_PLAYER_H_
