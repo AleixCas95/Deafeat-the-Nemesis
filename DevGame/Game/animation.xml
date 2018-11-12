@@ -53,19 +53,19 @@
       <frame x="446" y="37" w="23" h="42"/>
       <frame x="475" y="37" w="23" h="42"/>
     </animation>
-    <animation name="attack_right" speed="0.1.f" loop="true">
+    <animation name="attack_right" speed="0.1.f" loop="false">
       <frame x="67" y="557" w="40" h="30"/>
       <frame x="115" y="558" w="53" h="30"/>
       <frame x="177" y="559" w="53" h="29"/>
       <frame x="235" y="559" w="45" h="29"/>
     </animation>
-    <animation name="attack_left" speed="0.1.f" loop="true">
+    <animation name="attack_left" speed="0.1.f" loop="false">
       <frame x="973" y="557" w="40" h="30"/>
       <frame x="912" y="558" w="53" h="30"/>
       <frame x="850" y="559" w="53" h="29"/>
       <frame x="800" y="559" w="44" h="29"/>
     </animation>      
-    <animation name="slide_right" speed="0.1.f" loop="true">
+    <animation name="slide_right" speed="0.1.f" loop="false">
       <frame x="71" y="362" w="31" h="23"/>
       <frame x="108" y="362" w="32" h="23"/>
       <frame x="145" y="362" w="35" h="23"/>
@@ -75,7 +75,7 @@
       <frame x="332" y="362" w="36" h="23"/>
       <frame x="372" y="362" w="31" h="23"/>
     </animation>   
-    <animation name="slide_left" speed="0.1.f" loop="true">
+    <animation name="slide_left" speed="0.1.f" loop="false">
       <frame x="978" y="362" w="31" h="23"/>
       <frame x="940" y="362" w="32" h="23"/>
       <frame x="900" y="362" w="35" h="23"/>
@@ -85,7 +85,7 @@
       <frame x="712" y="362" w="36" h="23"/>
       <frame x="667" y="362" w="31" h="23"/>
     </animation>         
-    <animation name="die_right" speed="0.1.f" loop="true">
+    <animation name="die_right" speed="0.1.f" loop="false">
       <frame x="140" y="644" w="31" h="32"/>
       <frame x="174" y="644" w="31" h="32"/>
       <frame x="210" y="644" w="31" h="32"/>
@@ -93,7 +93,7 @@
       <frame x="282" y="644" w="31" h="32"/>
       <frame x="317" y="644" w="31" h="32"/>
     </animation>
-    <animation name="die_left" speed="0.1.f" loop="true">
+    <animation name="die_left" speed="0.1.f" loop="false">
       <frame x="909" y="644" w="31" h="32"/>
       <frame x="875" y="644" w="31" h="32"/>
       <frame x="839" y="644" w="31" h="32"/>

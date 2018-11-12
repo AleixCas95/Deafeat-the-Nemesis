@@ -76,6 +76,7 @@ bool EntityPlayer::Start()
 
 	FindPlayerSpawn();
 	SpawnPLayer();
+	is_diying = false;
 	is_sliding = false;
 	is_attacking = false;
 	is_jumping = false;
@@ -107,8 +108,9 @@ bool EntityPlayer::Update(float dt)
 		tempPos.y += falling_speed;
 		if (CheckCollision(GetPlayerTile({ tempPos.x + 5, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR
 			&& CheckCollision(GetPlayerTile({ tempPos.x + 10, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR
-			&& is_jumping == false && is_attacking == false && is_sliding ==false)
+			&& is_jumping == false && is_attacking == false && is_sliding == false && is_diying == false)
 		{
+			can_die = false;
 			can_slide = false;
 			can_attack = false;
 			can_jump = false;
@@ -125,6 +127,7 @@ bool EntityPlayer::Update(float dt)
 			can_jump = true;
 			can_attack = true;
 			can_slide = true;
+			can_die = true;
 		}
 
 		if (CheckCollision(GetPlayerTile({ tempPos.x + 5, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH
@@ -262,7 +265,7 @@ bool EntityPlayer::Update(float dt)
 		is_attacking = true;
 		attack_cont = 0;
 	}
-
+	
 	if (is_attacking){
 		tempPos = pos;
 			if (looking_left)
@@ -289,7 +292,8 @@ bool EntityPlayer::Update(float dt)
 
 			tempPos = pos;
 
-			if (looking_right) {
+			if (looking_right && CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y })) == COLLISION_TYPE::AIR
+				&& CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR) {
 				animation = &slide_right;
 				pos.x = pos.x++;
 				if (CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y })) == COLLISION_TYPE::WIN
@@ -299,7 +303,8 @@ bool EntityPlayer::Update(float dt)
 				}
 			
 			}
-			else if (looking_left) {
+			else if (looking_left && CheckCollision(GetPlayerTile({ tempPos.x, tempPos.y })) == COLLISION_TYPE::AIR
+				&& CheckCollision(GetPlayerTile({ tempPos.x, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR) {
 					animation = &slide_left;
 					pos.x = pos.x--;
 					
@@ -313,8 +318,32 @@ bool EntityPlayer::Update(float dt)
 				is_sliding = false;
 			}
 		
-	
+			//die
+			if ((CheckCollision(GetPlayerTile({ tempPos.x + 5, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH
+				&& CheckCollision(GetPlayerTile({ tempPos.x + 10, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH && is_diying == false && can_die))
+			{
 
+				can_die = false;
+				die_left.Reset();
+				die_right.Reset();
+				is_diying = true;
+				die_cont = 0;
+			}
+
+			if (is_diying) {
+				tempPos = pos;
+				if (looking_left)
+					animation = &die_left;
+				else if (looking_right)
+					animation = &die_right;
+			}
+			if (die_cont == 35)
+			{
+				is_diying = false;
+
+			}
+	
+			die_cont++;
 	slide_cont++;
 	attack_cont++;
 	cont++;
