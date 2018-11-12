@@ -133,7 +133,7 @@ bool EntityPlayer::Update(float dt)
 		if (CheckCollision(GetPlayerTile({ tempPos.x + 5, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH
 			&& CheckCollision(GetPlayerTile({ tempPos.x + 10, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH)
 		{
-			App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
+			//App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
 			App->audio->PlayFx(2);
 			SpawnPLayer();
 		}
@@ -319,8 +319,7 @@ bool EntityPlayer::Update(float dt)
 			}
 		
 			//die
-			if ((CheckCollision(GetPlayerTile({ tempPos.x + 5, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH
-				&& CheckCollision(GetPlayerTile({ tempPos.x + 10, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH && is_diying == false && can_die))
+			if ((App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && is_diying == false && can_die))
 			{
 
 				can_die = false;
@@ -343,7 +342,7 @@ bool EntityPlayer::Update(float dt)
 
 			}
 	
-			die_cont++;
+	die_cont++;
 	slide_cont++;
 	attack_cont++;
 	cont++;
