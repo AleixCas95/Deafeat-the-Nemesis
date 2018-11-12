@@ -14,8 +14,8 @@
 
 ModuleFadeToBlack::ModuleFadeToBlack():j1Module()
 {
-
-	screen = { 0, 0, 1024,640 };
+	//screen = { 0, 0, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE };
+	screen = { 0, 0, 720 * 720, 720 * 720 };
 }
 
 ModuleFadeToBlack::~ModuleFadeToBlack()
@@ -45,7 +45,8 @@ bool ModuleFadeToBlack::Update()
 		if (now >= total_time)
 		{
 			
-			Module->CleanUp();
+			//ModuleOff->Disable();
+			//ModuleOn->Enable();
 			
 			total_time += total_time;
 			start_time = SDL_GetTicks();
@@ -70,10 +71,11 @@ bool ModuleFadeToBlack::Update()
 }
 
 // Fade to black. At mid point deactivate one module, then activate the other
-bool ModuleFadeToBlack::FadeToBlack(j1Module* module, float time)
+bool ModuleFadeToBlack::FadeToBlack(j1Module* module_off, j1Module* module_on, float time)
 {
 	bool ret = false;
-	Module = module;
+	//ModuleOff = module_off;
+	//ModuleOn = module_on;
 	if (current_step == fade_step::none)
 	{
 		current_step = fade_step::fade_to_black;
