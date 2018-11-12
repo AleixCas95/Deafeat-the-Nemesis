@@ -26,6 +26,7 @@ struct PlayerData
 	float jumpSpeed = 3.0f;
 	float gravity = 2.8f;
 	float attackSpeed = 2.0f;
+	float slideSpeed = 2.0f;
 
 
 };
@@ -82,12 +83,15 @@ public:
 
 	int cont = 0;
 	int attack_cont = 0;
+	int slide_cont = 0;
 
 	bool is_jumping;
 	bool is_falling;
 	bool can_jump;
 	bool is_attacking;
 	bool can_attack;
+	bool is_sliding;
+	bool can_slide;
 
 	bool looking_right = false;
 	bool looking_left = false;

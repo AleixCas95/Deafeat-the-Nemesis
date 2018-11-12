@@ -76,6 +76,7 @@ bool EntityPlayer::Start()
 
 	FindPlayerSpawn();
 	SpawnPLayer();
+	is_sliding = false;
 	is_attacking = false;
 	is_jumping = false;
 	looking_right = true;
@@ -106,8 +107,9 @@ bool EntityPlayer::Update(float dt)
 		tempPos.y += falling_speed;
 		if (CheckCollision(GetPlayerTile({ tempPos.x + 5, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR
 			&& CheckCollision(GetPlayerTile({ tempPos.x + 10, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR
-			&& is_jumping == false && is_attacking == false)
+			&& is_jumping == false && is_attacking == false && is_sliding ==false)
 		{
+			can_slide = false;
 			can_attack = false;
 			can_jump = false;
 			is_falling = true;
@@ -122,6 +124,7 @@ bool EntityPlayer::Update(float dt)
 			is_falling = false;
 			can_jump = true;
 			can_attack = true;
+			can_slide = true;
 		}
 
 		if (CheckCollision(GetPlayerTile({ tempPos.x + 5, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH
@@ -213,24 +216,7 @@ bool EntityPlayer::Update(float dt)
 			}
 		}
 
-
-		/*if (App->input->GetKey(SDL_SCANCODE_C) == KEY_REPEAT)
-		{
-		tempPos = playerData.pos;
-
-		tempPos.x += playerData.speed;
-
-		if (CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y })) == COLLISION_TYPE::AIR
-		&& CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR)
-		{
-		playerData.pos.x = tempPos.x;
-		animation = &slide_right;
-		}
-
-		looking_left = false;
 		looking_right = true;
-		}
-		*/
 	}
 	else
 	{
@@ -275,6 +261,7 @@ bool EntityPlayer::Update(float dt)
 		if(looking_left)
 		animation = &attack_left;
 		attack_left.ResetLoops();*/
+		
 		can_attack = false;
 		attack_left.Reset();
 		attack_right.Reset();
@@ -282,8 +269,7 @@ bool EntityPlayer::Update(float dt)
 		attack_cont = 0;
 	}
 
-	if (is_attacking)
-	{
+	if (is_attacking){
 		tempPos = pos;
 			if (looking_left)
 				animation = &attack_left;
@@ -293,11 +279,49 @@ bool EntityPlayer::Update(float dt)
 		if (attack_cont == 35)
 		{
 			is_attacking = false;
+			
 		}
-	
+		//slide
+
+		if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN && is_sliding == false && can_slide) {
+
+			can_slide = false;
+			slide_left.Reset();
+			slide_right.Reset();
+			is_sliding = true;
+			slide_cont = 0;
+		}
+		if (is_sliding) {
+
+			tempPos = pos;
+
+			if (looking_right) {
+				animation = &slide_right;
+				pos.x = pos.x++;
+				if (CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y })) == COLLISION_TYPE::WIN
+					&& CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::WIN)
+				{
+					App->scene->LoadScene(); //with number 3 LoadScene loads the next map
+				}
+			
+			}
+				else if (looking_left) {
+					animation = &slide_left;
+					pos.x = pos.x--;
+					
+				}
+				
+
+				}
+			
+			if (slide_cont == 35)
+			{
+				is_sliding = false;
+			}
+		
 	
 
-
+	slide_cont++;
 	attack_cont++;
 	cont++;
 	return true;
