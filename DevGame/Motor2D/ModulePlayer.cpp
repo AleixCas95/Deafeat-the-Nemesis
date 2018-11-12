@@ -35,32 +35,18 @@ ModulePlayer::ModulePlayer()
 			LoadAnimation(animations, &jumping);
 		else if (tmp == "wall_slide")
 			LoadAnimation(animations, &wall_slide);
-		else if (tmp == "punch1")
-			LoadAnimation(animations, &punch1);
-		else if (tmp == "punch2")
-			LoadAnimation(animations, &punch2);
-		else if (tmp == "punch3")
-			LoadAnimation(animations, &punch3);
+		else if (tmp == "punch")
+			LoadAnimation(animations, &punch);
 		else if (tmp == "punch_barrage")
 			LoadAnimation(animations, &punch_barrage);
-		else if (tmp == "kick1")
-			LoadAnimation(animations, &kick1);
-		else if (tmp == "kick2")
-			LoadAnimation(animations, &kick2);
+		else if (tmp == "kick")
+			LoadAnimation(animations, &kick);
 		else if (tmp == "double_kick")
 			LoadAnimation(animations, &double_kick);
 		else if (tmp == "unsheathe")
 			LoadAnimation(animations, &unsheathe);
-		else if (tmp == "sheathe")
-			LoadAnimation(animations, &sheathe);
 		else if (tmp == "idle_sword")
 			LoadAnimation(animations, &idle_sword);
-		else if (tmp == "running_sword")
-			LoadAnimation(animations, &running_sword);
-		else if (tmp == "slash1")
-			LoadAnimation(animations, &slash1);
-		else if (tmp == "triple_slash")
-			LoadAnimation(animations, &triple_slash);
 	}
 
 	/*App->audio->fx.add[1] = App->audio->LoadFx("audio/fx/JumpFx.wav");
@@ -105,7 +91,7 @@ bool ModulePlayer::Update(float dt)
 		tempPos.y += falling_speed;
 		if (CheckCollision(GetPlayerTile({ tempPos.x + 5, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR
 			&& CheckCollision(GetPlayerTile({ tempPos.x + 10, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR
-			&& !is_jumping && !is_slashing)
+			&& is_jumping == false)
 		{
 			can_jump = false;
 			is_falling = true;
@@ -128,7 +114,7 @@ bool ModulePlayer::Update(float dt)
 		//--------------------------------
 
 		// MOVEMENT RIGHT
-		if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT && !is_punching && !is_kicking && !unsheathing && !sheathing  && !is_slashing)
+		if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT && !is_punching && !is_kicking)
 		{
 			looking_left = false;
 			looking_right = true;
@@ -141,13 +127,7 @@ bool ModulePlayer::Update(float dt)
 			{
 				playerData.pos.x = tempPos.x;
 				if (!is_falling)
-				{
-					if (!sword)
-						animation = &running;
-					else if (sword)
-						animation = &running_sword;
-				}
-					
+					animation = &running;
 			}
 			else if (CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y })) == COLLISION_TYPE::GROUND
 				&& CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::GROUND
@@ -165,7 +145,7 @@ bool ModulePlayer::Update(float dt)
 		//--------------------------------
 
 		// MOVEMENT LEFT
-		if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT && !is_punching && !is_kicking && !unsheathing && !sheathing  && !is_slashing)
+		if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT && !is_punching && !is_kicking)
 		{
 			looking_left = true;
 			looking_right = false;
@@ -177,13 +157,8 @@ bool ModulePlayer::Update(float dt)
 			{
 				if (tempPos.x >= App->render->camera.x)
 					playerData.pos.x = tempPos.x;
-				if (!is_falling)
-				{
-					if (!sword)
-						animation = &running;
-					else if (sword)
-						animation = &running_sword;
-				}
+				if (is_falling == false)
+					animation = &running;
 			}
 			else if (CheckCollision(GetPlayerTile({ tempPos.x, tempPos.y })) == COLLISION_TYPE::GROUND
 				&& CheckCollision(GetPlayerTile({ tempPos.x, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::GROUND
@@ -196,7 +171,7 @@ bool ModulePlayer::Update(float dt)
 		//--------------------------------
 
 		// JUMP
-		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN && is_jumping == false && can_jump && !is_punching && !is_kicking && is_slashing)
+		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN && is_jumping == false && can_jump && !is_punching && !is_kicking)
 		{
 			App->audio->PlayFx(1);
 			can_jump = false;
@@ -299,26 +274,14 @@ bool ModulePlayer::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
 		ability_boost = true;
 
-	// PUNCHES AND SLASHES
-	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN && !is_punching && !is_slashing)
+	// PUNCHES
+	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN && is_punching == false)
 	{
-		if (!sword)
-		{
-			is_punching = true;
-			punch1.Reset();
-			punch1.ResetLoops();
-			punch_barrage.Reset();
-			punch_barrage.ResetLoops();
-		}	
-		else if (sword)
-		{
-			is_slashing = true;
-			slash1.Reset();
-			slash1.ResetLoops();
-			triple_slash.Reset();
-			triple_slash.ResetLoops();
-		}
-		
+		is_punching = true;	
+		punch.Reset();
+		punch.ResetLoops();
+		punch_barrage.Reset();
+		punch_barrage.ResetLoops();
 	}
 	if (is_punching)
 	{
@@ -328,7 +291,7 @@ bool ModulePlayer::Update(float dt)
 		}
 		else
 		{ 
-			animation = &punch1;
+			animation = &punch;
 		}
 		if (!offset_x_added && looking_left)
 		{
@@ -358,52 +321,14 @@ bool ModulePlayer::Update(float dt)
 			animation = &idle;
 		}
 	}
-	if (is_slashing)
-	{
-		if (ability_boost)
-		{
-			animation = &triple_slash;
-		}
-		else
-		{
-			animation = &slash1;
-		}
-		if (!offset_x_added && looking_left)
-		{
-			playerData.pos.x -= animation->offset_x;
-			offset_x_added = true;
-		}
-		if (!offset_y_added)
-		{
-			playerData.pos.y += animation->offset_y;
-			offset_y_added = true;
-		}
-
-		if (animation->Finished())
-		{
-			if (offset_x_added)
-			{
-				playerData.pos.x += animation->offset_x;
-				offset_x_added = false;
-			}
-			if (offset_y_added)
-			{
-				playerData.pos.y -= animation->offset_y;
-				offset_y_added = false;
-			}
-			is_slashing = false;
-			ability_boost = false;
-			animation = &idle_sword;
-		}
-	}
 	//--------------------------------
 
 	// KICKS
 	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && is_kicking == false)
 	{
 		is_kicking = true;
-		kick1.Reset();
-		kick1.ResetLoops();
+		kick.Reset();
+		kick.ResetLoops();
 		double_kick.Reset();
 		double_kick.ResetLoops();
 	}
@@ -415,7 +340,7 @@ bool ModulePlayer::Update(float dt)
 		}
 		else
 		{
-			animation = &kick1;
+			animation = &kick;
 		}
 		if (!offset_x_added && looking_left)
 		{
@@ -447,18 +372,13 @@ bool ModulePlayer::Update(float dt)
 	}
 	//--------------------------------
 
-	//UNSHEATHE AND SHEATHE SWORD
-	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN && can_jump && !is_jumping && !is_falling)
+	//UNSHEATHE SWORD
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
 	{
+		unsheathing = true;
 		sword = !sword;
-		if (sword)
-			unsheathing = true;
-		else if (!sword)
-			sheathing = true;
 		unsheathe.Reset();
 		unsheathe.ResetLoops();
-		sheathe.Reset();
-		sheathe.ResetLoops();
 	}
 
 	if (sword && unsheathing)
@@ -467,57 +387,8 @@ bool ModulePlayer::Update(float dt)
 		if (animation->Finished())
 		{
 			unsheathing = false;
-			if (!offset_x_added && looking_left)
-			{
-				playerData.pos.x -= animation->offset_x;
-				offset_x_added = true;
-			}
-			if (!offset_y_added)
-			{
-				playerData.pos.y += animation->offset_y;
-				offset_y_added = true;
-			}
-			if (offset_x_added)
-			{
-				playerData.pos.x += animation->offset_x;
-				offset_x_added = false;
-			}
-			if (offset_y_added)
-			{
-				playerData.pos.y -= animation->offset_y;
-				offset_y_added = false;
-			}
 		}
 	}
-	else if (!sword && sheathing)
-	{
-		animation = &sheathe;
-		if (animation->Finished())
-		{
-			sheathing = false;
-			if (!offset_x_added && looking_left)
-			{
-				playerData.pos.x -= animation->offset_x;
-				offset_x_added = true;
-			}
-			if (!offset_y_added)
-			{
-				playerData.pos.y += animation->offset_y;
-				offset_y_added = true;
-			}
-			if (offset_x_added)
-			{
-				playerData.pos.x += animation->offset_x;
-				offset_x_added = false;
-			}
-			if (offset_y_added)
-			{
-				playerData.pos.y -= animation->offset_y + 2;
-				offset_y_added = false;
-			}
-		}
-	}
-	//--------------------------------
 
 	App->render->Blit(texture, playerData.pos.x, playerData.pos.y, &animation->GetCurrentFrame(), 1, flip);
 	cont++;
