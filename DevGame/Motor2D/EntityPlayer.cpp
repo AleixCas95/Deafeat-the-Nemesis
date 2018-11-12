@@ -216,7 +216,7 @@ bool EntityPlayer::Update(float dt)
 			}
 		}
 
-		looking_right = true;
+	
 	}
 	else
 	{
@@ -255,13 +255,7 @@ bool EntityPlayer::Update(float dt)
 
 	if ((App->input->GetKey(SDL_SCANCODE_G) == KEY_DOWN && is_attacking == false && can_attack))
 	{
-		/*if(looking_right)
-		animation = &attack_right;
-		attack_right.ResetLoops();
-		if(looking_left)
-		animation = &attack_left;
-		attack_left.ResetLoops();*/
-		
+	
 		can_attack = false;
 		attack_left.Reset();
 		attack_right.Reset();
@@ -283,7 +277,7 @@ bool EntityPlayer::Update(float dt)
 		}
 		//slide
 
-		if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN && is_sliding == false && can_slide) {
+		if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN && is_sliding == false && can_slide) {
 
 			can_slide = false;
 			slide_left.Reset();
@@ -305,7 +299,7 @@ bool EntityPlayer::Update(float dt)
 				}
 			
 			}
-				else if (looking_left) {
+			else if (looking_left) {
 					animation = &slide_left;
 					pos.x = pos.x--;
 					
