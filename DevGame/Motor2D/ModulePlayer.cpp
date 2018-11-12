@@ -7,7 +7,6 @@
 #include "j1Scene.h"
 #include "j1Audio.h"
 #include "j1Window.h"
-#include "ModuleFadeToBlack.h"
 
 
 ModulePlayer::ModulePlayer()
@@ -160,9 +159,7 @@ bool ModulePlayer::Update(float dt)
 			else if (CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y })) == COLLISION_TYPE::WIN
 				&& CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::WIN)
 			{
-				App->fade->FadeToBlack(App->scene, App->scene,0.5f);
 				App->scene->LoadScene(); 
-			
 			}
 		}
 		//--------------------------------

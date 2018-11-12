@@ -108,6 +108,15 @@ bool j1Scene::Update(float dt)
 	}
 	
 
+
+
+	//FadeToBlack
+
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	{
+		App->fade->FadeToBlack(App->scene,1.5f);
+	}
+
 	//App->render->Blit(img, 0, 0);
 	App->map->Draw();
 

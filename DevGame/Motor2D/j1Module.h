@@ -13,8 +13,6 @@ class j1App;
 
 class j1Module
 {
-private:
-	bool enabled = true;
 public:
 
 	j1Module() : active(false)
@@ -69,28 +67,6 @@ public:
 	virtual bool Save(pugi::xml_node&) const
 	{
 		return true;
-	}
-
-	//Enable & Disable
-
-	bool IsEnabled() const { return enabled; }
-
-	void Enable()
-	{
-		if (enabled == false)
-		{
-			enabled = true;
-			Start();
-		}
-	}
-
-	void Disable()
-	{
-		if (enabled == true)
-		{
-			enabled = false;
-			CleanUp();
-		}
 	}
 
 public:
