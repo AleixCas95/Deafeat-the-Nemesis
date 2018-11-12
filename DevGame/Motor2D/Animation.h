@@ -12,7 +12,6 @@ public:
 	SDL_Rect frames[MAX_FRAMES];
 	float current_frame;
 	int last_frame = 0;
-	int offset = 0;
 
 private:
 	
