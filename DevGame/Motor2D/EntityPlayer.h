@@ -75,6 +75,8 @@ public:
 	Animation fall_right = Animation();
 	Animation fall_left = Animation();
 	Animation attack_right = Animation();
+	Animation attack_left = Animation();
+
 
 	PlayerData playerData;
 

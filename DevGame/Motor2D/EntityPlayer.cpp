@@ -44,6 +44,16 @@ EntityPlayer::EntityPlayer(int x, int y, ENTITY_TYPE type) : Entity(x, y, type)
 			LoadAnimation(animations, &jumping_right);
 		else if (ent == "attack_right")
 			LoadAnimation(animations, &attack_right);
+		else if (ent == "attack_left")
+			LoadAnimation(animations, &attack_left);
+		else if (ent == "die_right")
+			LoadAnimation(animations, &die_right);
+		else if (ent == "die_left")
+			LoadAnimation(animations, &die_left);
+		else if (ent == "slide_right")
+			LoadAnimation(animations, &slide_right);
+		else if (ent == "slide_left")
+			LoadAnimation(animations, &slide_left);
 	}
 
 
@@ -66,6 +76,7 @@ bool EntityPlayer::Start()
 
 	FindPlayerSpawn();
 	SpawnPLayer();
+	is_attacking = false;
 	is_jumping = false;
 	looking_right = true;
 	return true;
@@ -95,8 +106,9 @@ bool EntityPlayer::Update(float dt)
 		tempPos.y += falling_speed;
 		if (CheckCollision(GetPlayerTile({ tempPos.x + 5, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR
 			&& CheckCollision(GetPlayerTile({ tempPos.x + 10, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR
-			&& is_jumping == false)
+			&& is_jumping == false && is_attacking == false)
 		{
+			can_attack = false;
 			can_jump = false;
 			is_falling = true;
 			pos = tempPos;
@@ -109,6 +121,7 @@ bool EntityPlayer::Update(float dt)
 		{
 			is_falling = false;
 			can_jump = true;
+			can_attack = true;
 		}
 
 		if (CheckCollision(GetPlayerTile({ tempPos.x + 5, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH
@@ -254,12 +267,38 @@ bool EntityPlayer::Update(float dt)
 	//attack right
 
 
-	if ((App->input->GetKey(SDL_SCANCODE_G) == KEY_REPEAT))
+	if ((App->input->GetKey(SDL_SCANCODE_G) == KEY_DOWN && is_attacking == false && can_attack))
 	{
+		/*if(looking_right)
 		animation = &attack_right;
-
-
+		attack_right.ResetLoops();
+		if(looking_left)
+		animation = &attack_left;
+		attack_left.ResetLoops();*/
+		can_attack = false;
+		attack_left.Reset();
+		attack_right.Reset();
+		is_attacking = true;
+		attack_cont = 0;
 	}
+
+	if (is_attacking)
+	{
+		tempPos = pos;
+			if (looking_left)
+				animation = &attack_left;
+			else if (looking_right)
+				animation = &attack_right;
+		}
+		if (attack_cont == 35)
+		{
+			is_attacking = false;
+		}
+	
+	
+
+
+	attack_cont++;
 	cont++;
 	return true;
 }
