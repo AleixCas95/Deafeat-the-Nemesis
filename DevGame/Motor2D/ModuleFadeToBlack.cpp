@@ -1,6 +1,9 @@
 #include "p2Defs.h"
 #include "p2Log.h"
 #include "j1App.h"
+#include "p2Defs.h"
+#include "p2Log.h"
+#include "j1App.h"
 #include "j1Input.h"
 #include "j1Textures.h"
 #include "j1Audio.h"
@@ -12,10 +15,11 @@
 #include "SDL/include/SDL_render.h"
 #include "SDL/include/SDL_timer.h"
 
-ModuleFadeToBlack::ModuleFadeToBlack():j1Module()
+ModuleFadeToBlack::ModuleFadeToBlack() :j1Module()
 {
 	//screen = { 0, 0, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE };
-	screen = { 0, 0, 720 * 720, 720 * 720 };
+	//screen = { 0, 0, 720 * 720, 720 * 720 };
+	screen = { 0, 0, 1024,640 };
 }
 
 ModuleFadeToBlack::~ModuleFadeToBlack()
@@ -30,7 +34,7 @@ bool ModuleFadeToBlack::Start()
 }
 
 // Update: draw background
-bool ModuleFadeToBlack::Update()
+bool ModuleFadeToBlack::Update(float dt)
 {
 	if (current_step == fade_step::none)
 		return true;
@@ -44,10 +48,10 @@ bool ModuleFadeToBlack::Update()
 	{
 		if (now >= total_time)
 		{
-			
-			//ModuleOff->Disable();
-			//ModuleOn->Enable();
-			
+
+			ModuleOff->Disable();
+			ModuleOn->Enable();
+
 			total_time += total_time;
 			start_time = SDL_GetTicks();
 			current_step = fade_step::fade_from_black;
@@ -66,7 +70,7 @@ bool ModuleFadeToBlack::Update()
 	// Finally render the black square with alpha on the screen
 	SDL_SetRenderDrawColor(App->render->renderer, 0, 0, 0, (Uint8)(normalized * 255.0f));
 	SDL_RenderFillRect(App->render->renderer, &screen);
-	
+
 	return true;
 }
 
@@ -74,8 +78,8 @@ bool ModuleFadeToBlack::Update()
 bool ModuleFadeToBlack::FadeToBlack(j1Module* module_off, j1Module* module_on, float time)
 {
 	bool ret = false;
-	//ModuleOff = module_off;
-	//ModuleOn = module_on;
+	ModuleOff = module_off;
+	ModuleOn = module_on;
 	if (current_step == fade_step::none)
 	{
 		current_step = fade_step::fade_to_black;
