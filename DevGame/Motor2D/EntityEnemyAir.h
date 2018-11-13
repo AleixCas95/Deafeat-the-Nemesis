@@ -17,11 +17,6 @@
 
 struct SDL_Texture;
 
-struct EnemyAirData
-{
-
-
-};
 
 
 
@@ -37,7 +32,7 @@ public:
 	bool Update(float dt);
 	bool CleanUp();
 
-	int GetPlayerTile(fPoint pos) const;
+	int GetEnemyAirTile(fPoint pos) const;
 
 	bool Load(pugi::xml_node& data);
 
@@ -47,10 +42,7 @@ public:
 
 	void LoadTexture();
 
-	void FindEntityEnemySpawn();
 
-	void SpawnEnemyAir();
-	
 
 public:
 
@@ -64,12 +56,10 @@ public:
 	Animation dyingleft = Animation();
 	
 
-	EnemyAirData enemy1Data;
 
 	bool looking_front = false;
 
 
-	p2Point<int> spawn;
 
 
 

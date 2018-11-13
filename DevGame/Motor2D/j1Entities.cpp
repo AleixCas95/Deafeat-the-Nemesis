@@ -31,14 +31,15 @@ bool j1Entities::Start() {
 
 bool j1Entities::PreUpdate() {
 
-	for (p2List_item<Entity*>* item = entities.start; item != nullptr; item = item->next) {
-
+	p2List_item<Entity*>* item = entities.start;
+	while (item != nullptr)
+	{
 		if (item->data->destroy_entity == true) {
-
-
-			/*	item->data->~Entity();*/
+			delete item->data;
 			entities.del(item);
 		}
+		item = item->next;
+		
 	}
 
 
@@ -66,11 +67,12 @@ bool j1Entities::Update(float dt) {
 
 bool j1Entities::CleanUp() {
 
-	for (p2List_item<Entity*>* item = entities.start; item != nullptr; item = item->next) {
-
-
-		/*item->data->~Entity();*/
+	p2List_item<Entity*>* item = entities.start;
+	while (item != nullptr)
+	{
+		delete item->data;
 		entities.del(item);
+		item = item->next;
 	}
 	return true;
 }
@@ -89,7 +91,7 @@ bool j1Entities::SpawnEntity(int x, int y, ENTITY_TYPE type) {
 		break; }
 	case ENTITY_TYPE::ENEMYAIR: {
 
-		enemyair = new EntityEnemyAir(x, y, ENEMYAIR);
+		EntityEnemyAir* enemyair = new EntityEnemyAir(x, y, ENEMYAIR);
 		entities.add(enemyair);
 
 		break; }

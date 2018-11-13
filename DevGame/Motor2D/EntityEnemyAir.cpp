@@ -9,10 +9,11 @@
 #include "j1Map.h"
 #include "j1Render.h"
 #include "j1Scene.h"
+#include "j1Entities.h"
 
 EntityEnemyAir::EntityEnemyAir(int x, int y, ENTITY_TYPE type) : Entity(x, y, type)
 {
-
+	
 	pugi::xml_document	config_file;
 	pugi::xml_node* node = &App->LoadEntitiesAnimation(config_file);
 	node = &node->child("airenemy");
@@ -33,14 +34,15 @@ EntityEnemyAir::EntityEnemyAir(int x, int y, ENTITY_TYPE type) : Entity(x, y, ty
 			LoadAnimation(animations, &dyingright);
 		else if (entenemy1 == "dyingleft")
 			LoadAnimation(animations, &dyingleft);
+		
+		animation = &idle;
 	}
 
 
 
 	Start();
 
-	/*App->audio->fx.add[1] = App->audio->LoadFx("audio/fx/JumpFx.wav");
-	App->audio->fx.add[2] = App->audio->LoadFx("audio/fx/HurtFx.wav");*/
+	
 }
 EntityEnemyAir::~EntityEnemyAir() {
 
@@ -49,12 +51,10 @@ EntityEnemyAir::~EntityEnemyAir() {
 
 bool EntityEnemyAir::Start()
 {
+	
 	LoadTexture();
-	/*App->audio->LoadFx("audio/fx/JumpFx.wav");
-	App->audio->LoadFx("audio/fx/HurtFx.wav");
-*/
-	FindEntityEnemySpawn();
-	SpawnEnemyAir();
+
+	
 	looking_front = true;
 
 	return true;
@@ -63,9 +63,7 @@ bool EntityEnemyAir::Start()
 bool EntityEnemyAir::Update(float dt)
 {
 
-	if (looking_front)
-		animation = &idle;
-	
+	if(looking_front==true)animation = &idle;
 	return true;
 }
 
@@ -99,7 +97,7 @@ void EntityEnemyAir::LoadTexture()
 	texture = App->tex->Load("textures/Player/spritesheetenemi2.png");
 }
 
-int EntityEnemyAir::GetPlayerTile(fPoint pos) const
+int EntityEnemyAir::GetEnemyAirTile(fPoint pos) const
 {
 	iPoint position = App->map->WorldToMap(pos.x, pos.y);
 
@@ -121,21 +119,3 @@ void EntityEnemyAir::LoadAnimation(pugi::xml_node animation_node, Animation* ani
 }
 
 
-void EntityEnemyAir::FindEntityEnemySpawn()
-{
-	p2List_item<MapLayer*>* layer = App->map->data.layers.end;
-	for (int i = 0; i < (layer->data->width * layer->data->height); i++)
-	{
-		if (layer->data->data[i] == 105)
-		{
-			spawn = App->map->TileToWorld(i);
-		}
-	}
-}
-
-void EntityEnemyAir::SpawnEnemyAir()
-{
-	pos.x = spawn.x;
-	pos.y = spawn.y;
-	App->render->camera.x = 0;
-}

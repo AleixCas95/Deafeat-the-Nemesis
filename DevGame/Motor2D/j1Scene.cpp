@@ -13,6 +13,7 @@
 #include "j1Entities.h"
 #include "EntityPlayer.h"
 #include "Entity.h"
+#include "EntityEnemyAir.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -49,6 +50,18 @@ bool j1Scene::Start()
 
 	App->map->Load(CurrentMap->data);
 	App->entities->SpawnEntity(0, 0, PLAYER);
+	iPoint spawnenemy;
+	p2List_item<MapLayer*>* layer = App->map->data.layers.end;
+	for (int i = 0; i < (layer->data->width * layer->data->height); i++)
+	{
+		if (layer->data->data[i] == 105)
+		{
+			spawnenemy = App->map->TileToWorld(i);
+			App->entities->SpawnEntity(spawnenemy.x, spawnenemy.y, ENEMYAIR);
+
+		}
+	}
+	
 	//App->entities->entities.add(App->entities->player);
 	App->audio->PlayMusic("audio/music/Mushroom_Theme.ogg");
 
@@ -93,7 +106,7 @@ bool j1Scene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN) {
 
-
+		
 		App->entities->player->god_mode = !App->entities->player->god_mode;
 		App->entities->player->is_falling = true;
 		App->entities->player->is_jumping = false;
@@ -165,6 +178,8 @@ bool j1Scene::CleanUp()
 
 	App->entities->player = nullptr;
 
+	
+
 
 	LOG("Freeing scene");
 	return true;
@@ -175,6 +190,15 @@ bool j1Scene::LoadScene(int map)
 	App->map->CleanUp();
 	App->tex->FreeTextures();
 	App->entities->player->LoadTexture();
+
+	p2List_item<Entity*>* item = App->entities->entities.start;
+	while (item != nullptr)
+	{
+		delete item->data;
+		App->entities->entities.del(item);
+		item = item->next;
+	}
+	
 
 	if (map == -1) {
 
@@ -205,7 +229,20 @@ bool j1Scene::LoadScene(int map)
 	}
 	App->map->Load(CurrentMap->data);
 	App->entities->player->FindPlayerSpawn();
+	iPoint spawnenemy;
 	App->entities->SpawnEntity(0, 0, PLAYER);
+	p2List_item<MapLayer*>* layer = App->map->data.layers.end;
+	for (int i = 0; i < (layer->data->width * layer->data->height); i++)
+	{
+		if (layer->data->data[i] == 105)
+		{
+			spawnenemy = App->map->TileToWorld(i);
+			App->entities->SpawnEntity(spawnenemy.x, spawnenemy.y, ENEMYAIR);
+
+		}
+	}
+
+
 
 	return true;
 }

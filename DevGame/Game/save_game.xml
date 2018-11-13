@@ -6,12 +6,12 @@
 	<audio />
 	<map />
 	<scene>
-		<Map CurrentMap="2" />
+		<Map CurrentMap="1" />
 	</scene>
-	<player>
-		<position x="1106" y="192.5" />
-	</player>
+	<pathfinding />
+	<entities />
 	<renderer>
-		<camera x="-592" y="0" />
+		<camera x="-1592" y="0" />
 	</renderer>
+	<:anonymous />
 </game_state>

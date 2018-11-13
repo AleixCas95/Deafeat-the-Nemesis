@@ -49,22 +49,13 @@ COLLISION_TYPE Entity::CheckCollision(int x)const {
 
 void Entity::Draw() {
 
-
+	SDL_Rect rect_animation = animation->GetCurrentFrame();
 
 	if (animation != nullptr) {
 
-		SDL_Rect rect_animation = animation->GetCurrentFrame();
-
-		if (fliptexture == true) {
-
-			App->render->Blit(texture, pos.x, pos.y, &rect_animation, 1, SDL_FLIP_HORIZONTAL);
-
-		}
-		else {
-
+	
 			App->render->Blit(texture, pos.x, pos.y, &rect_animation, 1);
 
-		}
 
 	}
 

@@ -54,6 +54,8 @@ EntityPlayer::EntityPlayer(int x, int y, ENTITY_TYPE type) : Entity(x, y, type)
 			LoadAnimation(animations, &slide_right);
 		else if (ent == "slide_left")
 			LoadAnimation(animations, &slide_left);
+
+		animation = &idle_right;
 	}
 
 
@@ -108,8 +110,9 @@ bool EntityPlayer::Update(float dt)
 		tempPos.y += falling_speed;
 		if (CheckCollision(GetPlayerTile({ tempPos.x + 5, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR
 			&& CheckCollision(GetPlayerTile({ tempPos.x + 10, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR
-			&& is_jumping == false && is_attacking == false && is_sliding == false && is_diying == false)
+			&& is_jumping == false && is_attacking == false && is_sliding == false)
 		{
+
 			can_die = false;
 			can_slide = false;
 			can_attack = false;
@@ -133,17 +136,98 @@ bool EntityPlayer::Update(float dt)
 		if (CheckCollision(GetPlayerTile({ tempPos.x + 5, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH
 			&& CheckCollision(GetPlayerTile({ tempPos.x + 10, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH)
 		{
-			//App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
+			
 			App->audio->PlayFx(2);
-			SpawnPLayer();
+
+			if (is_diying == false && can_die)
+			{
+
+				can_die = false;
+				die_left.Reset();
+				die_right.Reset();
+				is_diying = true;
+				die_cont = 0;
+			}
+
+			if (is_diying) {
+				
+				if (looking_left)
+					animation = &die_left;
+				else if (looking_right)
+					animation = &die_right;
+			}
+			if (die_cont == 35)
+			{
+				is_diying = false;
+				SpawnPLayer();
+			}
+			//App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
+			
 		}
-		else if (CheckCollision(GetPlayerTile({ tempPos.x + 5, tempPos.y - animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH
-			&& CheckCollision(GetPlayerTile({ tempPos.x + 10, tempPos.y - animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH)
+		else if (CheckCollision(GetPlayerTile({ tempPos.x + 1, tempPos.y - animation->GetCurrentFrame().h - 2})) == COLLISION_TYPE::DEATH
+			&& CheckCollision(GetPlayerTile({ tempPos.x + 1, tempPos.y - animation->GetCurrentFrame().h - 2 })) == COLLISION_TYPE::DEATH)
 		{
 			App->audio->PlayFx(2);
+			//App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
 			SpawnPLayer();
 		}
 
+		//else if (CheckCollision(GetPlayerTile({ tempPos.x - animation->GetCurrentFrame().w, tempPos.y  })) == COLLISION_TYPE::DEATH
+		//	&& CheckCollision(GetPlayerTile({ tempPos.x - animation->GetCurrentFrame().w, tempPos.y  })) == COLLISION_TYPE::DEATH)
+		//{
+		//	App->audio->PlayFx(2);
+		//	//App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
+		//	if (is_diying == false && can_die)
+		//	{
+
+		//		can_die = false;
+		//		die_left.Reset();
+		//		die_right.Reset();
+		//		is_diying = true;
+		//		die_cont = 0;
+		//	}
+
+		//	if (is_diying) {
+
+		//		if (looking_left)
+		//			animation = &die_left;
+		//		else if (looking_right)
+		//			animation = &die_right;
+		//	}
+		//	if (die_cont == 35)
+		//	{
+		//		is_diying = false;
+		//		SpawnPLayer();
+		//	}
+		//}
+		else if (CheckCollision(GetPlayerTile({ tempPos.x + 5 + animation->GetCurrentFrame().w , tempPos.y  })) == COLLISION_TYPE::DEATH
+			&& CheckCollision(GetPlayerTile({ tempPos.x + 10 + animation->GetCurrentFrame().w, tempPos.y})) == COLLISION_TYPE::DEATH)
+		{
+			App->audio->PlayFx(2);
+			//App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
+			if (is_diying == false && can_die)
+			{
+
+				can_die = false;
+				die_left.Reset();
+				die_right.Reset();
+				is_diying = true;
+				die_cont = 0;
+			}
+
+			if (is_diying) {
+
+				if (looking_left)
+					animation = &die_left;
+				else if (looking_right)
+					animation = &die_right;
+			}
+			if (die_cont == 35)
+			{
+				is_diying = false;
+				SpawnPLayer();
+			}
+		}
 
 		if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 		{
@@ -319,28 +403,7 @@ bool EntityPlayer::Update(float dt)
 			}
 		
 			//die
-			if ((App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && is_diying == false && can_die))
-			{
-
-				can_die = false;
-				die_left.Reset();
-				die_right.Reset();
-				is_diying = true;
-				die_cont = 0;
-			}
-
-			if (is_diying) {
-				tempPos = pos;
-				if (looking_left)
-					animation = &die_left;
-				else if (looking_right)
-					animation = &die_right;
-			}
-			if (die_cont == 35)
-			{
-				is_diying = false;
-
-			}
+			
 	
 	die_cont++;
 	slide_cont++;
