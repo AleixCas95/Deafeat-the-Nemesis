@@ -123,6 +123,8 @@ bool j1App::Start()
 		item = item->next;
 	}
 
+	startup_time.Start();
+
 	PERF_PEEK(ptimer);
 
 	return ret;
