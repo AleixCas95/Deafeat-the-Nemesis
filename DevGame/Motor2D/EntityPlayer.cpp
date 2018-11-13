@@ -133,8 +133,8 @@ bool EntityPlayer::Update(float dt)
 			can_die = true;
 		}
 
-		if (CheckCollision(GetPlayerTile({ tempPos.x + 5, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH
-			&& CheckCollision(GetPlayerTile({ tempPos.x + 10, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH)
+		if (CheckCollision(GetPlayerTile({ tempPos.x, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH
+			&& CheckCollision(GetPlayerTile({ tempPos.x , tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH)
 		{
 			
 			App->audio->PlayFx(2);
@@ -164,8 +164,8 @@ bool EntityPlayer::Update(float dt)
 			//App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
 			
 		}
-		else if (CheckCollision(GetPlayerTile({ tempPos.x + 1, tempPos.y - animation->GetCurrentFrame().h - 2})) == COLLISION_TYPE::DEATH
-			&& CheckCollision(GetPlayerTile({ tempPos.x + 1, tempPos.y - animation->GetCurrentFrame().h - 2 })) == COLLISION_TYPE::DEATH)
+		else if (CheckCollision(GetPlayerTile({ tempPos.x , tempPos.y - animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH
+			&& CheckCollision(GetPlayerTile({ tempPos.x , tempPos.y - animation->GetCurrentFrame().h  })) == COLLISION_TYPE::DEATH)
 		{
 			App->audio->PlayFx(2);
 			//App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
@@ -200,8 +200,8 @@ bool EntityPlayer::Update(float dt)
 		//		SpawnPLayer();
 		//	}
 		//}
-		else if (CheckCollision(GetPlayerTile({ tempPos.x + 5 + animation->GetCurrentFrame().w , tempPos.y  })) == COLLISION_TYPE::DEATH
-			&& CheckCollision(GetPlayerTile({ tempPos.x + 10 + animation->GetCurrentFrame().w, tempPos.y})) == COLLISION_TYPE::DEATH)
+		else if (CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w , tempPos.y  })) == COLLISION_TYPE::DEATH
+			&& CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y})) == COLLISION_TYPE::DEATH)
 		{
 			App->audio->PlayFx(2);
 			//App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
