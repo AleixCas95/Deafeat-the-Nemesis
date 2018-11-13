@@ -8,6 +8,8 @@
 #include "j1Audio.h"
 #include "EntityPlayer.h"
 #include "EntityEnemyAir.h"
+#include "EntityEnemyGround.h"
+
 
 j1Entities::j1Entities() {
 
@@ -83,18 +85,30 @@ bool j1Entities::SpawnEntity(int x, int y, ENTITY_TYPE type) {
 
 	switch (type) {
 
-	case ENTITY_TYPE::PLAYER: {
+	case ENTITY_TYPE::PLAYER:
+	{
 
 		player = new EntityPlayer(x, y, PLAYER);
 		entities.add(player);
 
-		break; }
-	case ENTITY_TYPE::ENEMYAIR: {
+		break;
+	}
+	case ENTITY_TYPE::ENEMYAIR: 
+	{
 
 		EntityEnemyAir* enemyair = new EntityEnemyAir(x, y, ENEMYAIR);
 		entities.add(enemyair);
 
-		break; }
+		break;
+	}
+	case ENTITY_TYPE::ENEMYGROUND: 
+	{
+
+		EntityEnemyGround* enemyground = new EntityEnemyGround(x, y, ENEMYGROUND);
+		entities.add(enemyground);
+		
+		break;
+	}
 
 	default:
 
@@ -121,15 +135,27 @@ EntityEnemyAir * j1Entities::SpawnEnemyAir(int x, int y)
 	return entityEnemyAir;
 }
 
+EntityEnemyGround * j1Entities::SpawnEnemyGround(int x, int y)
+{
+
+	EntityEnemyGround* entityEnemyGround = new EntityEnemyGround(x, y, ENEMYGROUND);
+	entities.add(entityEnemyGround);
+
+	return entityEnemyGround;
+}
 
 
-EntityPlayer* j1Entities::GetPlayer()const {
+EntityPlayer* j1Entities::GetPlayer()const
+{
 
-	for (uint i = 0; i < entities.count(); ++i) {
+	for (uint i = 0; i < entities.count(); ++i)
+	{
 
-		if (entities.At(i) != nullptr) {
+		if (entities.At(i) != nullptr)
+		{
 
-			if (entities.At(i)->data->type == PLAYER) {
+			if (entities.At(i)->data->type == PLAYER)
+			{
 
 				return(EntityPlayer*)entities.At(i);
 			}
@@ -140,15 +166,36 @@ EntityPlayer* j1Entities::GetPlayer()const {
 }
 
 
-EntityEnemyAir* j1Entities::GetEnemyAir()const {
+EntityEnemyAir* j1Entities::GetEnemyAir()const 
+{
 
-	for (uint i = 0; i < entities.count(); ++i) {
+	for (uint i = 0; i < entities.count(); ++i)
+	{
 
-		if (entities.At(i) != nullptr) {
+		if (entities.At(i) != nullptr)
+		{
 
-			if (entities.At(i)->data->type == ENEMYAIR) {
+			if (entities.At(i)->data->type == ENEMYAIR) 
+			{
 
 				return(EntityEnemyAir*)entities.At(i);
+			}
+		}
+	}
+	return nullptr;
+
+}
+
+EntityEnemyGround* j1Entities::GetEnemyGround()const 
+{
+
+	for (uint i = 0; i < entities.count(); ++i)
+	{
+		if (entities.At(i) != nullptr)
+		{
+			if (entities.At(i)->data->type == ENEMYGROUND) 
+			{
+				return(EntityEnemyGround*)entities.At(i);
 			}
 		}
 	}

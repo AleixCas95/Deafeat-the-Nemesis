@@ -228,10 +228,15 @@ bool j1Scene::LoadScene(int map)
 
 	}
 	App->map->Load(CurrentMap->data);
+
 	App->entities->player->FindPlayerSpawn();
-	iPoint spawnenemy;
+
 	App->entities->SpawnEntity(0, 0, PLAYER);
+
 	p2List_item<MapLayer*>* layer = App->map->data.layers.end;
+
+	iPoint spawnenemy, spawn_enemy_ground;
+
 	for (int i = 0; i < (layer->data->width * layer->data->height); i++)
 	{
 		if (layer->data->data[i] == 105)
@@ -240,9 +245,16 @@ bool j1Scene::LoadScene(int map)
 			App->entities->SpawnEntity(spawnenemy.x, spawnenemy.y, ENEMYAIR);
 
 		}
+
+		if (layer->data->data[i] == 82)
+		{
+			spawnenemy = App->map->TileToWorld(i);
+			App->entities->SpawnEntity(spawnenemy.x, spawnenemy.y, ENEMYGROUND);
+
+		}
 	}
 
-
+	
 
 	return true;
 }

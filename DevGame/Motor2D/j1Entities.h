@@ -11,15 +11,15 @@ enum ENTITY_TYPE
 {
 	NO_ENTITY,
 	PLAYER,
-	ENEMYAIR
-
-
-
+	ENEMYAIR,
+	ENEMYGROUND
 };
 
 class EntityPlayer;
 
 class EntityEnemyAir;
+
+class EntityEnemyGround;
 
 class j1Entities : public j1Module {
 
@@ -39,9 +39,11 @@ public:
 
 	EntityEnemyAir* SpawnEnemyAir(int x, int y);
 
+	EntityEnemyGround* SpawnEnemyGround(int x, int y);
 
 	EntityPlayer* GetPlayer()const;
 	EntityEnemyAir* GetEnemyAir()const;
+	EntityEnemyGround* GetEnemyGround()const;
 
 public:
 	p2List<Entity*> entities;
