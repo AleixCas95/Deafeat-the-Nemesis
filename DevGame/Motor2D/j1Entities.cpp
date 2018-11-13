@@ -7,7 +7,7 @@
 #include "j1Window.h"
 #include "j1Audio.h"
 #include "EntityPlayer.h"
-
+#include "EntityEnemyAir.h"
 
 j1Entities::j1Entities() {
 
@@ -87,6 +87,12 @@ bool j1Entities::SpawnEntity(int x, int y, ENTITY_TYPE type) {
 		entities.add(player);
 
 		break; }
+	case ENTITY_TYPE::ENEMYAIR: {
+
+		enemyair = new EntityEnemyAir(x, y, ENEMYAIR);
+		entities.add(enemyair);
+
+		break; }
 
 	default:
 
@@ -105,6 +111,16 @@ EntityPlayer * j1Entities::SpawnPlayer(int x, int y)
 	return entityPlayer;
 }
 
+EntityEnemyAir * j1Entities::SpawnEnemyAir(int x, int y)
+{
+	EntityEnemyAir* entityEnemyAir = new EntityEnemyAir(x, y, ENEMYAIR);
+	entities.add(entityEnemyAir);
+
+	return entityEnemyAir;
+}
+
+
+
 EntityPlayer* j1Entities::GetPlayer()const {
 
 	for (uint i = 0; i < entities.count(); ++i) {
@@ -120,3 +136,21 @@ EntityPlayer* j1Entities::GetPlayer()const {
 	return nullptr;
 
 }
+
+
+EntityEnemyAir* j1Entities::GetEnemyAir()const {
+
+	for (uint i = 0; i < entities.count(); ++i) {
+
+		if (entities.At(i) != nullptr) {
+
+			if (entities.At(i)->data->type == ENEMYAIR) {
+
+				return(EntityEnemyAir*)entities.At(i);
+			}
+		}
+	}
+	return nullptr;
+
+}
+

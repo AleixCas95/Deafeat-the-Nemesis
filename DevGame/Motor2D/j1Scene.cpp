@@ -205,7 +205,7 @@ bool j1Scene::LoadScene(int map)
 	}
 	App->map->Load(CurrentMap->data);
 	App->entities->player->FindPlayerSpawn();
-	App->entities->player->SpawnPLayer();
+	App->entities->SpawnEntity(0, 0, PLAYER);
 
 	return true;
 }
