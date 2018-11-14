@@ -115,7 +115,7 @@ bool EntityEnemyGround::Save(pugi::xml_node&data)const
 void EntityEnemyGround::LoadTexture()
 {
 
-	texture = App->tex->Load("textures/Player/spritesheetenemy.png");
+	texture = App->tex->Load("textures/Player/spritesheetsenemy.png");
 
 }
 
