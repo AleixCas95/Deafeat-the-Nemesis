@@ -1,5 +1,5 @@
-#ifndef _ENTITYPLAYER_H_
-#define _ENTITYPLAYER_H_
+#ifndef _ENTITYENEMYGROUND_H_
+#define  _ENTITYENEMYGROUND_H_
 
 
 #include "Entity.h"
@@ -11,15 +11,13 @@
 #include "j1Textures.h"
 #include "ModuleFadeToBlack.h"
 #include "j1Window.h"
-#include "j1Entities.h"
 #include "Animation.h"
 
 
 struct SDL_Texture;
 
 
-class EntityEnemyGround :public Entity
-{
+class EntityEnemyGround :public Entity{
 
 public:
 
@@ -62,4 +60,4 @@ public:
 
 };
 
-#endif
+#endif // _ENTITYENEMYGROUND_H_

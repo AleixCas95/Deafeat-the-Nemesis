@@ -63,7 +63,8 @@ bool EntityEnemyAir::Start()
 bool EntityEnemyAir::Update(float dt)
 {
 
-	if(looking_front==true)animation = &idle;
+	if(looking_front==true)
+		animation = &idle;
 	return true;
 }
 
@@ -94,7 +95,7 @@ bool EntityEnemyAir::Save(pugi::xml_node& data) const
 
 void EntityEnemyAir::LoadTexture()
 {
-	texture = App->tex->Load("textures/Player/spritesheetenemi2.png");
+	texture = App->tex->Load("textures/Player/spritesheetenemy2.png");
 }
 
 int EntityEnemyAir::GetEnemyAirTile(fPoint pos) const

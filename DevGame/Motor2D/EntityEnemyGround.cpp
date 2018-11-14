@@ -22,21 +22,36 @@ EntityEnemyGround::EntityEnemyGround(int x, int y, ENTITY_TYPE type) :Entity(x, 
 	{
 		std::string entenemy2(animations.attribute("name").as_string());
 
-		if (entenemy2 == "idleright") LoadAnimation(animations, &idleright);
-		else if (entenemy2 == "idleleft")LoadAnimation(animations, &idleleft);
-		else if (entenemy2 == "runningright")LoadAnimation(animations, &runningright);
-		else if (entenemy2 == "runningleft")LoadAnimation(animations, &runningleft);
-		else if (entenemy2 == "fallright")LoadAnimation(animations, &fallright);
-		else if (entenemy2 == "fallleft")LoadAnimation(animations, &fallleft);
-		else if (entenemy2 == "jumpingleft")LoadAnimation(animations, &jumpingleft);
-		else if (entenemy2 == "jumpingright")LoadAnimation(animations, &jumpingright);
-		else if (entenemy2 == "attackright")LoadAnimation(animations, &attackright);
-		else if (entenemy2 == "attackleft")LoadAnimation(animations, &attackleft);
-		else if (entenemy2 == "slideright")LoadAnimation(animations, &slideright);
-		else if (entenemy2 == "slideleft")LoadAnimation(animations, &slideleft);
-		else if (entenemy2 == "dieright")LoadAnimation(animations, &dieright);
-		else if (entenemy2 == "dieleft")LoadAnimation(animations, &dieleft);
+		if (entenemy2 == "idleright")
+			LoadAnimation(animations, &idleright);
+		else if (entenemy2 == "idleleft")
+			LoadAnimation(animations, &idleleft);
+		else if (entenemy2 == "runningright")
+			LoadAnimation(animations, &runningright);
+		else if (entenemy2 == "runningleft")
+			LoadAnimation(animations, &runningleft);
+		else if (entenemy2 == "fallright")
+			LoadAnimation(animations, &fallright);
+		else if (entenemy2 == "fallleft")
+			LoadAnimation(animations, &fallleft);
+		else if (entenemy2 == "jumpingleft")
+			LoadAnimation(animations, &jumpingleft);
+		else if (entenemy2 == "jumpingright")
+			LoadAnimation(animations, &jumpingright);
+		else if (entenemy2 == "attackright")
+			LoadAnimation(animations, &attackright);
+		else if (entenemy2 == "attackleft")
+			LoadAnimation(animations, &attackleft);
+		else if (entenemy2 == "slideright")
+			LoadAnimation(animations, &slideright);
+		else if (entenemy2 == "slideleft")
+			LoadAnimation(animations, &slideleft);
+		else if (entenemy2 == "dieright")
+			LoadAnimation(animations, &dieright);
+		else if (entenemy2 == "dieleft")
+			LoadAnimation(animations, &dieleft);
 
+		animation = &idleleft;
 	}
 
 	Start();
@@ -60,7 +75,8 @@ bool EntityEnemyGround::Start()
 bool EntityEnemyGround::Update(float dt) 
 {
 	
-	if (looking_left)animation = &idleleft;
+	if (looking_left)
+		animation = &idleleft;
 	return true;
 
 }
@@ -99,7 +115,7 @@ bool EntityEnemyGround::Save(pugi::xml_node&data)const
 void EntityEnemyGround::LoadTexture()
 {
 
-	texture = App->tex->Load("textures/Player/spritesheetenemi.png");
+	texture = App->tex->Load("textures/Player/spritesheetenemy.png");
 
 }
 

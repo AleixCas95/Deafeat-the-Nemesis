@@ -14,6 +14,7 @@
 #include "EntityPlayer.h"
 #include "Entity.h"
 #include "EntityEnemyAir.h"
+#include "EntityEnemyGround.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -51,6 +52,7 @@ bool j1Scene::Start()
 	App->map->Load(CurrentMap->data);
 	App->entities->SpawnEntity(0, 0, PLAYER);
 	iPoint spawnenemy;
+	iPoint spawnenemy2;
 	p2List_item<MapLayer*>* layer = App->map->data.layers.end;
 	for (int i = 0; i < (layer->data->width * layer->data->height); i++)
 	{
@@ -58,6 +60,12 @@ bool j1Scene::Start()
 		{
 			spawnenemy = App->map->TileToWorld(i);
 			App->entities->SpawnEntity(spawnenemy.x, spawnenemy.y, ENEMYAIR);
+
+		}
+		if (layer->data->data[i] == 83)
+		{
+			spawnenemy2 = App->map->TileToWorld(i);
+			App->entities->SpawnEntity(spawnenemy2.x, spawnenemy2.y, ENEMYGROUND);
 
 		}
 	}
@@ -235,7 +243,8 @@ bool j1Scene::LoadScene(int map)
 
 	p2List_item<MapLayer*>* layer = App->map->data.layers.end;
 
-	iPoint spawnenemy, spawn_enemy_ground;
+	iPoint spawnenemy;
+	iPoint spawnenemy2;
 
 	for (int i = 0; i < (layer->data->width * layer->data->height); i++)
 	{
@@ -246,10 +255,10 @@ bool j1Scene::LoadScene(int map)
 
 		}
 
-		if (layer->data->data[i] == 82)
+		if (layer->data->data[i] == 83)
 		{
-			spawnenemy = App->map->TileToWorld(i);
-			App->entities->SpawnEntity(spawnenemy.x, spawnenemy.y, ENEMYGROUND);
+			spawnenemy2 = App->map->TileToWorld(i);
+			App->entities->SpawnEntity(spawnenemy2.x, spawnenemy2.y, ENEMYGROUND);
 
 		}
 	}
