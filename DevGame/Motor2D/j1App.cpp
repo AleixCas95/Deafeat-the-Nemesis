@@ -210,12 +210,14 @@ void j1App::FinishUpdate()
 	App->win->SetTitle(title);
 
 	// TODO 2: Use SDL_Delay to make sure you get your capped framerate
-	while (last_frame_ms > framerate_cap)
+	frame_ms = 1 / (float)framerate_cap * 1000;
+
+	while (last_frame_ms > frame_ms)
 	{
-		last_frame_ms -= framerate_cap;
+		last_frame_ms -= frame_ms;
 	}
 	
-	wait_time = framerate_cap - last_frame_ms;
+	wait_time = frame_ms - last_frame_ms;
 
 	SDL_Delay(wait_time);
 	

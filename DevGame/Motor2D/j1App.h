@@ -111,6 +111,7 @@ private:
 	p2SString			organization;
 	
 	uint				framerate_cap = 0u;
+	float				frame_ms = 0;
 	uint				wait_time = 0u;
 	j1PerfTimer			real_waiting_time;
 
