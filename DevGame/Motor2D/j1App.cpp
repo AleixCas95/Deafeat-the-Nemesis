@@ -174,6 +174,8 @@ void j1App::PrepareUpdate()
 	last_sec_frame_count++;
 
 	// TODO 4: Calculate the dt: differential time since last frame
+	dt = frame_time.ReadSec();
+
 	frame_time.Start();
 }
 
@@ -204,7 +206,7 @@ void j1App::FinishUpdate()
 	//something wrong down
 
 	sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %02u Last sec frames: %i  Time since startup: %.3f Frame Count: %lu ",
-		avg_fps*1000, last_frame_ms, frames_on_last_update, seconds_since_startup, frame_count);
+		avg_fps, last_frame_ms, frames_on_last_update, seconds_since_startup, frame_count);
 	App->win->SetTitle(title);
 
 	// TODO 2: Use SDL_Delay to make sure you get your capped framerate

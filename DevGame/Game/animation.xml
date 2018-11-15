@@ -75,7 +75,7 @@
       <frame x="332" y="362" w="36" h="23"/>
       <frame x="372" y="362" w="31" h="23"/>
     </animation>   
-    <animation name="slide_left" speed="0.1.f" loop="false">
+    <animation name="slide_left" speed="0.2.f" loop="false">
       <frame x="978" y="362" w="31" h="23"/>
       <frame x="940" y="362" w="32" h="23"/>
       <frame x="900" y="362" w="35" h="23"/>

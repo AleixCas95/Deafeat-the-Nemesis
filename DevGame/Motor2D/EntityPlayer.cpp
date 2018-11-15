@@ -107,7 +107,7 @@ bool EntityPlayer::Update(float dt)
 	// numbers in CheckCollision calls are there to avoid the character from levitating in a border (collision looks cleaner)
 	if (god_mode == false)
 	{
-		tempPos.y += falling_speed;
+		tempPos.y += falling_speed*dt;
 		if (CheckCollision(GetPlayerTile({ tempPos.x + 5, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR
 			&& CheckCollision(GetPlayerTile({ tempPos.x + 10, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR
 			&& is_jumping == false && is_attacking == false && is_sliding == false)
@@ -233,7 +233,7 @@ bool EntityPlayer::Update(float dt)
 		{
 			tempPos = pos;
 
-			tempPos.x += playerData.speed;
+			tempPos.x += playerData.speed*dt;
 
 			if (CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y })) == COLLISION_TYPE::AIR
 				&& CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR)
@@ -257,7 +257,7 @@ bool EntityPlayer::Update(float dt)
 		{
 			tempPos = pos;
 
-			tempPos.x -= playerData.speed;
+			tempPos.x -= playerData.speed*dt;
 
 			if (CheckCollision(GetPlayerTile({ tempPos.x, tempPos.y })) == COLLISION_TYPE::AIR
 				&& CheckCollision(GetPlayerTile({ tempPos.x, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR)
@@ -286,7 +286,7 @@ bool EntityPlayer::Update(float dt)
 		{
 			tempPos = pos;
 
-			tempPos.y -= playerData.jumpSpeed;
+			tempPos.y -= playerData.jumpSpeed*dt;
 			if (CheckCollision(GetPlayerTile({ tempPos.x + 5, tempPos.y })) == COLLISION_TYPE::AIR
 				&& CheckCollision(GetPlayerTile({ tempPos.x + 10, tempPos.y })) == COLLISION_TYPE::AIR)
 			{
