@@ -9,6 +9,7 @@
 #include "j1Map.h"
 #include "j1Render.h"
 #include "j1Scene.h"
+#include "Brofiler/Brofiler.h"
 
 
 
@@ -88,7 +89,7 @@ bool EntityPlayer::Start()
 
 bool EntityPlayer::Update(float dt)
 {
-
+	BROFILER_CATEGORY("UpdateEntityPlayer", Profiler::Color::IndianRed)
 	//if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
 	//	App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
 	//}

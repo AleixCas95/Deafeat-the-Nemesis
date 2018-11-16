@@ -10,6 +10,7 @@
 #include "j1Render.h"
 #include "j1Scene.h"
 #include "j1Entities.h"
+#include "Brofiler/Brofiler.h"
 
 EntityEnemyGround::EntityEnemyGround(int x, int y, ENTITY_TYPE type) :Entity(x, y, type) 
 {
@@ -74,7 +75,7 @@ bool EntityEnemyGround::Start()
 
 bool EntityEnemyGround::Update(float dt) 
 {
-	
+	BROFILER_CATEGORY("UpdateEntityEnemyGround", Profiler::Color::BurlyWood)
 	if (looking_left)
 		animation = &idleleft;
 	return true;

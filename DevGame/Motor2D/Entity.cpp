@@ -7,7 +7,7 @@
 #include "j1App.h"
 #include "Animation.h"
 #include "p2List.h"
-
+#include "Brofiler/Brofiler.h"
 
 
 
@@ -48,7 +48,7 @@ COLLISION_TYPE Entity::CheckCollision(int x)const {
 }
 
 void Entity::Draw() {
-
+	BROFILER_CATEGORY("DrawEntity", Profiler::Color::PaleGreen)
 	SDL_Rect rect_animation = animation->GetCurrentFrame();
 
 	if (animation != nullptr) {

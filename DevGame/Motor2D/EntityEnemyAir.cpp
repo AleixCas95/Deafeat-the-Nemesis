@@ -10,6 +10,7 @@
 #include "j1Render.h"
 #include "j1Scene.h"
 #include "j1Entities.h"
+#include "Brofiler/Brofiler.h"
 
 EntityEnemyAir::EntityEnemyAir(int x, int y, ENTITY_TYPE type) : Entity(x, y, type)
 {
@@ -62,6 +63,7 @@ bool EntityEnemyAir::Start()
 
 bool EntityEnemyAir::Update(float dt)
 {
+	BROFILER_CATEGORY("UpdateEntityEnemyAir", Profiler::Color::OliveDrab)
 
 	if(looking_front==true)
 		animation = &idle;

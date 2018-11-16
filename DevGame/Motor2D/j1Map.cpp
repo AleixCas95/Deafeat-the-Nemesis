@@ -5,6 +5,7 @@
 #include "j1Textures.h"
 #include "j1Map.h"
 #include <math.h>
+#include "Brofiler/Brofiler.h"
 
 j1Map::j1Map() : j1Module(), map_loaded(false)
 {
@@ -28,6 +29,7 @@ bool j1Map::Awake(pugi::xml_node& config)
 
 void j1Map::Draw()
 {
+	BROFILER_CATEGORY("DrawMap", Profiler::Color::MediumSpringGreen)
 	if (map_loaded == false)
 		return;
 
@@ -150,6 +152,7 @@ bool j1Map::CleanUp()
 // Load new map
 bool j1Map::Load(const char* file_name)
 {
+	BROFILER_CATEGORY("Load", Profiler::Color::MediumSpringGreen)
 	bool ret = true;
 	p2SString tmp("%s%s", folder.GetString(), file_name);
 
@@ -234,6 +237,7 @@ bool j1Map::Load(const char* file_name)
 // Load map general properties
 bool j1Map::LoadMap()
 {
+	BROFILER_CATEGORY("LoadMap", Profiler::Color::MediumSpringGreen)
 	bool ret = true;
 	pugi::xml_node map = map_file.child("map");
 
@@ -299,6 +303,7 @@ bool j1Map::LoadMap()
 
 bool j1Map::LoadTilesetDetails(pugi::xml_node& tileset_node, TileSet* set)
 {
+	BROFILER_CATEGORY("LoadTiledDetails", Profiler::Color::MediumSpringGreen)
 	bool ret = true;
 	set->name.create(tileset_node.attribute("name").as_string());
 	set->firstgid = tileset_node.attribute("firstgid").as_int();
@@ -324,6 +329,7 @@ bool j1Map::LoadTilesetDetails(pugi::xml_node& tileset_node, TileSet* set)
 
 bool j1Map::LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set)
 {
+	BROFILER_CATEGORY("LoadTilesetImage", Profiler::Color::MediumSpringGreen)
 	bool ret = true;
 	pugi::xml_node image = tileset_node.child("image");
 
@@ -360,6 +366,7 @@ bool j1Map::LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set)
 
 bool j1Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 {
+	BROFILER_CATEGORY("LoadLayer", Profiler::Color::MediumSpringGreen)
 	bool ret = true;
 
 	layer->name = node.attribute("name").as_string();

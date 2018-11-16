@@ -9,7 +9,7 @@
 #include "EntityPlayer.h"
 #include "EntityEnemyAir.h"
 #include "EntityEnemyGround.h"
-
+#include "Brofiler/Brofiler.h"
 
 j1Entities::j1Entities() {
 
@@ -33,6 +33,7 @@ bool j1Entities::Start() {
 
 bool j1Entities::PreUpdate() {
 
+	BROFILER_CATEGORY("PreUpdatej1entities", Profiler::Color::Tomato)
 	p2List_item<Entity*>* item = entities.start;
 	while (item != nullptr)
 	{
@@ -49,6 +50,7 @@ bool j1Entities::PreUpdate() {
 }
 
 bool j1Entities::Update(float dt) {
+	BROFILER_CATEGORY("Updatej1Entities", Profiler::Color::Tomato)
 
 	for (int i = 0; i < entities.count(); ++i) {
 
