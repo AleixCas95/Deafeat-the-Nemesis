@@ -298,9 +298,11 @@ bool EntityPlayer::Update(float dt)
 				else if (looking_right)
 					animation = &jumping_right;
 			}
-			if (cont == 35)
+			if (cont == 50)
 			{
 				is_jumping = false;
+				is_sliding = false;
+				is_attacking = false;
 			}
 		}
 
@@ -358,10 +360,11 @@ bool EntityPlayer::Update(float dt)
 			else if (looking_right)
 				animation = &attack_right;
 		}
-		if (attack_cont == 35)
+		if (attack_cont == 50)
 		{
 			is_attacking = false;
-			
+			is_sliding = false;
+			is_jumping = false;
 		}
 		//slide
 
@@ -398,9 +401,11 @@ bool EntityPlayer::Update(float dt)
 
 				}
 			
-			if (slide_cont == 35)
+			if (slide_cont == 50)
 			{
 				is_sliding = false;
+				is_attacking = false;
+				is_jumping = false;
 			}
 		
 			//die
