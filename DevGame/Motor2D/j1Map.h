@@ -140,6 +140,7 @@ public:
 	MapData data;
 
 	bool draw_logic = false;
+	bool draw_navigation = false;
 
 private:
 

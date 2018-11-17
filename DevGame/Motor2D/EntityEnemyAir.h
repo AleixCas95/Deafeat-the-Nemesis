@@ -59,14 +59,14 @@ public:
 	bool looking_front = false;
 
 
-	fPoint enemy_air_position;
+	iPoint enemy_air_position;
+	iPoint player_map_position;
 	fPoint origin_pos;
 	fPoint player_pos;
 	float distance_to_player;
-	int action_margin = 10000;
-	iPoint spawn = iPoint(96,400);
-	iPoint speed;
-
+	int action_margin = 20000;
+	iPoint next_path_step;
+	
 
 };
 

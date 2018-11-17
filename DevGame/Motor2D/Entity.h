@@ -15,8 +15,6 @@ enum COLLISION_TYPE
 	WIN
 };
 
-
-
 struct EntityData
 {
 
@@ -54,6 +52,10 @@ public:
 
 	virtual void Draw();
 
+	/*const p2DynArray<iPoint>* path;*/
+
+	fPoint SpeedNeededFromTo(iPoint& from, iPoint& to) const;
+	
 
 
 public:
@@ -63,13 +65,19 @@ public:
 	ENTITY_TYPE type = ENTITY_TYPE::NO_ENTITY;
 
 	SDL_Texture* texture = nullptr;
-
+	SDL_Texture* pathmarker = nullptr;
 	bool fliptexture = false;
 
 	fPoint pos = { 0.0f,0.0f };
-
+	fPoint last_pos = { 0.0f,0.0f };
+	fPoint speedenemy = { 0.0f,0.0f };
+	float enemy_moving_speed = 100.0f;
+	
 	bool destroy_entity = false;
+	
+	
 };
+
 
 
 

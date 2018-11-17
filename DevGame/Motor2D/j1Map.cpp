@@ -47,7 +47,10 @@ void j1Map::Draw()
 				{
 					SDL_Rect rect = tileset_pointer->data->GetTileRect(layer_pointer->data->Get(x, y));
 					iPoint coordinates = MapToWorld(x, y);
-					if (layer_pointer->data->name == "Background") {
+					if (layer_pointer->data->name == "Navigation" && draw_navigation) {
+						App->render->Blit(tileset_pointer->data->texture, coordinates.x, coordinates.y, &rect, layer_pointer->data->navigation);
+					}
+					else if (layer_pointer->data->name == "Background") {
 						App->render->Blit(tileset_pointer->data->texture, coordinates.x, coordinates.y, &rect, layer_pointer->data->speed);
 					}
 					else if (layer_pointer->data->name == "Background2") {

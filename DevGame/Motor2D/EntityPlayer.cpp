@@ -203,7 +203,7 @@ bool EntityPlayer::Update(float dt)
 		//	}
 		//}
 		else if (CheckCollision(GetPlayerTile({ tempPos.x+5 + animation->GetCurrentFrame().w , tempPos.y  })) == COLLISION_TYPE::DEATH
-			&& CheckCollision(GetPlayerTile({ tempPos.x+5 + animation->GetCurrentFrame().w, tempPos.y})) == COLLISION_TYPE::DEATH)
+			&& CheckCollision(GetPlayerTile({ tempPos.x+10 + animation->GetCurrentFrame().w, tempPos.y})) == COLLISION_TYPE::DEATH)
 		{
 			App->audio->PlayFx(2);
 			//App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
