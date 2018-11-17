@@ -264,7 +264,7 @@ bool EntityPlayer::Update(float dt)
 			if (CheckCollision(GetPlayerTile({ tempPos.x, tempPos.y })) == COLLISION_TYPE::AIR
 				&& CheckCollision(GetPlayerTile({ tempPos.x, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR)
 			{
-				if (tempPos.x >= App->render->camera.x)
+				if (tempPos.x >= App->render->camera.x*dt)
 					pos.x = tempPos.x;
 				if (is_falling == false)
 					animation = &running_left;
@@ -292,14 +292,14 @@ bool EntityPlayer::Update(float dt)
 			if (CheckCollision(GetPlayerTile({ tempPos.x + 5, tempPos.y })) == COLLISION_TYPE::AIR
 				&& CheckCollision(GetPlayerTile({ tempPos.x + 10, tempPos.y })) == COLLISION_TYPE::AIR)
 			{
-				if (tempPos.y >= App->render->camera.y)
+				if (tempPos.y >= App->render->camera.y*dt)
 					pos.y = tempPos.y;
 				if (looking_left)
 					animation = &jumping_left;
 				else if (looking_right)
 					animation = &jumping_right;
 			}
-			if (cont == 50)
+			if (cont == 35)
 			{
 				is_jumping = false;
 				is_sliding = false;
@@ -314,7 +314,7 @@ bool EntityPlayer::Update(float dt)
 		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 		{
 			tempPos.y -= 4;
-			if (tempPos.y >= App->render->camera.y)
+			if (tempPos.y >= App->render->camera.y*dt)
 				pos.y -= 4;
 		}
 		if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
@@ -335,7 +335,7 @@ bool EntityPlayer::Update(float dt)
 		}
 		if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 		{
-			if (tempPos.x >= App->render->camera.x)
+			if (tempPos.x >= App->render->camera.x*dt)
 				pos.x -= 4;
 			animation = &running_left;
 		}
@@ -361,7 +361,7 @@ bool EntityPlayer::Update(float dt)
 			else if (looking_right)
 				animation = &attack_right;
 		}
-		if (attack_cont == 50)
+		if (attack_cont == 35)
 		{
 			is_attacking = false;
 			is_sliding = false;
@@ -402,7 +402,7 @@ bool EntityPlayer::Update(float dt)
 
 				}
 			
-			if (slide_cont == 50)
+			if (slide_cont == 35)
 			{
 				is_sliding = false;
 				is_attacking = false;

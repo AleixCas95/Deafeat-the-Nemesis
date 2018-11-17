@@ -21,8 +21,8 @@ struct PlayerData
 
 
 
-	float speed = 100.0f;
-	float jumpSpeed = 150.0f;
+	float speed = 80.0f;
+	float jumpSpeed = 90.0f;
 	float gravity = 150.8f;
 	
 
