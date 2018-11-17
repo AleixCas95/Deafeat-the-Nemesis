@@ -1,4 +1,5 @@
 #include "EntityEnemyAir.h"
+#include "EntityPlayer.h"
 #include "p2Log.h"
 #include "j1App.h"
 #include "j1Audio.h"
@@ -10,6 +11,7 @@
 #include "j1Render.h"
 #include "j1Scene.h"
 #include "j1Entities.h"
+#include "j1Pathfinding.h"
 #include "Brofiler/Brofiler.h"
 
 EntityEnemyAir::EntityEnemyAir(int x, int y, ENTITY_TYPE type) : Entity(x, y, type)
@@ -55,6 +57,11 @@ bool EntityEnemyAir::Start()
 	
 	LoadTexture();
 
+	//origin_pos = App->map->WorldToMap(pos.x, pos.y);
+
+	//enemy_air_position = origin_pos;
+
+	player_pos = App->entities->GetPlayer()->current_pos;
 	
 	looking_front = true;
 
@@ -65,8 +72,31 @@ bool EntityEnemyAir::Update(float dt)
 {
 	BROFILER_CATEGORY("UpdateEntityEnemyAir", Profiler::Color::OliveDrab)
 
-	if(looking_front==true)
-		animation = &idle;
+	//if(looking_front==true)
+
+	animation = &idle;
+
+	player_pos = App->entities->GetPlayer()->current_pos;
+
+	distance_to_player = pos.DistanceNoSqrt(player_pos);
+ 
+	
+		/*if ((App->pathfinding->CreatePath(App->map->WorldToMap(pos.x, pos.y), App->map->WorldToMap(player_pos.x, player_pos.y)) != -1)) 
+		{
+			const p2DynArray<iPoint>* path;
+			path = App->pathfinding->GetLastPath();
+
+
+
+
+			
+
+		}*/
+	
+
+	
+
+
 	return true;
 }
 

@@ -93,6 +93,7 @@ bool EntityPlayer::Update(float dt)
 	//if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
 	//	App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
 	//}
+	
 
 	if (looking_right)
 		animation = &idle_right;
@@ -408,13 +409,15 @@ bool EntityPlayer::Update(float dt)
 				is_jumping = false;
 			}
 		
-			//die
-			
-	
+			//die	
+
 	die_cont++;
 	slide_cont++;
 	attack_cont++;
 	cont++;
+
+	current_pos = pos;
+
 	return true;
 }
 

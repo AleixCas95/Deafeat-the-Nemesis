@@ -101,7 +101,7 @@ public:
 
 	p2Point<int> spawn;
 
-
+	fPoint current_pos;
 	//SDL_Texture* texture = nullptr;
 
 };
