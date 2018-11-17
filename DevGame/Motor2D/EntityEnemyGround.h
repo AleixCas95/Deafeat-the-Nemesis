@@ -60,7 +60,7 @@ public:
 
 	iPoint enemy_ground_position;
 	iPoint player_map_position2;
-	fPoint origin_pos2;
+	
 	fPoint player_pos2;
 	float distance_to_player2;
 	int action_margin2 = 45000;

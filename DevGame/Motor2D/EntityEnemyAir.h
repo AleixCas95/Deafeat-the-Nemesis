@@ -61,7 +61,6 @@ public:
 
 	iPoint enemy_air_position;
 	iPoint player_map_position;
-	fPoint origin_pos;
 	fPoint player_pos;
 	float distance_to_player;
 	int action_margin = 20000;

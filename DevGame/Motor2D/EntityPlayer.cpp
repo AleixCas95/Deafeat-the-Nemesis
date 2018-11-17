@@ -408,6 +408,8 @@ bool EntityPlayer::Update(float dt)
 				is_attacking = false;
 				is_jumping = false;
 			}
+
+			
 		
 			//die	
 

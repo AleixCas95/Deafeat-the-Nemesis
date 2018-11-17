@@ -57,9 +57,7 @@ bool EntityEnemyAir::Start()
 	
 	LoadTexture();
 
-	//origin_pos = App->map->WorldToMap(pos.x, pos.y);
-
-	//enemy_air_position = origin_pos;
+	
 
 	player_pos = App->entities->player->pos;
 	last_pos = pos;

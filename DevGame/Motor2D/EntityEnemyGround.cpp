@@ -82,8 +82,8 @@ bool EntityEnemyGround::Update(float dt)
 {
 	BROFILER_CATEGORY("UpdateEntityEnemyGround", Profiler::Color::BurlyWood)
 
-	animation = &idleleft;
-
+	
+	
 	player_pos2 = App->entities->player->pos;
 
 	distance_to_player2 = pos.DistanceNoSqrt(player_pos2);
@@ -123,8 +123,9 @@ bool EntityEnemyGround::Update(float dt)
 			}
 
 		}
-		else if (App->pathfinding->CreatePath(enemy_ground_position, player_map_position2) == -1) 
+		else if (App->pathfinding->CreatePath(enemy_ground_position, player_map_position2) == -1)
 		{
+
 			path = nullptr;
 			speedenemy.x = 0;
 			speedenemy.y = 0;
@@ -141,6 +142,13 @@ bool EntityEnemyGround::Update(float dt)
 
 	last_pos = pos;
 	pos += speedenemy;
+	
+	if (enemy_ground_position.x == player_map_position2.x && App->entities->player->god_mode!=true) {
+		
+		App->entities->player->destroy_entity = true;
+		App->entities->SpawnEntity(0, 0, PLAYER);
+
+	}
 
 	return true;
 

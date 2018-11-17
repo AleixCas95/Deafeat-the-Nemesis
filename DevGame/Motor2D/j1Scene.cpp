@@ -74,7 +74,7 @@ bool j1Scene::Start()
 			App->entities->SpawnEntity(spawnenemy.x, spawnenemy.y, ENEMYAIR);
 
 		}
-		if (layer->data->data[i] == 83)
+		if (layer->data->data[i] == 107)
 		{
 			spawnenemy2 = App->map->TileToWorld(i);
 			App->entities->SpawnEntity(spawnenemy2.x, spawnenemy2.y, ENEMYGROUND);
@@ -210,6 +210,8 @@ bool j1Scene::LoadScene(int map)
 	App->map->CleanUp();
 	App->tex->FreeTextures();
 	App->entities->player->LoadTexture();
+	
+
 
 	p2List_item<Entity*>* item = App->entities->entities.start;
 	while (item != nullptr)
@@ -266,8 +268,7 @@ bool j1Scene::LoadScene(int map)
 			App->entities->SpawnEntity(spawnenemy.x, spawnenemy.y, ENEMYAIR);
 
 		}
-
-		if (layer->data->data[i] == 83)
+		if (layer->data->data[i] == 107)
 		{
 			spawnenemy2 = App->map->TileToWorld(i);
 			App->entities->SpawnEntity(spawnenemy2.x, spawnenemy2.y, ENEMYGROUND);
