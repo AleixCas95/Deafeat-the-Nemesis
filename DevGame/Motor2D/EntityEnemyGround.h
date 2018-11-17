@@ -58,6 +58,14 @@ public:
 
 	bool looking_left = false;
 
+	iPoint enemy_ground_position;
+	iPoint player_map_position2;
+	fPoint origin_pos2;
+	fPoint player_pos2;
+	float distance_to_player2;
+	int action_margin2 = 45000;
+	iPoint next_path_step2;
+
 };
 
 #endif // _ENTITYENEMYGROUND_H_

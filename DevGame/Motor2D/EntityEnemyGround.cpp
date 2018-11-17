@@ -1,4 +1,5 @@
 #include "EntityEnemyGround.h"
+#include "EntityPlayer.h"
 #include "p2Log.h"
 #include "j1App.h"
 #include "j1Audio.h"
@@ -10,6 +11,7 @@
 #include "j1Render.h"
 #include "j1Scene.h"
 #include "j1Entities.h"
+#include "j1Pathfinding.h"
 #include "Brofiler/Brofiler.h"
 
 EntityEnemyGround::EntityEnemyGround(int x, int y, ENTITY_TYPE type) :Entity(x, y, type) 
@@ -68,6 +70,9 @@ bool EntityEnemyGround::Start()
 {
 	LoadTexture();
 
+	player_pos2 = App->entities->player->pos;
+	last_pos = pos;
+
 	looking_left = true;
 	
 	return true;
@@ -76,8 +81,67 @@ bool EntityEnemyGround::Start()
 bool EntityEnemyGround::Update(float dt) 
 {
 	BROFILER_CATEGORY("UpdateEntityEnemyGround", Profiler::Color::BurlyWood)
-	if (looking_left)
+
+	animation = &idleleft;
+
+	player_pos2 = App->entities->player->pos;
+
+	distance_to_player2 = pos.DistanceNoSqrt(player_pos2);
+
+	enemy_ground_position = App->map->WorldToMap(pos.x, pos.y);
+
+	player_map_position2 = App->map->WorldToMap(player_pos2.x, player_pos2.y);
+
+	const p2DynArray<iPoint>* path;
+
+	if (distance_to_player2 < action_margin2 && distance_to_player2 > -action_margin2) 
+	{
+		if (App->pathfinding->CreatePath(enemy_ground_position, player_map_position2) != -1) 
+		{
+
+			path = App->pathfinding->GetLastPath();
+
+			if (path->Count() > 0)
+			{
+
+				next_path_step2 = iPoint(path->At(0)->x, path->At(0)->y);
+
+				if (next_path_step2.x < enemy_ground_position.x) 
+				{
+
+					speedenemy.x = -50 * dt;
+					animation = &runningleft;
+
+				}
+				else if (next_path_step2.x > enemy_ground_position.x)
+				{
+
+					speedenemy.x = 50 * dt;
+					animation = &runningright;
+
+				}
+			}
+
+		}
+		else if (App->pathfinding->CreatePath(enemy_ground_position, player_map_position2) == -1) 
+		{
+			path = nullptr;
+			speedenemy.x = 0;
+			speedenemy.y = 0;
+			animation = &idleright;
+		}
+	}
+	/*else 
+	{
+		path = nullptr;
+		speedenemy.x = 0;
+		speedenemy.y = 0;
 		animation = &idleleft;
+	}*/
+
+	last_pos = pos;
+	pos += speedenemy;
+
 	return true;
 
 }
