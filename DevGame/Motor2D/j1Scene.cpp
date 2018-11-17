@@ -15,6 +15,7 @@
 #include "Entity.h"
 #include "EntityEnemyAir.h"
 #include "EntityEnemyGround.h"
+#include "j1Pathfinding.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -49,7 +50,18 @@ bool j1Scene::Start()
 {
 
 
-	App->map->Load(CurrentMap->data);
+	
+	//if (App->map->Load(CurrentMap->data) == true)
+	if (App->map->Load("level1.tmx") == true)
+	{
+		int w, h;
+		uchar* data = NULL;
+		if (App->map->CreateWalkabilityMap(w, h, &data) == true)
+			App->pathfinding->SetMap(w, h, data);
+
+		RELEASE_ARRAY(data);
+	}
+
 	App->entities->SpawnEntity(0, 0, PLAYER);
 	iPoint spawnenemy;
 	iPoint spawnenemy2;
