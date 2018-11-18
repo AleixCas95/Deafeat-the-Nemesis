@@ -307,6 +307,8 @@ bool j1Scene::Load(pugi::xml_node&  savegame) {
 	default:
 		break;
 	}
+
+	App->entities->player->Load(savegame);
 	return true;
 }
 
@@ -316,5 +318,7 @@ bool j1Scene::Save(pugi::xml_node& data) const {
 	pugi::xml_node map = data.append_child("Map");
 
 	map.append_attribute("CurrentMap") = currmap;
+	App->entities->player->Save(data);
+
 	return true;
 }
