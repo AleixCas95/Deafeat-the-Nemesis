@@ -37,10 +37,10 @@ The maps have been made using tiled as the colliders.
 
 ## Authors 
 
- Aleix Castillo Arrià
- GitHub Username: AleixCas95
- Albert Cayuela Naval
- GitHub Username: Albert Cayuela
+ * Aleix Castillo Arrià
+ * GitHub Username: AleixCas95
+ * Albert Cayuela Naval
+ * GitHub Username: Albert Cayuela
 
  ### License
  
