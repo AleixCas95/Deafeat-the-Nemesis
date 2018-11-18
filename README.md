@@ -52,7 +52,7 @@ The maps have been made using tiled as the colliders.
  * Player-enemies interaction
  * Profiling
  
- ### Albert Cayuela:
+ ### Albert Cayuela Naval:
  * Enemy Ground entity
  * Timer 
  * Pathfinding
