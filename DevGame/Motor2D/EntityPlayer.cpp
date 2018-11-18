@@ -90,9 +90,6 @@ bool EntityPlayer::Start()
 bool EntityPlayer::Update(float dt)
 {
 	BROFILER_CATEGORY("UpdateEntityPlayer", Profiler::Color::IndianRed)
-	//if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
-	//	App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
-	//}
 	
 
 	if (looking_right)
@@ -350,8 +347,7 @@ bool EntityPlayer::Update(float dt)
 			if (cont == 35)
 			{
 				is_jumping = false;
-				is_dashing = false;
-				is_attacking = false;
+				
 			}
 		}
 
