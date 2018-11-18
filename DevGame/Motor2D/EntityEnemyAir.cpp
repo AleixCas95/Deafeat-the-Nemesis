@@ -1,5 +1,6 @@
 #include "EntityEnemyAir.h"
 #include "EntityPlayer.h"
+#include "EntityEnemyGround.h"
 #include "p2Log.h"
 #include "j1App.h"
 #include "j1Audio.h"
@@ -38,6 +39,7 @@ EntityEnemyAir::EntityEnemyAir(int x, int y, ENTITY_TYPE type) : Entity(x, y, ty
 		else if (entenemy1 == "dyingleft")
 			LoadAnimation(animations, &dyingleft);
 		
+
 		animation = &idle;
 	}
 
@@ -58,7 +60,9 @@ bool EntityEnemyAir::Start()
 	LoadTexture();
 
 	
-
+	is_diying=false;
+	can_die;
+	
 	player_pos = App->entities->player->pos;
 	last_pos = pos;
 	
@@ -124,7 +128,47 @@ bool EntityEnemyAir::Update(float dt)
 
 	last_pos = pos;
 	pos += speedenemy;
-	
+
+	if (enemy_air_position.x == player_map_position.x && enemy_air_position.y == player_map_position.y && App->entities->player->god_mode != true) {
+		die_cont = 0;
+		is_diying = true;
+		if (is_diying) {
+			App->audio->PlayFx(2);
+			
+		}
+
+		if (die_cont = 35) {
+			is_diying = false;
+			
+		}
+		App->entities->player->destroy_entity = true;
+
+		App->entities->CleanUp();
+		
+		App->entities->SpawnEntity(0, 0, PLAYER);
+		iPoint spawnenemy;
+		iPoint spawnenemy2;
+		p2List_item<MapLayer*>* layer = App->map->data.layers.end;
+		for (int i = 0; i < (layer->data->width * layer->data->height); i++)
+		{
+			if (layer->data->data[i] == 105)
+			{
+				spawnenemy = App->map->TileToWorld(i);
+				App->entities->SpawnEntity(spawnenemy.x, spawnenemy.y, ENEMYAIR);
+
+			}
+			if (layer->data->data[i] == 107)
+			{
+				spawnenemy2 = App->map->TileToWorld(i);
+				App->entities->SpawnEntity(spawnenemy2.x, spawnenemy2.y, ENEMYGROUND);
+
+			}
+		}
+
+
+
+	}
+	die_cont++;
 		return true;
 }
 

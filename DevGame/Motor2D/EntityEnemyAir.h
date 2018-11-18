@@ -55,7 +55,6 @@ public:
 	Animation dyingleft = Animation();
 	
 
-
 	bool looking_front = false;
 
 
@@ -65,8 +64,9 @@ public:
 	float distance_to_player;
 	int action_margin = 20000;
 	iPoint next_path_step;
-	
-
+	bool is_diying;
+	bool can_die;
+	int die_cont = 0;
 };
 
 

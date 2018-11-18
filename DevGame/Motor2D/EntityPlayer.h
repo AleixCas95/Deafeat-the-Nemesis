@@ -94,6 +94,7 @@ public:
 	bool is_diying;
 	bool can_die;
 
+
 	bool looking_right = false;
 	bool looking_left = false;
 

@@ -61,6 +61,15 @@ bool j1Scene::Start()
 
 		RELEASE_ARRAY(data);
 	}
+	else if (App->map->Load("Level2.tmx") == true)
+	{
+		int w, h;
+		uchar* data = NULL;
+		if (App->map->CreateWalkabilityMap(w, h, &data) == true)
+			App->pathfinding->SetMap(w, h, data);
+
+		RELEASE_ARRAY(data);
+	}
 
 	App->entities->SpawnEntity(0, 0, PLAYER);
 	iPoint spawnenemy;

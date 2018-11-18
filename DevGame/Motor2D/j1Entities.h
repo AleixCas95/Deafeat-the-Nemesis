@@ -35,15 +35,12 @@ public:
 	bool CleanUp();
 	bool SpawnEntity(int x, int y, ENTITY_TYPE type);
 
-	EntityPlayer* SpawnPlayer(int x, int y);
-
-	EntityEnemyAir* SpawnEnemyAir(int x, int y);
-
-	EntityEnemyGround* SpawnEnemyGround(int x, int y);
 
 	EntityPlayer* GetPlayer()const;
 	EntityEnemyAir* GetEnemyAir()const;
 	EntityEnemyGround* GetEnemyGround()const;
+
+
 
 public:
 	p2List<Entity*> entities;

@@ -65,6 +65,9 @@ public:
 	float distance_to_player2;
 	int action_margin2 = 45000;
 	iPoint next_path_step2;
+	bool is_diying;
+	bool can_die;
+	int die_cont = 0;
 
 };
 

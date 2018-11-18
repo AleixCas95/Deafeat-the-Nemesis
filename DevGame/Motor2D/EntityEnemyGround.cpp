@@ -74,17 +74,19 @@ bool EntityEnemyGround::Start()
 	last_pos = pos;
 
 	looking_left = true;
+	is_diying = false;
+	can_die;
 	
 	return true;
 }
 
-bool EntityEnemyGround::Update(float dt) 
+bool EntityEnemyGround::Update(float dt)
 {
 	BROFILER_CATEGORY("UpdateEntityEnemyGround", Profiler::Color::BurlyWood)
 
-	
-	
-	player_pos2 = App->entities->player->pos;
+
+
+		player_pos2 = App->entities->player->pos;
 
 	distance_to_player2 = pos.DistanceNoSqrt(player_pos2);
 
@@ -94,9 +96,9 @@ bool EntityEnemyGround::Update(float dt)
 
 	const p2DynArray<iPoint>* path;
 
-	if (distance_to_player2 < action_margin2 && distance_to_player2 > -action_margin2) 
+	if (distance_to_player2 < action_margin2 && distance_to_player2 > -action_margin2)
 	{
-		if (App->pathfinding->CreatePath(enemy_ground_position, player_map_position2) != -1) 
+		if (App->pathfinding->CreatePath(enemy_ground_position, player_map_position2) != -1)
 		{
 
 			path = App->pathfinding->GetLastPath();
@@ -106,7 +108,7 @@ bool EntityEnemyGround::Update(float dt)
 
 				next_path_step2 = iPoint(path->At(0)->x, path->At(0)->y);
 
-				if (next_path_step2.x < enemy_ground_position.x) 
+				if (next_path_step2.x < enemy_ground_position.x)
 				{
 
 					speedenemy.x = -50 * dt;
@@ -132,7 +134,7 @@ bool EntityEnemyGround::Update(float dt)
 			animation = &idleright;
 		}
 	}
-	/*else 
+	/*else
 	{
 		path = nullptr;
 		speedenemy.x = 0;
@@ -142,14 +144,43 @@ bool EntityEnemyGround::Update(float dt)
 
 	last_pos = pos;
 	pos += speedenemy;
-	
-	if (enemy_ground_position.x == player_map_position2.x && App->entities->player->god_mode!=true) {
-		
+
+	if (enemy_ground_position.x == player_map_position2.x && enemy_ground_position.y-1 == player_map_position2.y && App->entities->player->god_mode != true) {
+		die_cont = 0;
+		is_diying = true;
+		if (is_diying) {
+			App->audio->PlayFx(2);
+
+		}
+
+		if (die_cont = 35) {
+			is_diying = false;
+
+		}
 		App->entities->player->destroy_entity = true;
+		App->entities->CleanUp();
+
 		App->entities->SpawnEntity(0, 0, PLAYER);
+		iPoint spawnenemy;
+		iPoint spawnenemy2;
+		p2List_item<MapLayer*>* layer = App->map->data.layers.end;
+		for (int i = 0; i < (layer->data->width * layer->data->height); i++)
+		{
+			if (layer->data->data[i] == 105)
+			{
+				spawnenemy = App->map->TileToWorld(i);
+				App->entities->SpawnEntity(spawnenemy.x, spawnenemy.y, ENEMYAIR);
 
+			}
+			if (layer->data->data[i] == 107)
+			{
+				spawnenemy2 = App->map->TileToWorld(i);
+				App->entities->SpawnEntity(spawnenemy2.x, spawnenemy2.y, ENEMYGROUND);
+
+			}
+		}
 	}
-
+	die_cont++;
 	return true;
 
 }

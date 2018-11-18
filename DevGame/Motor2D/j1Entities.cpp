@@ -121,32 +121,6 @@ bool j1Entities::SpawnEntity(int x, int y, ENTITY_TYPE type) {
 
 }
 
-EntityPlayer * j1Entities::SpawnPlayer(int x, int y)
-{
-	EntityPlayer* entityPlayer = new EntityPlayer(x, y, PLAYER);
-	entities.add(entityPlayer);
-
-	return entityPlayer;
-}
-
-EntityEnemyAir * j1Entities::SpawnEnemyAir(int x, int y)
-{
-	EntityEnemyAir* entityEnemyAir = new EntityEnemyAir(x, y, ENEMYAIR);
-	entities.add(entityEnemyAir);
-
-	return entityEnemyAir;
-}
-
-EntityEnemyGround * j1Entities::SpawnEnemyGround(int x, int y)
-{
-
-	EntityEnemyGround* entityEnemyGround = new EntityEnemyGround(x, y, ENEMYGROUND);
-	entities.add(entityEnemyGround);
-
-	return entityEnemyGround;
-}
-
-
 EntityPlayer* j1Entities::GetPlayer()const
 {
 
