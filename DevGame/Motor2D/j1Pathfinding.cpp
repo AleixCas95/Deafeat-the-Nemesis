@@ -173,11 +173,11 @@ int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 	//if the origin or the place where the entity is is not walkable, return -1
 	if (IsWalkable(destination) == false || IsWalkable(origin) == false) return -1;
 
-	//open son los posibles caminos que puedo tomar
-	//close es el camino que he hecho hasta ahora
+	//open are the possible ways that we can take
+	//close is the way that we have done so far
 	PathList open, close;
 
-	//nodo es el punto donde empieza el pathfinding (le pasamos coste,distancia,posicion, padre(nullptr))
+	//node is the point where the pathfinding starts
 	PathNode originTile(0, origin.DistanceNoSqrt(destination), origin, nullptr);
 
 	open.list.add(originTile);
@@ -185,22 +185,24 @@ int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 	//if openlist is not empty
 	while (open.list.count() > 0) 
 	{
-		//en el camino que hay que hace le añades el node que tenga menos coste
+		//add the lowest cost way to the way
 		close.list.add(open.GetNodeLowestScore()->data);
-		//haces delete del node de menos coste porque necesitas nodes nuevos(no puedes volver al mismo))
+
+		//delete of the lowest cost node because we need new nodes(we can't go back to the one we were before)
 		open.list.del(open.GetNodeLowestScore());
 
-		//Si el ultimo nodo que hay en la close(que es el camino recorrido) es el destino ya no hay mas que buscar
+		//if the last node in close is the destination stop searching
 		if (close.list.end->data.pos == destination) 
 		{
 			p2List_item<PathNode>* iterator = close.list.end;
-			//empieza en el destino hasta que llega al origen
+
+			//starts in destination until gets to origin
 			for (; iterator->data.parent != nullptr; iterator = close.Find(iterator->data.parent->pos))
 			{
-				//añade el paso en la lista last_path
+				//adds step in the list last_path
 				last_path.PushBack(iterator->data.pos);
 
-				//si es el primer paso, empieza
+				//if is the first step, start
 				if (iterator->data.parent == nullptr)
 				{
 					last_path.PushBack(close.list.start->data.pos);
@@ -210,12 +212,12 @@ int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 				return last_path.Count();
 			}
 		}
-		//si no estamos en el destino
+		//if we are not on destination
 		else
 		{
 			PathList neighbours;
 
-			//estamos asignando a neighbours cuales son los vecinos caminables
+			
 			close.list.end->data.FindWalkableAdjacents(neighbours);
 
 			p2List_item<PathNode>* iterator = neighbours.list.start;
@@ -223,15 +225,13 @@ int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 			{
 				if (close.Find(iterator->data.pos))
 				{
-					//si el vecino esta en la close list te lo saltas
 					continue;
 				}
-				//si el vecino es caminable c
 				else if (open.Find(iterator->data.pos))
 				{
 					PathNode tmp = open.Find(iterator->data.pos)->data;
 					iterator->data.CalculateF(destination);
-					//comparacion de costes
+					//costs comparation
 					if (tmp.g > iterator->data.g) 
 					{
 						tmp.parent = iterator->data.parent;
@@ -239,7 +239,7 @@ int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 				}
 				else
 				{
-					//si no es el destino y no esta en la open list, lo metemos en ella
+					//id it is not our destination and it is not in open list, we put it in
 					iterator->data.CalculateF(destination);
 					open.list.add(iterator->data);
 				}

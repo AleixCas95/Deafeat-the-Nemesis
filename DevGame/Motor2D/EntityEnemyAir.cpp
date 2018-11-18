@@ -77,26 +77,30 @@ bool EntityEnemyAir::Update(float dt)
 	BROFILER_CATEGORY("UpdateEntityEnemyAir", Profiler::Color::OliveDrab)
 
 	
-	
+	//update player position
 	player_pos = App->entities->player->pos;
 
+	//distance from enemy to player
 	distance_to_player = pos.DistanceNoSqrt(player_pos);
 
+	//enemy map position
 	enemy_air_position = App->map->WorldToMap(pos.x, pos.y);
+
+	//player map position
 	player_map_position = App->map->WorldToMap(player_pos.x, player_pos.y-1);
+
+
 	
 	const p2DynArray<iPoint>* path;
+	//if player is in range of pathing
 	if (distance_to_player < action_margin && distance_to_player > -action_margin) {
+		//if the function creates the path
 		if ((App->pathfinding->CreatePath(enemy_air_position, player_map_position) != -1))
 		{
 			path = App->pathfinding->GetLastPath();
-		/*	for (uint i = 0; i < path->Count(); ++i)
-			{
-				iPoint pos = App->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-				App->render->Blit(pathmarker, pos.x, pos.y);
-			}*/
-			
+
 			if (path->Count() > 0) {
+				
 				next_path_step = iPoint(path->At(0)->x, path->At(0)->y);
 				if (next_path_step.x < enemy_air_position.x)
 				{

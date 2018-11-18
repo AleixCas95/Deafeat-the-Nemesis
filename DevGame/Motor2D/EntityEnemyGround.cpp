@@ -85,17 +85,21 @@ bool EntityEnemyGround::Update(float dt)
 	BROFILER_CATEGORY("UpdateEntityEnemyGround", Profiler::Color::BurlyWood)
 
 
+	//player position
+	player_pos2 = App->entities->player->pos;
 
-		player_pos2 = App->entities->player->pos;
-
+	//distance from enemy to  player
 	distance_to_player2 = pos.DistanceNoSqrt(player_pos2);
 
+	//enemy map position
 	enemy_ground_position = App->map->WorldToMap(pos.x, pos.y);
 
+	//player map position
 	player_map_position2 = App->map->WorldToMap(player_pos2.x, player_pos2.y);
 
 	const p2DynArray<iPoint>* path;
 
+	//if player is in range of pathing
 	if (distance_to_player2 < action_margin2 && distance_to_player2 > -action_margin2)
 	{
 		if (App->pathfinding->CreatePath(enemy_ground_position, player_map_position2) != -1)
