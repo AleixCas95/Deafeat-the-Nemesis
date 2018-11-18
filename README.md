@@ -41,6 +41,23 @@ The maps have been made using tiled as the colliders.
  * GitHub Username: AleixCas95
  * Albert Cayuela Naval
  * GitHub Username: AlbertCayuela
+ 
+ ## Tasks done
+ 
+ ### Aleix Castillo Arrià:
+ * Entities system
+ * Enemy Air entity
+ * Player dash/attack states
+ * Enemies pathing
+ * Player-enemies interaction
+ * Profiling
+ 
+ ### Albert Cayuela:
+ * Enemy Ground entity
+ * Timer 
+ * Pathfinding
+ * Enemies pathing
+ * UML
 
  ### License
  
