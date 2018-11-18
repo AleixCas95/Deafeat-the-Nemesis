@@ -1,11 +1,12 @@
-﻿# Development-Game
-
+# Defeat the Nemesis
 
 ## The game
 
-Thank you for downloading!
-This game is a platformer game where you will have to reach the end of the two levels in order to complete the game. Our character has the hability of sliding down through walls and jumping meanwhile.
+For this assignment we have forked [Underground-Hero](https://github.com/MAtaur00/Underground-Hero) [v 0.3](https://github.com/MAtaur00/Underground-Hero/tree/0.3)
 
+This is a little game made by two students of the Videogame Desing and Develompent degree. It is a small plataformer with two levels, where the player can move right, left and jump.
+The game has been made using C++, SDL and pugi libraries. 
+The maps have been made using tiled as the colliders.
 
 ## Debugging Fucionalities
 
@@ -23,27 +24,30 @@ This game is a platformer game where you will have to reach the end of the two l
 
 * F10 God Mode
 
+* F11 Cap FPS
+
 ## Controls
 
 * Left and Right arrows to move.
 * Up arrow to jump.
 * Left or Right while falling if you have a wall in your left or right to slide down.
 * Up arrow to jump while sliding walls.
+* F to make a dash.
+* G to attack.
 
 ## Authors 
 
-**Marc Tarrés Urbieta:** [MAtaur00](https://github.com/MAtaur00)
+ Aleix Castillo Arrià
+ GitHub Username: AleixCas95
+ Albert Cayuela Naval
+ GitHub Username: Albert Cayuela
 
-**Aitor Vélez Tolosa:** [AitorVelez](https://github.com/AitorVelez)
+ ### License
  
-## Credits
-
-## License
-
-MIT License
-
-Copyright (c) 2018 Marc Tarrés i Urbieta and Aitor Vélez Tolosa
-
+ MIT License
+ 
+ Copyright (c) [2018] [Aleix Castillo Arrià, Albert Cayuela Naval]
+ 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
@@ -60,10 +64,8 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+SOFTWARE
 
 ## Github repository link
 
-https://github.com/MAtaur00/Development-Game
-
-
+https://github.com/AleixCas95/DeafeatNemesis
