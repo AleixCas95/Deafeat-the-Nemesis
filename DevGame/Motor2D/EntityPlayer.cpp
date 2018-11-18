@@ -409,7 +409,7 @@ bool EntityPlayer::Update(float dt)
 		{
 			is_attacking = false;
 			is_dashing = false;
-			is_jumping = false;
+			
 		}
 		//slide
 
@@ -450,7 +450,7 @@ bool EntityPlayer::Update(float dt)
 			{
 				is_dashing = false;
 				is_attacking = false;
-				is_jumping = false;
+				
 			}
 
 			
