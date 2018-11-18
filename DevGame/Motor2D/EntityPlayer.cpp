@@ -184,15 +184,14 @@ bool EntityPlayer::Update(float dt)
 				}
 			
 			}
-			//App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
+			
 			
 		}
 		else if (CheckCollision(GetPlayerTile({ tempPos.x , tempPos.y - animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH
 			&& CheckCollision(GetPlayerTile({ tempPos.x , tempPos.y - animation->GetCurrentFrame().h  })) == COLLISION_TYPE::DEATH)
 		{
 			
-			//App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
-			
+			//death
 			App->entities->CleanUp();
 			iPoint spawn;
 			p2List_item<MapLayer*>* layer = App->map->data.layers.end;
@@ -227,7 +226,7 @@ bool EntityPlayer::Update(float dt)
 		{
 			
 			App->entities->CleanUp();
-			//App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
+			
 			if (is_diying == false && can_die)
 			{
 
@@ -328,7 +327,7 @@ bool EntityPlayer::Update(float dt)
 			is_jumping = true;
 			cont = 0;
 		}
-
+		//When jump
 		if (is_jumping)
 		{
 			tempPos = pos;
@@ -353,6 +352,7 @@ bool EntityPlayer::Update(float dt)
 
 	
 	}
+	//God mode
 	else
 	{
 		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
@@ -385,7 +385,7 @@ bool EntityPlayer::Update(float dt)
 		}
 	}
 
-	//attack right
+	//attack 
 
 
 	if ((App->input->GetKey(SDL_SCANCODE_G) == KEY_DOWN && is_attacking == false && can_attack))
@@ -411,7 +411,7 @@ bool EntityPlayer::Update(float dt)
 			is_dashing = false;
 			
 		}
-		//slide
+		//dash
 
 		if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN && is_dashing == false && can_dash) {
 
@@ -455,7 +455,7 @@ bool EntityPlayer::Update(float dt)
 
 			
 		
-			//die	
+			
 
 	die_cont++;
 	dash_cont++;
