@@ -81,7 +81,7 @@ public:
 
 	int cont = 0;
 	int attack_cont = 0;
-	int slide_cont = 0;
+	int dash_cont = 0;
 	int die_cont = 0;
 
 	bool is_jumping;
@@ -89,8 +89,8 @@ public:
 	bool can_jump;
 	bool is_attacking;
 	bool can_attack;
-	bool is_sliding;
-	bool can_slide;
+	bool is_dashing;
+	bool can_dash;
 	bool is_diying;
 	bool can_die;
 

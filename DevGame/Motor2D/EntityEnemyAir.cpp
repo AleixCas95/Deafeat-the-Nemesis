@@ -129,7 +129,7 @@ bool EntityEnemyAir::Update(float dt)
 	last_pos = pos;
 	pos += speedenemy;
 
-	if (enemy_air_position.x == player_map_position.x && enemy_air_position.y == player_map_position.y && App->entities->player->god_mode != true && App->entities->player->is_attacking ==false) {
+	if (enemy_air_position.x == player_map_position.x && enemy_air_position.y == player_map_position.y  && App->entities->player->god_mode != true && App->entities->player->is_attacking ==false && App->entities->player->is_dashing ==false) {
 		die_cont = 0;
 		is_diying = true;
 		if (is_diying) {
@@ -173,8 +173,13 @@ bool EntityEnemyAir::Update(float dt)
 
 	}
 	if (enemy_air_position.x == player_map_position.x && enemy_air_position.y == player_map_position.y && App->entities->player->god_mode != true && App->entities->player->is_attacking == true) {
-	
 
+		destroy_entity = true;
+
+	}
+	if (enemy_air_position.x == player_map_position.x && enemy_air_position.y == player_map_position.y && App->entities->player->god_mode != true && App->entities->player->is_dashing == true) {
+
+		destroy_entity = true;
 
 	}
 	die_cont++;

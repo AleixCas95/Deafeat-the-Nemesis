@@ -80,7 +80,7 @@ bool EntityPlayer::Start()
 	FindPlayerSpawn();
 	SpawnPLayer();
 	is_diying = false;
-	is_sliding = false;
+	is_dashing = false;
 	is_attacking = false;
 	is_jumping = false;
 	looking_right = true;
@@ -112,11 +112,11 @@ bool EntityPlayer::Update(float dt)
 		tempPos.y += falling_speed*dt;
 		if (CheckCollision(GetPlayerTile({ tempPos.x + 5, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR
 			&& CheckCollision(GetPlayerTile({ tempPos.x + 10, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR
-			&& is_jumping == false && is_attacking == false && is_sliding == false)
+			&& is_jumping == false && is_attacking == false && is_dashing == false)
 		{
 
 			can_die = false;
-			can_slide = false;
+			can_dash = false;
 			can_attack = false;
 			can_jump = false;
 			is_falling = true;
@@ -131,7 +131,7 @@ bool EntityPlayer::Update(float dt)
 			is_falling = false;
 			can_jump = true;
 			can_attack = true;
-			can_slide = true;
+			can_dash = true;
 			can_die = true;
 		}
 
@@ -350,7 +350,7 @@ bool EntityPlayer::Update(float dt)
 			if (cont == 35)
 			{
 				is_jumping = false;
-				is_sliding = false;
+				is_dashing = false;
 				is_attacking = false;
 			}
 		}
@@ -412,20 +412,20 @@ bool EntityPlayer::Update(float dt)
 		if (attack_cont == 35)
 		{
 			is_attacking = false;
-			is_sliding = false;
+			is_dashing = false;
 			is_jumping = false;
 		}
 		//slide
 
-		if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN && is_sliding == false && can_slide) {
+		if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN && is_dashing == false && can_dash) {
 
-			can_slide = false;
+			can_dash = false;
 			slide_left.Reset();
 			slide_right.Reset();
-			is_sliding = true;
-			slide_cont = 0;
+			is_dashing = true;
+			dash_cont = 0;
 		}
-		if (is_sliding) {
+		if (is_dashing) {
 
 			tempPos = pos;
 
@@ -450,9 +450,9 @@ bool EntityPlayer::Update(float dt)
 
 				}
 			
-			if (slide_cont == 35)
+			if (dash_cont == 35)
 			{
-				is_sliding = false;
+				is_dashing = false;
 				is_attacking = false;
 				is_jumping = false;
 			}
@@ -462,7 +462,7 @@ bool EntityPlayer::Update(float dt)
 			//die	
 
 	die_cont++;
-	slide_cont++;
+	dash_cont++;
 	attack_cont++;
 	cont++;
 
