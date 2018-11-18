@@ -224,34 +224,7 @@ bool EntityPlayer::Update(float dt)
 			
 		}
 
-		//else if (CheckCollision(GetPlayerTile({ tempPos.x - animation->GetCurrentFrame().w, tempPos.y  })) == COLLISION_TYPE::DEATH
-		//	&& CheckCollision(GetPlayerTile({ tempPos.x - animation->GetCurrentFrame().w, tempPos.y  })) == COLLISION_TYPE::DEATH)
-		//{
-		//	App->audio->PlayFx(2);
-		//	//App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
-		//	if (is_diying == false && can_die)
-		//	{
-
-		//		can_die = false;
-		//		die_left.Reset();
-		//		die_right.Reset();
-		//		is_diying = true;
-		//		die_cont = 0;
-		//	}
-
-		//	if (is_diying) {
-
-		//		if (looking_left)
-		//			animation = &die_left;
-		//		else if (looking_right)
-		//			animation = &die_right;
-		//	}
-		//	if (die_cont == 35)
-		//	{
-		//		is_diying = false;
-		//		SpawnPLayer();
-		//	}
-		//}
+	
 		else if (CheckCollision(GetPlayerTile({ tempPos.x+5 + animation->GetCurrentFrame().w , tempPos.y  })) == COLLISION_TYPE::DEATH
 			&& CheckCollision(GetPlayerTile({ tempPos.x+10 + animation->GetCurrentFrame().w, tempPos.y})) == COLLISION_TYPE::DEATH)
 		{
@@ -459,7 +432,7 @@ bool EntityPlayer::Update(float dt)
 			if (looking_right && CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y })) == COLLISION_TYPE::AIR
 				&& CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR) {
 				animation = &slide_right;
-				pos.x = pos.x++;
+				pos.x = pos.x++ +1;
 				if (CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y })) == COLLISION_TYPE::WIN
 					&& CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::WIN)
 				{
@@ -470,7 +443,7 @@ bool EntityPlayer::Update(float dt)
 			else if (looking_left && CheckCollision(GetPlayerTile({ tempPos.x, tempPos.y })) == COLLISION_TYPE::AIR
 				&& CheckCollision(GetPlayerTile({ tempPos.x, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::AIR) {
 					animation = &slide_left;
-					pos.x = pos.x--;
+					pos.x = pos.x-- -1;
 					
 				}
 				
