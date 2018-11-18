@@ -3,7 +3,7 @@
  <tileset firstgid="1" name="tilesplatform" tilewidth="32" tileheight="32" tilecount="432" columns="24">
   <image source="tilesplatform.png" width="769" height="577"/>
  </tileset>
- <layer name="Navigation" width="150" height="20">
+ <layer name="Navigation" width="150" height="20" visible="0">
   <properties>
    <property name="Navigation" type="int" value="1"/>
   </properties>
@@ -9021,7 +9021,7 @@
    <tile gid="47"/>
   </data>
  </layer>
- <layer name="Map" width="150" height="20" visible="0">
+ <layer name="Map" width="150" height="20">
   <data>
    <tile gid="17"/>
    <tile gid="18"/>
@@ -10726,7 +10726,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="157"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -10874,9 +10874,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="157"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="181"/>
    <tile gid="0"/>
    <tile gid="157"/>
    <tile gid="0"/>
@@ -11022,12 +11022,12 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="157"/>
    <tile gid="0"/>
+   <tile gid="181"/>
    <tile gid="0"/>
+   <tile gid="181"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="113"/>
-   <tile gid="113"/>
    <tile gid="181"/>
    <tile gid="0"/>
    <tile gid="157"/>
@@ -13730,7 +13730,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="57"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -13878,9 +13878,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="57"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="57"/>
    <tile gid="0"/>
    <tile gid="57"/>
    <tile gid="0"/>
@@ -14026,12 +14026,12 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="57"/>
    <tile gid="0"/>
+   <tile gid="57"/>
    <tile gid="0"/>
+   <tile gid="57"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="59"/>
-   <tile gid="59"/>
    <tile gid="57"/>
    <tile gid="0"/>
    <tile gid="57"/>
