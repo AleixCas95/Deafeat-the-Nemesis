@@ -1,12 +1,13 @@
-# Defeat the Nemesis
+﻿# Defeat the Nemesis
 
 ## The game
 
 For this assignment we have forked [Underground-Hero](https://github.com/MAtaur00/Underground-Hero) [v 0.3](https://github.com/MAtaur00/Underground-Hero/tree/0.3)
 
-This is a little game made by two students of the Videogame Desing and Develompent degree. It is a small plataformer with two levels, where the player can move right, left and jump.
+This is a little game made by two students of the Videogame Desing and Develompent degree. It is a small plataformer with two levels, where the player can move right, left and jump, attack and dash to kill the enemy.
 The game has been made using C++, SDL and pugi libraries. 
 The maps have been made using tiled as the colliders.
+*Note: Player can kill all the enemies but sometimes, the enemy on the ground is hard to kill.
 
 ## Debugging Fucionalities
 
