@@ -40,7 +40,7 @@ The maps have been made using tiled as the colliders.
  * Aleix Castillo Arrià
  * GitHub Username: AleixCas95
  * Albert Cayuela Naval
- * GitHub Username: Albert Cayuela
+ * GitHub Username: AlbertCayuela
 
  ### License
  
