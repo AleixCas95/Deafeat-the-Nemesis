@@ -134,13 +134,13 @@ bool EntityEnemyGround::Update(float dt)
 			animation = &idleright;
 		}
 	}
-	/*else
+	else
 	{
 		path = nullptr;
 		speedenemy.x = 0;
 		speedenemy.y = 0;
 		animation = &idleleft;
-	}*/
+	}
 
 	last_pos = pos;
 	pos += speedenemy;
