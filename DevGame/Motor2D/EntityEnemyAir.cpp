@@ -44,7 +44,7 @@ EntityEnemyAir::EntityEnemyAir(int x, int y, ENTITY_TYPE type) : Entity(x, y, ty
 	}
 
 
-	pathmarker = App->tex->Load("textures/x.png");
+	
 	Start();
 
 	
@@ -184,7 +184,7 @@ bool EntityEnemyAir::Update(float dt)
 bool EntityEnemyAir::CleanUp()
 {
 	App->tex->UnLoad(texture);
-	App->tex->UnLoad(pathmarker);
+
 
 	return true;
 }
