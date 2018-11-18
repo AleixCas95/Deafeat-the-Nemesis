@@ -133,7 +133,7 @@ bool EntityEnemyAir::Update(float dt)
 		die_cont = 0;
 		is_diying = true;
 		if (is_diying) {
-			App->audio->PlayFx(2);
+			
 			
 		}
 
@@ -144,23 +144,27 @@ bool EntityEnemyAir::Update(float dt)
 		App->entities->player->destroy_entity = true;
 
 		App->entities->CleanUp();
-		
-		App->entities->SpawnEntity(0, 0, PLAYER);
-		iPoint spawnenemy;
-		iPoint spawnenemy2;
+		iPoint spawn;
 		p2List_item<MapLayer*>* layer = App->map->data.layers.end;
-		for (int i = 0; i < (layer->data->width * layer->data->height); i++)
-		{
+		for (int i = 0; i < (layer->data->width * layer->data->height); i++) {
+			if (layer->data->data[i] == 82)
+			{
+				App->audio->PlayFx(2);
+				spawn = App->map->TileToWorld(i);
+				App->entities->SpawnEntity(spawn.x, spawn.y, PLAYER);
+				
+			}
 			if (layer->data->data[i] == 105)
 			{
-				spawnenemy = App->map->TileToWorld(i);
-				App->entities->SpawnEntity(spawnenemy.x, spawnenemy.y, ENEMYAIR);
+				spawn = App->map->TileToWorld(i);
+				App->entities->SpawnEntity(spawn.x, spawn.y, ENEMYAIR);
 
 			}
 			if (layer->data->data[i] == 107)
 			{
-				spawnenemy2 = App->map->TileToWorld(i);
-				App->entities->SpawnEntity(spawnenemy2.x, spawnenemy2.y, ENEMYGROUND);
+				spawn = App->map->TileToWorld(i);
+				App->entities->SpawnEntity(spawn.x, spawn.y, ENEMYGROUND);
+
 
 			}
 		}

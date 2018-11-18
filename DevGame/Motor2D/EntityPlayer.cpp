@@ -139,8 +139,7 @@ bool EntityPlayer::Update(float dt)
 			&& CheckCollision(GetPlayerTile({ tempPos.x , tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH)
 		{
 			
-			App->audio->PlayFx(2);
-
+			
 			if (is_diying == false && can_die)
 			{
 
@@ -161,7 +160,32 @@ bool EntityPlayer::Update(float dt)
 			if (die_cont == 35)
 			{
 				is_diying = false;
-				SpawnPLayer();
+				App->entities->CleanUp();
+				iPoint spawn;
+				p2List_item<MapLayer*>* layer = App->map->data.layers.end;
+				for (int i = 0; i < (layer->data->width * layer->data->height); i++) {
+					if (layer->data->data[i] == 82)
+					{
+						App->audio->PlayFx(2);
+						spawn = App->map->TileToWorld(i);
+						App->entities->SpawnEntity(spawn.x, spawn.y, PLAYER);
+
+					}
+					if (layer->data->data[i] == 105)
+					{
+						spawn = App->map->TileToWorld(i);
+						App->entities->SpawnEntity(spawn.x, spawn.y, ENEMYAIR);
+
+					}
+					if (layer->data->data[i] == 107)
+					{
+						spawn = App->map->TileToWorld(i);
+						App->entities->SpawnEntity(spawn.x, spawn.y, ENEMYGROUND);
+
+
+					}
+				}
+			
 			}
 			//App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
 			
@@ -169,9 +193,35 @@ bool EntityPlayer::Update(float dt)
 		else if (CheckCollision(GetPlayerTile({ tempPos.x , tempPos.y - animation->GetCurrentFrame().h })) == COLLISION_TYPE::DEATH
 			&& CheckCollision(GetPlayerTile({ tempPos.x , tempPos.y - animation->GetCurrentFrame().h  })) == COLLISION_TYPE::DEATH)
 		{
-			App->audio->PlayFx(2);
+			
 			//App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
-			SpawnPLayer();
+			
+			App->entities->CleanUp();
+			iPoint spawn;
+			p2List_item<MapLayer*>* layer = App->map->data.layers.end;
+			for (int i = 0; i < (layer->data->width * layer->data->height); i++) {
+				if (layer->data->data[i] == 82)
+				{
+					App->audio->PlayFx(2);
+					spawn = App->map->TileToWorld(i);
+					App->entities->SpawnEntity(spawn.x, spawn.y, PLAYER);
+
+				}
+				if (layer->data->data[i] == 105)
+				{
+					spawn = App->map->TileToWorld(i);
+					App->entities->SpawnEntity(spawn.x, spawn.y, ENEMYAIR);
+
+				}
+				if (layer->data->data[i] == 107)
+				{
+					spawn = App->map->TileToWorld(i);
+					App->entities->SpawnEntity(spawn.x, spawn.y, ENEMYGROUND);
+
+
+				}
+			}
+			
 		}
 
 		//else if (CheckCollision(GetPlayerTile({ tempPos.x - animation->GetCurrentFrame().w, tempPos.y  })) == COLLISION_TYPE::DEATH
@@ -205,7 +255,8 @@ bool EntityPlayer::Update(float dt)
 		else if (CheckCollision(GetPlayerTile({ tempPos.x+5 + animation->GetCurrentFrame().w , tempPos.y  })) == COLLISION_TYPE::DEATH
 			&& CheckCollision(GetPlayerTile({ tempPos.x+10 + animation->GetCurrentFrame().w, tempPos.y})) == COLLISION_TYPE::DEATH)
 		{
-			App->audio->PlayFx(2);
+			
+			App->entities->CleanUp();
 			//App->fade->FadeToBlack(App->scene, App->scene, 0.5f);
 			if (is_diying == false && can_die)
 			{
@@ -227,7 +278,31 @@ bool EntityPlayer::Update(float dt)
 			if (die_cont == 35)
 			{
 				is_diying = false;
-				SpawnPLayer();
+				iPoint spawn;
+				p2List_item<MapLayer*>* layer = App->map->data.layers.end;
+				for (int i = 0; i < (layer->data->width * layer->data->height); i++) {
+					if (layer->data->data[i] == 82)
+					{
+						App->audio->PlayFx(2);
+						spawn = App->map->TileToWorld(i);
+						App->entities->SpawnEntity(spawn.x, spawn.y, PLAYER);
+
+					}
+					if (layer->data->data[i] == 105)
+					{
+						spawn = App->map->TileToWorld(i);
+						App->entities->SpawnEntity(spawn.x, spawn.y, ENEMYAIR);
+
+					}
+					if (layer->data->data[i] == 107)
+					{
+						spawn = App->map->TileToWorld(i);
+						App->entities->SpawnEntity(spawn.x, spawn.y, ENEMYGROUND);
+
+
+					}
+				}
+			
 			}
 		}
 
