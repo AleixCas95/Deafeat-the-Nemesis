@@ -202,16 +202,37 @@ void j1App::FinishUpdate()
 		last_sec_frame_count = 0;
 	}
 
+	if (App->input->GetKey(SDL_SCANCODE_F11)== KEY_DOWN)
+	{
+		if (fps_cap) 
+		{
+			framerate_cap = 120;
+			fps_cap = false;
+			is_fps_cap = "OFF";
+		}
+		else if (!fps_cap)
+		{
+
+			framerate_cap = 30;
+			fps_cap = true;
+			is_fps_cap = "ON";
+
+		}
+	}
+
 	float avg_fps = float(frame_count) / startup_time.ReadSec();
 	float seconds_since_startup = startup_time.ReadSec();
 	uint32 last_frame_ms = frame_time.Read();
 	uint32 frames_on_last_update = prev_last_sec_frame_count;
 
-	static char title[256];
-	//something wrong down
+	static char title[500];
+	
 
-	sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %02u Last sec frames: %i  Time since startup: %.3f Frame Count: %lu ",
-		avg_fps, last_frame_ms, frames_on_last_update, seconds_since_startup, frame_count);
+	/*sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %02u Last sec frames: %i  Time since startup: %.3f Frame Count: %lu cap: %s",
+		avg_fps, last_frame_ms, frames_on_last_update, seconds_since_startup, frame_count, is_fps_cap.GetString());
+	App->win->SetTitle(title);*/
+
+	sprintf_s(title, 500, "FPS: %i Av.FPS: %.2f	Last Frame Ms: %02u	Cap: %s", frames_on_last_update, avg_fps, last_frame_ms, is_fps_cap.GetString());
 	App->win->SetTitle(title);
 
 	// TODO 2: Use SDL_Delay to make sure you get your capped framerate
