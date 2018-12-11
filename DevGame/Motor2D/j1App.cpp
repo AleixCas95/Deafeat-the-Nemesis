@@ -15,6 +15,7 @@
 #include "j1Pathfinding.h"
 #include "ModuleFadeToBlack.h"
 #include "j1Entities.h"
+#include "j1Gui.h"
 #include "Brofiler/Brofiler.h"
 
 // Constructor
@@ -32,6 +33,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	fade = new ModuleFadeToBlack();
 	entities = new j1Entities();
 	pathfinding = new j1PathFinding();
+	gui = new j1Gui();
 	
 
 
@@ -47,6 +49,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(entities);
 	AddModule(render);
 	AddModule(fade);
+	AddModule(gui);
 	
 	PERF_PEEK(ptimer);
 }
