@@ -5,6 +5,8 @@
 #include "j1Module.h"
 #include "p2Log.h"
 #include "UIImage.h"
+#include "UIObject.h"
+#include "p2List.h"
 
 j1Gui::j1Gui() : j1Module() {
 
@@ -60,7 +62,14 @@ bool j1Gui::CleanUp() {
 	return true;
 }
 
-UIImage* j1Gui::CreateImage(iPoint position, SDL_Rect rect, const SDL_Texture* texture)
-{
-	
-}
+//UIObject* j1Gui::CreateImage(iPoint position, SDL_Rect rect, SDL_Texture* texture)
+//{
+//	/*if (texture == nullptr) {
+//		texture = atlas;
+//	}*/
+//	UIObject* image = new UIImage(position, rect, texture);
+//
+//	UIObjects.add(image);
+//
+//	return image;
+//}

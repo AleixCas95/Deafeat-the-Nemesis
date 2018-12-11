@@ -1,5 +1,5 @@
-#ifndef _UILABEL_
-#define _UILABEL_
+#ifndef _UI_LABEL_
+#define _UI_LABEL_
 
 #include "UIObject.h"
 

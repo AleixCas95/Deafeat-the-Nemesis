@@ -5,8 +5,12 @@
 #include "j1Textures.h"
 
 
+UIObject::UIObject(iPoint pos): pos(pos) {
 
 
+}
+
+UIObject::~UIObject(){}
 
 void UIObject::Update(float dt) {
 

@@ -1,5 +1,5 @@
-#ifndef _UIOBJECT_
-#define _UIOBJECT_
+#ifndef _UI_OBJECT_
+#define _UI_OBJECT_
 
 #include "SDL/include/SDL.h"
 #include "j1Textures.h"
@@ -20,16 +20,20 @@ enum UIObjectType {
 class UIObject {
 
 public:
+	UIObject(iPoint pos);
+
+	~UIObject();
+
 
 	virtual void Update(float);
 	virtual void Draw();
 
-private:
-	const SDL_Texture *texture = nullptr;
+
 
 public:
 	iPoint pos;
-
+	SDL_Rect rect;
+	SDL_Texture *texture = nullptr;
 };
 
 
