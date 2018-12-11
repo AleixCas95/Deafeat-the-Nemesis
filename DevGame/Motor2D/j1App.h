@@ -18,6 +18,7 @@ class j1Map;
 class ModuleFadeToBlack;
 class j1Entities;
 class j1PathFinding;
+class j1Gui;
 
 class j1App
 {
@@ -98,6 +99,7 @@ public:
 	ModuleFadeToBlack*  fade;
 	j1Entities*			entities;
 	j1PathFinding*		pathfinding;
+	j1Gui*				gui;
 
 private:
 
