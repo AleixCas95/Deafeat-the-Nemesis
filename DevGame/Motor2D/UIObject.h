@@ -26,7 +26,10 @@ public:
 
 private:
 	const SDL_Texture *texture = nullptr;
-	
+
+public:
+	iPoint pos;
+
 };
 
 

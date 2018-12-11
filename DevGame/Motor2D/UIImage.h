@@ -2,11 +2,12 @@
 #define _UIIMAGE_
 
 #include "UIObject.h"
+#include "p2Point.h"
 
 class UIImage : public UIObject {
 
 public:
-	//UIImage(iPoint, SDL_Rect, const SDL_Texture*, UIObjectType);
+	UIImage(iPoint pos, SDL_Rect rect, SDL_Texture* texture);
 
 
 };

@@ -27,7 +27,7 @@ public:
 private:
 	SDLTesxutre * atlas = nullptr;
 	p2SString atlas_file_name;
-	p2List<UIObject> UIObject;
+	p2List<UIObject*> UIObjects;
 }
 
 #endif

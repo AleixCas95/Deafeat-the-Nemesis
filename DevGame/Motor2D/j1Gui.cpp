@@ -27,7 +27,7 @@ bool j1Gui::Awake(pugi::xml_node& conf) {
 
 bool j1Gui::Start() {
 
-
+	atlas = App->tex->Load(atlas_file_name.GetString());
 	return true;
 }
 
@@ -38,6 +38,14 @@ bool j1Gui::PreUpdate() {
 }
 
 bool j1Gui::Update(float dt) {
+
+	for (int i = 0; i < UIObjects.count(); ++i) {
+
+		if (UIObjects.At(i) != nullptr) {
+
+			UIObjects.At(i)->data->Draw();
+		}
+	}
 
 	return true;
 }
