@@ -73,6 +73,9 @@
     <ClCompile Include="UILabel.cpp">
       <Filter>Desenvolupament  ========\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="J1StartMenu.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -166,6 +169,9 @@
       <Filter>Desenvolupament  ========\GUI</Filter>
     </ClInclude>
     <ClInclude Include="j1Gui.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1StartMenu.h">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
   </ItemGroup>

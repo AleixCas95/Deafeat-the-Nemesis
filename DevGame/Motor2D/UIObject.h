@@ -30,10 +30,10 @@ public:
 
 
 
-public:
+protected:
 	iPoint pos;
 	SDL_Rect rect;
-	SDL_Texture *texture = nullptr;
+	SDL_Texture* texture = nullptr;
 };
 
 

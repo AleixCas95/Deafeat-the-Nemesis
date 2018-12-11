@@ -4,6 +4,7 @@
 #include "j1Module.h"
 #include "p2Point.h"
 #include "p2List.h"
+#include "SDL/include/SDL.h"
 
 class UIObject;
 
@@ -23,12 +24,15 @@ class j1Gui : public j1Module {
 		bool PostUpdate();
 		bool CleanUp();
 
-		//UIObject* CreateImage(iPoint pos, SDL_Rect rect, SDL_Texture* texture);
+		UIObject* CreateUIImage(iPoint pos, SDL_Rect rect, SDL_Texture* texture);
+		SDL_Texture* atlas = nullptr;
+		
 
 	private:
-		SDL_Texture * atlas = nullptr;
-		p2SString atlas_file_name;
+		
 		p2List<UIObject*> UIObjects;
+		
+		p2SString atlas_file_name;
 };
 
 

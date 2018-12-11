@@ -16,6 +16,7 @@
 #include "ModuleFadeToBlack.h"
 #include "j1Entities.h"
 #include "j1Gui.h"
+#include "j1StartMenu.h"
 #include "Brofiler/Brofiler.h"
 
 // Constructor
@@ -34,7 +35,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	entities = new j1Entities();
 	pathfinding = new j1PathFinding();
 	gui = new j1Gui();
-	
+	startmenu = new j1StartMenu();
 
 
 	// Ordered for awake / Start / Update
@@ -47,9 +48,12 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(pathfinding);
 	AddModule(entities);
+	AddModule(gui);
 	AddModule(render);
 	AddModule(fade);
-	AddModule(gui);
+	AddModule(startmenu);
+
+	
 	
 	PERF_PEEK(ptimer);
 }

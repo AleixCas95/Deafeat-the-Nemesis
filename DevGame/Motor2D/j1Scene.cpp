@@ -16,6 +16,7 @@
 #include "EntityEnemyAir.h"
 #include "EntityEnemyGround.h"
 #include "j1Pathfinding.h"
+#include "j1Gui.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -48,7 +49,6 @@ bool j1Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool j1Scene::Start()
 {
-
 
 	
 	//if (App->map->Load(CurrentMap->data) == true)
@@ -101,6 +101,21 @@ bool j1Scene::Start()
 // Called each loop iteration
 bool j1Scene::PreUpdate()
 {
+	static bool a = true;
+	if (a) {
+		iPoint pos;
+		pos.x = 0;
+		pos.y = 0;
+		SDL_Rect rect;
+		rect.x = 0;
+		rect.y = 0;
+		rect.w = 1481;
+		rect.h = 875;
+		SDL_Texture* texture;
+		texture = App->gui->atlas;
+		App->gui->CreateUIImage(pos, rect, texture);
+		a = false;
+	}
 	return true;
 }
 

@@ -7,7 +7,7 @@
 UIImage::UIImage(iPoint pos, SDL_Rect rec, SDL_Texture* tex): UIObject(pos){
 
 	rect = rec;
-	texture = tex;
+	this->texture = tex;
 }
 UIImage::~UIImage(){}
 

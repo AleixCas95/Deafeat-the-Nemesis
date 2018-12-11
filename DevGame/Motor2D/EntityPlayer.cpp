@@ -292,7 +292,9 @@ bool EntityPlayer::Update(float dt)
 			else if (CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y })) == COLLISION_TYPE::WIN
 				&& CheckCollision(GetPlayerTile({ tempPos.x + animation->GetCurrentFrame().w, tempPos.y + animation->GetCurrentFrame().h })) == COLLISION_TYPE::WIN)
 			{
+				
 				App->scene->LoadScene(); //with number 0, LoadScene 
+
 			}
 
 			looking_left = false;

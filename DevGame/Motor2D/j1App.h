@@ -19,6 +19,7 @@ class ModuleFadeToBlack;
 class j1Entities;
 class j1PathFinding;
 class j1Gui;
+class j1StartMenu;
 
 class j1App
 {
@@ -100,6 +101,7 @@ public:
 	j1Entities*			entities;
 	j1PathFinding*		pathfinding;
 	j1Gui*				gui;
+	j1StartMenu*		startmenu;
 
 private:
 

@@ -62,14 +62,25 @@ bool j1Gui::CleanUp() {
 	return true;
 }
 
-//UIObject* j1Gui::CreateImage(iPoint position, SDL_Rect rect, SDL_Texture* texture)
-//{
-//	/*if (texture == nullptr) {
-//		texture = atlas;
-//	}*/
-//	UIObject* image = new UIImage(position, rect, texture);
-//
-//	UIObjects.add(image);
-//
-//	return image;
-//}
+
+UIObject* j1Gui::CreateUIImage(iPoint pos, SDL_Rect rect, SDL_Texture* texture) {
+
+	if (texture == nullptr) {
+		UIImage* image = new UIImage(pos, rect, atlas);
+
+		UIObjects.add(image);
+		return image;
+
+	
+	}
+	else {
+		UIImage* image = new UIImage(pos, rect, texture);
+
+		UIObjects.add(image);
+		return image;
+
+
+	}
+
+	
+}
