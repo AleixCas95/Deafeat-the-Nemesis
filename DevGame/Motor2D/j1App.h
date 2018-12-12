@@ -20,6 +20,7 @@ class j1Entities;
 class j1PathFinding;
 class j1Gui;
 class j1StartMenu;
+class j1Fonts;
 
 class j1App
 {
@@ -102,6 +103,7 @@ public:
 	j1PathFinding*		pathfinding;
 	j1Gui*				gui;
 	j1StartMenu*		startmenu;
+	j1Fonts*			fonts;
 
 private:
 
