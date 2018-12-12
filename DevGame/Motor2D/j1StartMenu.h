@@ -23,6 +23,10 @@ public:
 
 private:
 	UIObject * background = nullptr;
+	UIObject * play_button = nullptr;
+	UIObject * settings_button = nullptr;
+	UIObject * exit_button = nullptr;
+	UIObject * credits_button = nullptr;
 };
 
 
