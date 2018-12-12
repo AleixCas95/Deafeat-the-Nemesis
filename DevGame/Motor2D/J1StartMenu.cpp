@@ -18,8 +18,8 @@ bool j1StartMenu::Awake(pugi::xml_node& cofing) {
 bool j1StartMenu::Start() {
 
 	SDL_Rect rect;
-	rect.x = 0;
-	rect.y = 0;
+	rect.x = 40;
+	rect.y = 36;
 	rect.w = 1024;
 	rect.h = 768;
 	SDL_Texture* texture;
