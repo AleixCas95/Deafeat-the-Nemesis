@@ -20,7 +20,7 @@ enum UIObjectType {
 class UIObject {
 
 public:
-	UIObject(iPoint pos);
+	UIObject(int x, int y);
 
 	~UIObject();
 
@@ -31,7 +31,8 @@ public:
 
 
 protected:
-	iPoint pos;
+	int x;
+	int y;
 	SDL_Rect rect;
 	SDL_Texture* texture = nullptr;
 };

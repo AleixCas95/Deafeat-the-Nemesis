@@ -11,7 +11,7 @@ class UIImage : public UIObject {
 
 public:
 
-	UIImage(iPoint pos, SDL_Rect rect, SDL_Texture* tex);
+	UIImage(int x, int y, SDL_Rect rect, SDL_Texture* tex);
 	~UIImage();
 
 	void Draw();

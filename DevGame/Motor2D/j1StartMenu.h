@@ -21,7 +21,8 @@ public:
 	bool PostUpdate();
 	bool CleanUp();
 
-
+private:
+	UIObject * background = nullptr;
 };
 
 

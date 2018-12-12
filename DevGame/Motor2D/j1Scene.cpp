@@ -101,21 +101,7 @@ bool j1Scene::Start()
 // Called each loop iteration
 bool j1Scene::PreUpdate()
 {
-	static bool a = true;
-	if (a) {
-		iPoint pos;
-		pos.x = 0;
-		pos.y = 0;
-		SDL_Rect rect;
-		rect.x = 0;
-		rect.y = 0;
-		rect.w = 1481;
-		rect.h = 875;
-		SDL_Texture* texture;
-		texture = App->gui->atlas;
-		App->gui->CreateUIImage(pos, rect, texture);
-		a = false;
-	}
+	
 	return true;
 }
 

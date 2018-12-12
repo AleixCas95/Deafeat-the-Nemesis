@@ -5,7 +5,7 @@
 #include "j1Textures.h"
 
 
-UIObject::UIObject(iPoint pos): pos(pos) {
+UIObject::UIObject(int x, int y) {
 
 
 }

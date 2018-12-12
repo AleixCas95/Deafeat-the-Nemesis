@@ -4,8 +4,11 @@
 
 
 
-UIImage::UIImage(iPoint pos, SDL_Rect rec, SDL_Texture* tex): UIObject(pos){
+UIImage::UIImage(int x, int y, SDL_Rect rec, SDL_Texture* tex): UIObject( x, y){
 
+	
+	this->x = x;
+	this->y = y;
 	rect = rec;
 	this->texture = tex;
 }
@@ -14,6 +17,6 @@ UIImage::~UIImage(){}
 
 void UIImage::Draw() {
 
-	App->render->Blit(texture, pos.x, pos.y, &rect);
+	App->render->Blit(texture, x, y, &rect);
 
 }

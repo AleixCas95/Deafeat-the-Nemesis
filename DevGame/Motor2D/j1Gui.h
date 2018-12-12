@@ -24,7 +24,7 @@ class j1Gui : public j1Module {
 		bool PostUpdate();
 		bool CleanUp();
 
-		UIObject* CreateUIImage(iPoint pos, SDL_Rect rect, SDL_Texture* texture);
+		UIObject* CreateUIImage(int x, int y, SDL_Rect rect, SDL_Texture* texture);
 		SDL_Texture* atlas = nullptr;
 		
 

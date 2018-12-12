@@ -63,10 +63,10 @@ bool j1Gui::CleanUp() {
 }
 
 
-UIObject* j1Gui::CreateUIImage(iPoint pos, SDL_Rect rect, SDL_Texture* texture) {
+UIObject* j1Gui::CreateUIImage(int x, int y, SDL_Rect rect, SDL_Texture* texture) {
 
 	if (texture == nullptr) {
-		UIImage* image = new UIImage(pos, rect, atlas);
+		UIImage* image = new UIImage(x ,y, rect, atlas);
 
 		UIObjects.add(image);
 		return image;
@@ -74,7 +74,7 @@ UIObject* j1Gui::CreateUIImage(iPoint pos, SDL_Rect rect, SDL_Texture* texture) 
 	
 	}
 	else {
-		UIImage* image = new UIImage(pos, rect, texture);
+		UIImage* image = new UIImage(x, y, rect, texture);
 
 		UIObjects.add(image);
 		return image;

@@ -17,6 +17,16 @@ bool j1StartMenu::Awake(pugi::xml_node& cofing) {
 }
 bool j1StartMenu::Start() {
 
+	SDL_Rect rect;
+	rect.x = 0;
+	rect.y = 0;
+	rect.w = 1024;
+	rect.h = 768;
+	SDL_Texture* texture;
+	texture = App->gui->atlas;
+
+	background = App->gui->CreateUIImage(0, 0, rect, texture);
+
 	return true;
 }
 bool j1StartMenu::PreUpdate() {
