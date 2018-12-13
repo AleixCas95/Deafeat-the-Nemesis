@@ -26,31 +26,31 @@ bool j1StartMenu::Start() {
 
 	//play button
 	SDL_Rect play_button_rect;
-	play_button_rect.x = 1798;
-	play_button_rect.y = 214;
-	play_button_rect.w = 134;
-	play_button_rect.h = 62;
+	play_button_rect.x = 1193;
+	play_button_rect.y = 210;
+	play_button_rect.w = 168;
+	play_button_rect.h = 63;
 
 	//settings_button
 	SDL_Rect settings_button_rect;
-	settings_button_rect.x = 1798;
-	settings_button_rect.y = 214;
-	settings_button_rect.w = 134;
-	settings_button_rect.h = 62;
+	settings_button_rect.x = 1193;
+	settings_button_rect.y = 210;
+	settings_button_rect.w = 168;
+	settings_button_rect.h = 63;
 
 	//exit button
 	SDL_Rect exit_button_rect;
-	exit_button_rect.x = 1798;
-	exit_button_rect.y = 214;
-	exit_button_rect.w = 134;
-	exit_button_rect.h = 62;
+	exit_button_rect.x = 1193;
+	exit_button_rect.y = 210;
+	exit_button_rect.w = 168;
+	exit_button_rect.h = 63;
 
 	//credits button
 	SDL_Rect credits_button_rect;
-	credits_button_rect.x = 1798;
-	credits_button_rect.y = 214;
-	credits_button_rect.w = 134;
-	credits_button_rect.h = 62;
+	credits_button_rect.x = 1193;
+	credits_button_rect.y = 210;
+	credits_button_rect.w = 168;
+	credits_button_rect.h = 63;
 
 	
 	SDL_Texture* texture;
@@ -69,13 +69,13 @@ bool j1StartMenu::Start() {
 
 
 	//test text
-	text_start = App->gui->CreateUILabel(240, 175, "START");
+	text_start = App->gui->CreateUILabel(260, 175, "START");
 	//test text
-	text_continue = App->gui->CreateUILabel(222, 245, "CONTINUE");
+	text_continue = App->gui->CreateUILabel(240, 245, "CONTINUE");
 	//test text
-	text_settings = App->gui->CreateUILabel(225, 310, "SETTINGS");
+	text_settings = App->gui->CreateUILabel(240, 315, "SETTINGS");
 	//test text
-	text_exit = App->gui->CreateUILabel(245, 380, "EXIT");
+	text_exit = App->gui->CreateUILabel(265, 385, "EXIT");
 
 	return true;
 }
