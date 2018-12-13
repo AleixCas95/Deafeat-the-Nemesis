@@ -31,7 +31,11 @@ private:
 	UIObject * credits_button = nullptr;
 
 
-	UIObject* text_one = nullptr;
+	UIObject* text_start = nullptr;
+	UIObject* text_continue = nullptr;
+	UIObject* text_settings = nullptr;
+	UIObject* text_exit = nullptr;
+
 	
 };
 

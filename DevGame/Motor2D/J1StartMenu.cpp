@@ -69,7 +69,14 @@ bool j1StartMenu::Start() {
 
 
 	//test text
-	text_one = App->gui->CreateUILabel(245, 170, "S T A R T");
+	text_start = App->gui->CreateUILabel(240, 175, "START");
+	//test text
+	text_continue = App->gui->CreateUILabel(222, 245, "CONTINUE");
+	//test text
+	text_settings = App->gui->CreateUILabel(225, 310, "SETTINGS");
+	//test text
+	text_exit = App->gui->CreateUILabel(245, 380, "EXIT");
+
 	return true;
 }
 bool j1StartMenu::PreUpdate() {
