@@ -5,17 +5,13 @@
 #include "j1Textures.h"
 #include "p2Defs.h"
 #include "p2Point.h"
+#include "j1Gui.h"
 
 class j1Module;
 
 
 
-enum UIObjectType {
 
-	NoObjectType,
-	ImageObject,
-	LabelObject
-};
 
 class UIObject {
 
@@ -34,7 +30,11 @@ protected:
 	int x;
 	int y;
 	SDL_Rect rect;
+	p2SString text;
 	SDL_Texture* texture = nullptr;
+	SDL_Texture* texture_fonts = nullptr;
+	SDL_Rect size = { 0,0,0,0 };
+
 };
 
 

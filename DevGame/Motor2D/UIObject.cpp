@@ -18,4 +18,5 @@ void UIObject::Update(float dt) {
 
 void UIObject::Draw() {
 
+	
 }

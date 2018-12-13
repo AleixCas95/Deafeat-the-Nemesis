@@ -5,6 +5,7 @@
 #include "j1Module.h"
 #include "p2Log.h"
 #include "UIImage.h"
+#include "UILabel.h"
 #include "UIObject.h"
 #include "p2List.h"
 
@@ -83,4 +84,13 @@ UIObject* j1Gui::CreateUIImage(int x, int y, SDL_Rect rect, SDL_Texture* texture
 	}
 
 	
+}
+
+UIObject* j1Gui::CreateUILabel(int x, int y, p2SString text) {
+
+	UILabel* label = new UILabel(x, y, text);
+
+	UIObjects.add(label);
+	return label;
+
 }

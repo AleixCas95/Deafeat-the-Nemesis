@@ -52,7 +52,7 @@ bool j1StartMenu::Start() {
 	credits_button_rect.w = 134;
 	credits_button_rect.h = 62;
 
-
+	
 	SDL_Texture* texture;
 	texture = App->gui->atlas;
 
@@ -67,6 +67,9 @@ bool j1StartMenu::Start() {
 	//credits button
 	credits_button = App->gui->CreateUIImage(200, 360, credits_button_rect, texture);
 
+
+	//test text
+	text_one = App->gui->CreateUILabel(245, 170, "S T A R T");
 	return true;
 }
 bool j1StartMenu::PreUpdate() {

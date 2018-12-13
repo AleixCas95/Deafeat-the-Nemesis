@@ -8,6 +8,13 @@
 
 class UIObject;
 
+enum UIObjectType {
+
+	NoObjectType,
+	ImageObject,
+	LabelObject
+};
+
 class j1Gui : public j1Module {
 
 	public:
@@ -25,7 +32,11 @@ class j1Gui : public j1Module {
 		bool CleanUp();
 
 		UIObject* CreateUIImage(int x, int y, SDL_Rect rect, SDL_Texture* texture);
+		UIObject* CreateUILabel(int x, int y, p2SString text);
+
+
 		SDL_Texture* atlas = nullptr;
+	
 		
 
 	private:
@@ -38,4 +49,4 @@ class j1Gui : public j1Module {
 
 
 
-#endif // !_J1GUI_
+#endif // !_J1_GUI_

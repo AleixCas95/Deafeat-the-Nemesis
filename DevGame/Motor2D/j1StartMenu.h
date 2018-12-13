@@ -5,6 +5,8 @@
 
 
 class UIImage;
+class UILabel;
+class UIObject;
 
 
 class j1StartMenu : public j1Module {
@@ -27,6 +29,10 @@ private:
 	UIObject * settings_button = nullptr;
 	UIObject * exit_button = nullptr;
 	UIObject * credits_button = nullptr;
+
+
+	UIObject* text_one = nullptr;
+	
 };
 
 
