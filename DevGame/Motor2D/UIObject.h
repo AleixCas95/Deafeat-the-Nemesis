@@ -21,7 +21,7 @@ public:
 	~UIObject();
 
 
-	virtual void Update(float);
+	virtual void Update();
 	virtual void Draw();
 
 
@@ -29,6 +29,8 @@ public:
 protected:
 	int x;
 	int y;
+	iPoint mouse_position;
+	iPoint mouse_pos;
 	SDL_Rect rect;
 	p2SString text;
 	SDL_Texture* texture = nullptr;

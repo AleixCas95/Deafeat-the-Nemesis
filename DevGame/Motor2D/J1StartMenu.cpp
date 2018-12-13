@@ -1,5 +1,6 @@
 #include "j1App.h"
 #include "j1Module.h"
+#include "j1Input.h"
 #include "j1Gui.h"
 #include "j1Render.h"
 #include "j1StartMenu.h"
@@ -32,7 +33,7 @@ bool j1StartMenu::Start() {
 	play_button_rect.h = 63;
 
 	//settings_button
-	SDL_Rect settings_button_rect;
+	
 	settings_button_rect.x = 1193;
 	settings_button_rect.y = 210;
 	settings_button_rect.w = 168;
@@ -52,6 +53,12 @@ bool j1StartMenu::Start() {
 	credits_button_rect.w = 168;
 	credits_button_rect.h = 63;
 
+	SDL_Rect none;
+	none.x = 3;
+	none.y = 3;
+	none.w = 2;
+	none.h = 2;
+
 	
 	SDL_Texture* texture;
 	texture = App->gui->atlas;
@@ -59,13 +66,15 @@ bool j1StartMenu::Start() {
 	//background
 	background = App->gui->CreateUIImage(0, 0, background_rect, texture);
 	//play button
-	play_button = App->gui->CreateUIImage(200, 150, play_button_rect, texture);
-	//settings button
+	play_button = App->gui->CreateUIButton(200, 150, none, play_button_rect, play_button_rect, texture);
+	////settings button
 	settings_button = App->gui->CreateUIImage(200, 220, settings_button_rect, texture);
-	//exit button
-	exit_button = App->gui->CreateUIImage(200, 290, exit_button_rect, texture);
-	//credits button
-	credits_button = App->gui->CreateUIImage(200, 360, credits_button_rect, texture);
+	////exit button
+	//exit_button = App->gui->CreateUIImage(200, 290, exit_button_rect, texture);
+	////credits button
+	//credits_button = App->gui->CreateUIImage(200, 360, credits_button_rect, texture);
+
+
 
 
 	//test text
@@ -84,6 +93,8 @@ bool j1StartMenu::PreUpdate() {
 	return true;
 }
 bool j1StartMenu::Update(float) {
+
+	
 
 	return true;
 }

@@ -12,7 +12,7 @@ enum UIObjectType {
 
 	NoObjectType,
 	ImageObject,
-	LabelObject
+	LabelObject,
 };
 
 class j1Gui : public j1Module {
@@ -33,6 +33,7 @@ class j1Gui : public j1Module {
 
 		UIObject* CreateUIImage(int x, int y, SDL_Rect rect, SDL_Texture* texture);
 		UIObject* CreateUILabel(int x, int y, p2SString text);
+		UIObject* CreateUIButton(int x, int y, SDL_Rect mouse_off, SDL_Rect mouse_on, SDL_Rect mouse_click, SDL_Texture* texture);
 
 
 		SDL_Texture* atlas = nullptr;

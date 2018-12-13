@@ -23,6 +23,8 @@ public:
 	bool PostUpdate();
 	bool CleanUp();
 
+	SDL_Rect settings_button_rect;
+
 private:
 	UIObject * background = nullptr;
 	UIObject * play_button = nullptr;
