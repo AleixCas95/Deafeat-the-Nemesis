@@ -26,7 +26,7 @@ public:
 
 
 
-protected:
+
 	int x;
 	int y;
 	iPoint uidimension = iPoint { 500,200 };

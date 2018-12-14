@@ -33,7 +33,7 @@ public:
 	UIObject * play_button = nullptr;
 	UIObject * settings_button = nullptr;
 	UIObject * exit_button = nullptr;
-	UIObject * credits_button = nullptr;
+	UIObject * continue_button = nullptr;
 	
 
 
@@ -42,7 +42,7 @@ public:
 	UIObject* text_settings = nullptr;
 	UIObject* text_exit = nullptr;
 
-
+	bool close_game=false;
 	
 };
 

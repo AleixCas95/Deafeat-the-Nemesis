@@ -9,6 +9,7 @@
 #include "j1Scene.h"
 #include "j1Entities.h"
 #include "j1Audio.h"
+#include "p2Log.h"
 
 j1StartMenu::j1StartMenu() : j1Module(){
 
@@ -84,12 +85,12 @@ bool j1StartMenu::Start() {
 	//play button
 	play_button = App->gui->CreateUIButton(200, 150, button_off_mouse, button_on_mouse, button_off_mouse, texture);
 
-	////settings button
-	settings_button = App->gui->CreateUIButton(200, 220, button_off_mouse, button_on_mouse, button_off_mouse, texture);
-	////exit button
-	exit_button = App->gui->CreateUIButton(200, 290, button_off_mouse, button_on_mouse, button_off_mouse, texture);
-	////credits button
-	credits_button = App->gui->CreateUIButton(200, 360, button_off_mouse, button_on_mouse, button_off_mouse, texture);
+	//settings button
+	continue_button = App->gui->CreateUIButton(200, 220, button_off_mouse, button_on_mouse, button_off_mouse, texture);
+	//exit button
+	settings_button = App->gui->CreateUIButton(200, 290, button_off_mouse, button_on_mouse, button_off_mouse, texture);
+	//credits button
+	exit_button = App->gui->CreateUIButton(200, 360, button_off_mouse, button_on_mouse, button_off_mouse, texture);
 	
 	//settings_button = App->gui->CreateUIImage(200, 220, settings_button_rect, texture);
 	
@@ -118,12 +119,36 @@ bool j1StartMenu::PreUpdate() {
 }
 bool j1StartMenu::Update(float) {
 
+	iPoint mouse_position, mouse_pos;
+
+	mouse_pos = App->input->GetMousePosition(mouse_position);
+	//LOG("%i %i", mouse_pos.x, mouse_pos.y);
+
+	//if (mouse_pos.x > exit_button->x&&mouse_pos.x<exit_button->x + exit_button->rect.w&&mouse_pos.y>exit_button->y&&mouse_pos.y < exit_button->y + exit_button->rect.h)
+	if (mouse_pos.x > exit_button->x&&mouse_pos.x<exit_button->x + exit_button->button_on.w&&mouse_pos.y>exit_button->y&&mouse_pos.y < exit_button->y + exit_button->button_on.h)
+	{
+		LOG("IN");
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) 
+		{
+
+			LOG("YEAH");
+			close_game = true;
+		}
+		else {
+			LOG("NOPE");
+		}
+	}
 
 	return true;
 }
 bool j1StartMenu::PostUpdate() {
+	bool ret = true;
 
-	return true;
+	if (close_game)
+		ret = false;
+
+	return ret;
+
 }
 bool j1StartMenu::CleanUp() {
 

@@ -17,7 +17,7 @@ public:
 
 public:
 	bool is_on = false;
-	bool is_off = true;
+	//bool is_off = true;
 	
 };
 
