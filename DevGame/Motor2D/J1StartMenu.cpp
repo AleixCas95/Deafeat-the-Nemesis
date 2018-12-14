@@ -133,6 +133,7 @@ bool j1StartMenu::Update(float) {
 			close_game = true;
 		}
 	}
+	//check if mouse is on settings button
 	if (mouse_pos.x > settings_button->x&&mouse_pos.x<settings_button->x + settings_button->button_on.w&&mouse_pos.y>settings_button->y&&mouse_pos.y < settings_button->y + settings_button->button_on.h)
 	{
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
@@ -140,6 +141,7 @@ bool j1StartMenu::Update(float) {
 			App->startmenu->active = false;
 			App->settings_scene->active = true;
 			App->settings_scene->Start();
+			App->startmenu->CleanUp();
 		}
 	}
 
