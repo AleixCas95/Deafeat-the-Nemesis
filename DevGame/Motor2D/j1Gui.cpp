@@ -9,6 +9,7 @@
 #include "UIButton.h"
 #include "UIObject.h"
 #include "p2List.h"
+#include "UISlider.h"
 
 j1Gui::j1Gui() : j1Module() {
 
@@ -50,8 +51,6 @@ bool j1Gui::Update(float dt) {
 			UIObjects.At(i)->data->Draw();
 			UIObjects.At(i)->data->Update();
 			
-
-
 		}
 	}
 
@@ -109,3 +108,11 @@ UIObject * j1Gui::CreateUIButton(int x, int y, SDL_Rect mouse_off, SDL_Rect mous
 	return button;
 }
 
+UIObject* j1Gui::CreateUISlider(int x, int y, SDL_Rect rect, SDL_Texture* texture) {
+
+	UISlider* slider = new UISlider(x, y, rect, texture);
+	UIObjects.add(slider);
+
+	return slider;
+
+}

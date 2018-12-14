@@ -73,17 +73,17 @@
     <ClCompile Include="UILabel.cpp">
       <Filter>Desenvolupament  ========\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="J1StartMenu.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClCompile>
     <ClCompile Include="j1Fonts.cpp">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClCompile>
     <ClCompile Include="UIButton.cpp">
       <Filter>Desenvolupament  ========\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="J1StartMenu.cpp">
-      <Filter>Desenvolupament  ========\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="j1SettingsScene.cpp">
-      <Filter>Desenvolupament  ========\Scenes</Filter>
+    <ClCompile Include="UISlider.cpp">
+      <Filter>Desenvolupament  ========\GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -180,17 +180,17 @@
     <ClInclude Include="j1Gui.h">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="j1StartMenu.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClInclude>
     <ClInclude Include="j1Fonts.h">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
     <ClInclude Include="UIButton.h">
       <Filter>Desenvolupament  ========\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="j1StartMenu.h">
-      <Filter>Desenvolupament  ========\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="j1SettingsScene.h">
-      <Filter>Desenvolupament  ========\Scenes</Filter>
+    <ClInclude Include="UISlider.h">
+      <Filter>Desenvolupament  ========\GUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
