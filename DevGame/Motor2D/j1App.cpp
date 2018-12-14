@@ -18,6 +18,7 @@
 #include "j1Gui.h"
 #include "j1StartMenu.h"
 #include "j1Fonts.h"
+#include "j1SettingsScene.h"
 #include "Brofiler/Brofiler.h"
 
 // Constructor
@@ -38,6 +39,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	gui = new j1Gui();
 	fonts = new j1Fonts();
 	startmenu = new j1StartMenu();
+	settings_scene = new j1SettingsScene();
 
 
 	// Ordered for awake / Start / Update
@@ -55,6 +57,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(fade);
 	AddModule(startmenu);
 	AddModule(fonts);
+	AddModule(settings_scene);
 
 	scene->active = false;
 	startmenu->active = true;

@@ -21,6 +21,7 @@ class j1PathFinding;
 class j1Gui;
 class j1StartMenu;
 class j1Fonts;
+class j1SettingsScene;
 
 class j1App
 {
@@ -104,6 +105,7 @@ public:
 	j1Gui*				gui;
 	j1StartMenu*		startmenu;
 	j1Fonts*			fonts;
+	j1SettingsScene*	settings_scene;
 
 private:
 

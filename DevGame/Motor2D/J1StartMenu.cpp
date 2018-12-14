@@ -124,18 +124,12 @@ bool j1StartMenu::Update(float) {
 	mouse_pos = App->input->GetMousePosition(mouse_position);
 	//LOG("%i %i", mouse_pos.x, mouse_pos.y);
 
-	//if (mouse_pos.x > exit_button->x&&mouse_pos.x<exit_button->x + exit_button->rect.w&&mouse_pos.y>exit_button->y&&mouse_pos.y < exit_button->y + exit_button->rect.h)
+	//check if mouse is on exit button
 	if (mouse_pos.x > exit_button->x&&mouse_pos.x<exit_button->x + exit_button->button_on.w&&mouse_pos.y>exit_button->y&&mouse_pos.y < exit_button->y + exit_button->button_on.h)
 	{
-		LOG("IN");
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) 
 		{
-
-			LOG("YEAH");
 			close_game = true;
-		}
-		else {
-			LOG("NOPE");
 		}
 	}
 
