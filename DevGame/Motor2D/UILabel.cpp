@@ -18,7 +18,7 @@ UILabel::UILabel(int x, int y, p2SString text) : UIObject(x, y)
 	App->fonts->CalcSize(this->text.GetString(), w, h, App->fonts->default);
 	size.w = w;
 	size.h = h;
-	texture_fonts = App->fonts->Print(text.GetString(), { 0, 0, 0, 255 }, App->fonts->default);
+	texture_fonts = App->fonts->Print(text.GetString(), { 255, 255, 255, 255 }, App->fonts->default);
 
 	
 }

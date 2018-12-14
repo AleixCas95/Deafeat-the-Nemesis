@@ -25,33 +25,42 @@ bool j1StartMenu::Start() {
 	background_rect.w = 1024;
 	background_rect.h = 768;
 
-	//play button
-	SDL_Rect play_button_rect;
-	play_button_rect.x = 1193;
-	play_button_rect.y = 210;
-	play_button_rect.w = 168;
-	play_button_rect.h = 63;
+	//button 
+	SDL_Rect button_off_mouse;
+	button_off_mouse.x = 1193;
+	button_off_mouse.y = 210;
+	button_off_mouse.w = 168;
+	button_off_mouse.h = 63;
 
-	//settings_button
-	
-	settings_button_rect.x = 1193;
-	settings_button_rect.y = 210;
-	settings_button_rect.w = 168;
-	settings_button_rect.h = 63;
+	SDL_Rect button_on_mouse;
+	button_on_mouse.x = 1189;
+	button_on_mouse.y = 286;
+	button_on_mouse.w = 170;
+	button_on_mouse.h = 65;
 
-	//exit button
-	SDL_Rect exit_button_rect;
-	exit_button_rect.x = 1193;
-	exit_button_rect.y = 210;
-	exit_button_rect.w = 168;
-	exit_button_rect.h = 63;
 
-	//credits button
-	SDL_Rect credits_button_rect;
-	credits_button_rect.x = 1193;
-	credits_button_rect.y = 210;
-	credits_button_rect.w = 168;
-	credits_button_rect.h = 63;
+
+
+	////settings_button
+	//
+	//settings_button_rect.x = 1193;
+	//settings_button_rect.y = 210;
+	//settings_button_rect.w = 168;
+	//settings_button_rect.h = 63;
+
+	////exit button
+	//SDL_Rect exit_button_rect;
+	//exit_button_rect.x = 1193;
+	//exit_button_rect.y = 210;
+	//exit_button_rect.w = 168;
+	//exit_button_rect.h = 63;
+
+	////credits button
+	//SDL_Rect credits_button_rect;
+	//credits_button_rect.x = 1193;
+	//credits_button_rect.y = 210;
+	//credits_button_rect.w = 168;
+	//credits_button_rect.h = 63;
 
 	SDL_Rect none;
 	none.x = 3;
@@ -65,13 +74,21 @@ bool j1StartMenu::Start() {
 
 	//background
 	background = App->gui->CreateUIImage(0, 0, background_rect, texture);
+
+	
 	//play button
-	play_button = App->gui->CreateUIButton(200, 150, none, play_button_rect, play_button_rect, texture);
+	play_button = App->gui->CreateUIButton(200, 150, button_off_mouse, button_on_mouse, button_off_mouse, texture);
 	////settings button
-	settings_button = App->gui->CreateUIImage(200, 220, settings_button_rect, texture);
+	settings_button = App->gui->CreateUIButton(200, 220, button_off_mouse, button_on_mouse, button_off_mouse, texture);
 	////exit button
-	//exit_button = App->gui->CreateUIImage(200, 290, exit_button_rect, texture);
+	exit_button = App->gui->CreateUIButton(200, 290, button_off_mouse, button_on_mouse, button_off_mouse, texture);
 	////credits button
+	credits_button = App->gui->CreateUIButton(200, 360, button_off_mouse, button_on_mouse, button_off_mouse, texture);
+	
+	//settings_button = App->gui->CreateUIImage(200, 220, settings_button_rect, texture);
+	
+	//exit_button = App->gui->CreateUIImage(200, 290, exit_button_rect, texture);
+	
 	//credits_button = App->gui->CreateUIImage(200, 360, credits_button_rect, texture);
 
 
@@ -94,7 +111,6 @@ bool j1StartMenu::PreUpdate() {
 }
 bool j1StartMenu::Update(float) {
 
-	
 
 	return true;
 }

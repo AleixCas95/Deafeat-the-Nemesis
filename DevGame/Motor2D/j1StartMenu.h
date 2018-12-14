@@ -31,6 +31,7 @@ private:
 	UIObject * settings_button = nullptr;
 	UIObject * exit_button = nullptr;
 	UIObject * credits_button = nullptr;
+	UIObject* button_on_mouse = nullptr;
 
 
 	UIObject* text_start = nullptr;
