@@ -39,7 +39,10 @@ bool j1StartMenu::Start() {
 	settings_button = App->gui->CreateUIButton(200, 290, button_off_mouse, button_on_mouse, button_off_mouse, texture);
 
 	//credits button
-	exit_button = App->gui->CreateUIButton(200, 360, button_off_mouse, button_on_mouse, button_off_mouse, texture);
+	credits_button = App->gui->CreateUIButton(200, 360, button_off_mouse, button_on_mouse, button_off_mouse, texture);
+
+	//exit button
+	exit_button=App->gui->CreateUIButton(20, 550, return_rect_off, return_rect_on, return_rect_off, texture);
 	
 	//start text
 	text_start = App->gui->CreateUILabel(260, 175, "START");
@@ -50,10 +53,15 @@ bool j1StartMenu::Start() {
 	//settings text
 	text_settings = App->gui->CreateUILabel(240, 315, "SETTINGS");
 
-	//exit text
-	text_exit = App->gui->CreateUILabel(265, 385, "EXIT");
+	//credit text
+	text_credits = App->gui->CreateUILabel(245, 385, "CREDITS");
 
-	
+	//exit text
+	text_exit = App->gui->CreateUILabel(70, 575, "EXIT");
+
+	//title text
+	text_title = App->gui->CreateUILabel(30, 30, "D F E A T   T H E   N E M E S I S");
+
 	return true;
 }
 bool j1StartMenu::PreUpdate() {
@@ -65,7 +73,7 @@ bool j1StartMenu::Update(float) {
 	iPoint mouse_position, mouse_pos;
 
 	mouse_pos = App->input->GetMousePosition(mouse_position);
-	//LOG("%i %i", mouse_pos.x, mouse_pos.y);
+
 
 	//check if mouse is on exit button
 	if (mouse_pos.x > exit_button->x&&mouse_pos.x<exit_button->x + exit_button->button_on.w&&mouse_pos.y>exit_button->y&&mouse_pos.y < exit_button->y + exit_button->button_on.h)
@@ -83,6 +91,17 @@ bool j1StartMenu::Update(float) {
 			App->startmenu->active = false;
 			App->settings_scene->active = true;
 			App->settings_scene->Start();
+			App->startmenu->CleanUp();
+		}
+	}
+	//check if mouse is on play button
+	if (mouse_pos.x > play_button->x&&mouse_pos.x<play_button->x + play_button->button_on.w&&mouse_pos.y>play_button->y&&mouse_pos.y < play_button->y + play_button->button_on.h)
+	{
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+		{
+			App->startmenu->active = false;
+			App->scene->active = true;
+			App->scene->Start();
 			App->startmenu->CleanUp();
 		}
 	}
