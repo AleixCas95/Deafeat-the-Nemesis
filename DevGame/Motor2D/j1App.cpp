@@ -61,6 +61,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 
 	scene->active = false;
 	startmenu->active = true;
+	settings_scene->active = false;
 	entities->active = false;
 	
 	PERF_PEEK(ptimer);

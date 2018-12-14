@@ -4,6 +4,7 @@
 #include "j1Gui.h"
 #include "j1Render.h"
 #include "j1StartMenu.h"
+#include "j1SettingsScene.h"
 #include "UIObject.h"
 #include "UIButton.h"
 #include "j1Scene.h"
@@ -130,6 +131,15 @@ bool j1StartMenu::Update(float) {
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) 
 		{
 			close_game = true;
+		}
+	}
+	if (mouse_pos.x > settings_button->x&&mouse_pos.x<settings_button->x + settings_button->button_on.w&&mouse_pos.y>settings_button->y&&mouse_pos.y < settings_button->y + settings_button->button_on.h)
+	{
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+		{
+			App->startmenu->active = false;
+			App->settings_scene->active = true;
+			App->settings_scene->Start();
 		}
 	}
 

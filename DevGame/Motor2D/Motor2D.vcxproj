@@ -91,6 +91,7 @@
     <ClCompile Include="j1Pathfinding.cpp" />
     <ClCompile Include="j1PerfTimer.cpp" />
     <ClCompile Include="j1Scene.cpp" />
+    <ClCompile Include="j1SettingsScene.cpp" />
     <ClCompile Include="J1StartMenu.cpp" />
     <ClCompile Include="j1Timer.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
@@ -118,6 +119,7 @@
     <ClInclude Include="j1Pathfinding.h" />
     <ClInclude Include="j1PerfTimer.h" />
     <ClInclude Include="j1Scene.h" />
+    <ClInclude Include="j1SettingsScene.h" />
     <ClInclude Include="j1StartMenu.h" />
     <ClInclude Include="j1Timer.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
