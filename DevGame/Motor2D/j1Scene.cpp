@@ -203,11 +203,11 @@ bool j1Scene::PostUpdate()
 bool j1Scene::CleanUp()
 {
 
+	if (App->entities->player != nullptr) {
+		App->entities->player->destroy_entity = true;
 
-	App->entities->player->destroy_entity = true;
-
-	App->entities->player = nullptr;
-
+		App->entities->player = nullptr;
+	}
 	
 
 

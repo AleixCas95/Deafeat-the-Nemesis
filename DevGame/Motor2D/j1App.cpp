@@ -56,7 +56,9 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(startmenu);
 	AddModule(fonts);
 
-	
+	scene->active = false;
+	startmenu->active = true;
+	entities->active = false;
 	
 	PERF_PEEK(ptimer);
 }
@@ -129,8 +131,13 @@ bool j1App::Start()
 
 	while (item != NULL && ret == true)
 	{
+		if (item->data->active == false) {
+			item = item->next;
+			continue;
+		}
 		ret = item->data->Start();
 		item = item->next;
+	
 	}
 
 	startup_time.Start();

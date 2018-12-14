@@ -18,8 +18,7 @@ UIObject::~UIObject(){}
 void UIObject::Update()
 {
 
-	mouse_pos = App->input->GetMousePosition( mouse_position);
-	LOG("mousepos: %i  %i", mouse_pos.x, mouse_pos.y);
+
 
 }
 

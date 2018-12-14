@@ -11,14 +11,14 @@ public:
 	~UIButton();
 	void Update();
 	void Draw();
+	void UpdateMouse();
 
-private:
 
-	SDL_Rect mouse_off;
-	SDL_Rect mouse_on;
-	SDL_Rect mouse_click;
-	SDL_Rect current_rect;
 
+public:
+	bool is_on = false;
+	bool is_off = true;
+	
 };
 
 

@@ -49,6 +49,9 @@ bool j1Gui::Update(float dt) {
 
 			UIObjects.At(i)->data->Draw();
 			UIObjects.At(i)->data->Update();
+			
+
+
 		}
 	}
 
@@ -101,6 +104,8 @@ UIObject * j1Gui::CreateUIButton(int x, int y, SDL_Rect mouse_off, SDL_Rect mous
 {
 	UIButton* button = new UIButton(x, y, mouse_off, mouse_on, mouse_click, texture);
 	UIObjects.add(button);
+
+	
 	return button;
 }
 

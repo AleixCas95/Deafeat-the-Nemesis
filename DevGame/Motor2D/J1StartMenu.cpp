@@ -4,7 +4,11 @@
 #include "j1Gui.h"
 #include "j1Render.h"
 #include "j1StartMenu.h"
-
+#include "UIObject.h"
+#include "UIButton.h"
+#include "j1Scene.h"
+#include "j1Entities.h"
+#include "j1Audio.h"
 
 j1StartMenu::j1StartMenu() : j1Module(){
 
@@ -18,21 +22,22 @@ bool j1StartMenu::Awake(pugi::xml_node& cofing) {
 }
 bool j1StartMenu::Start() {
 
+	
 	//background
-	SDL_Rect background_rect;
+	
 	background_rect.x = 40;
 	background_rect.y = 36;
 	background_rect.w = 1024;
 	background_rect.h = 768;
 
 	//button 
-	SDL_Rect button_off_mouse;
+	
 	button_off_mouse.x = 1193;
 	button_off_mouse.y = 210;
 	button_off_mouse.w = 168;
 	button_off_mouse.h = 63;
 
-	SDL_Rect button_on_mouse;
+	
 	button_on_mouse.x = 1189;
 	button_on_mouse.y = 286;
 	button_on_mouse.w = 170;
@@ -78,6 +83,7 @@ bool j1StartMenu::Start() {
 	
 	//play button
 	play_button = App->gui->CreateUIButton(200, 150, button_off_mouse, button_on_mouse, button_off_mouse, texture);
+
 	////settings button
 	settings_button = App->gui->CreateUIButton(200, 220, button_off_mouse, button_on_mouse, button_off_mouse, texture);
 	////exit button
@@ -103,6 +109,7 @@ bool j1StartMenu::Start() {
 	//test text
 	text_exit = App->gui->CreateUILabel(265, 385, "EXIT");
 
+	
 	return true;
 }
 bool j1StartMenu::PreUpdate() {
@@ -119,6 +126,7 @@ bool j1StartMenu::PostUpdate() {
 	return true;
 }
 bool j1StartMenu::CleanUp() {
+
 
 	return true;
 }

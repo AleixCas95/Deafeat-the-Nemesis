@@ -29,6 +29,7 @@ public:
 protected:
 	int x;
 	int y;
+	iPoint uidimension = iPoint { 500,200 };
 	iPoint mouse_position;
 	iPoint mouse_pos;
 	SDL_Rect rect;
@@ -36,6 +37,12 @@ protected:
 	SDL_Texture* texture = nullptr;
 	SDL_Texture* texture_fonts = nullptr;
 	SDL_Rect size = { 0,0,0,0 };
+	SDL_Rect button_off;
+	SDL_Rect button_on;
+	SDL_Rect button_clicked;
+	SDL_Rect current_rect;
+
+
 
 };
 
