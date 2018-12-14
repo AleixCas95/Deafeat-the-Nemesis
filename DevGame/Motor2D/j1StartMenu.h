@@ -23,10 +23,10 @@ public:
 	bool PostUpdate();
 	bool CleanUp();
 
-	SDL_Rect settings_button_rect;
-	SDL_Rect background_rect;
-	SDL_Rect button_off_mouse;
-	SDL_Rect button_on_mouse;
+	
+	SDL_Rect background_rect = { 40,36,1024,768 };
+	SDL_Rect button_off_mouse = { 1193,210,168,63 };
+	SDL_Rect button_on_mouse = { 1189,286,170,65 };
 
 
 	UIObject * background = nullptr;
@@ -44,6 +44,7 @@ public:
 
 	bool close_game=false;
 	
+	SDL_Texture* texture;
 };
 
 
