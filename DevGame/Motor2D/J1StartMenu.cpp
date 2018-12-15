@@ -5,6 +5,7 @@
 #include "j1Render.h"
 #include "j1StartMenu.h"
 #include "j1SettingsScene.h"
+#include "j1CreditsScene.h"
 #include "UIObject.h"
 #include "UIButton.h"
 #include "j1Scene.h"
@@ -25,7 +26,13 @@ bool j1StartMenu::Awake(pugi::xml_node& cofing) {
 }
 bool j1StartMenu::Start() {
 
-	texture = App->gui->atlas;
+	SDL_Texture* texture = App->gui->atlas;
+
+	SDL_Rect background_rect = { 40,36,1024,768 };
+	SDL_Rect button_off_mouse = { 1193,210,168,63 };
+	SDL_Rect button_on_mouse = { 1189,286,170,65 };
+	SDL_Rect return_rect_on = { 1443, 298,142,58 };
+	SDL_Rect return_rect_off = { 1443,222,141,58 };
 
 	//background
 	background = App->gui->CreateUIImage(0, 0, background_rect, texture);
@@ -43,7 +50,7 @@ bool j1StartMenu::Start() {
 	credits_button = App->gui->CreateUIButton(200, 360, button_off_mouse, button_on_mouse, button_off_mouse, texture);
 
 	//exit button
-	exit_button=App->gui->CreateUIButton(20, 550, return_rect_off, return_rect_on, return_rect_off, texture);
+	exit_button=App->gui->CreateUIButton(860, 560, return_rect_off, return_rect_on, return_rect_off, texture);
 	
 	//start text
 	text_start = App->gui->CreateUILabel(260, 175, "START");
@@ -58,7 +65,7 @@ bool j1StartMenu::Start() {
 	text_credits = App->gui->CreateUILabel(245, 385, "CREDITS");
 
 	//exit text
-	text_exit = App->gui->CreateUILabel(70, 575, "EXIT");
+	text_exit = App->gui->CreateUILabel(908, 585, "EXIT");
 
 	//title text
 	text_title = App->gui->CreateUILabel(30, 30, "D F E A T   T H E   N E M E S I S");
@@ -104,11 +111,22 @@ bool j1StartMenu::Update(float) {
 			App->startmenu->active = false;
 			App->scene->active = true;
 			App->entities->active = true;
-			
-			
 			App->startmenu->CleanUp();
 			App->scene->Start();
 			
+		}
+
+	}
+	//check if mouse is on credits button
+	if (mouse_pos.x > credits_button->x&&mouse_pos.x<credits_button->x + credits_button->button_on.w&&mouse_pos.y>credits_button->y&&mouse_pos.y < credits_button->y + credits_button->button_on.h)
+	{
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+		{
+			App->startmenu->active = false;
+			App->credits_scene->active = true;
+			App->startmenu->CleanUp();
+			App->credits_scene->Start();
+
 		}
 
 	}

@@ -22,6 +22,7 @@ class j1Gui;
 class j1StartMenu;
 class j1Fonts;
 class j1SettingsScene;
+class j1CreditsScene;
 
 class j1App
 {
@@ -106,6 +107,7 @@ public:
 	j1StartMenu*		startmenu;
 	j1Fonts*			fonts;
 	j1SettingsScene*	settings_scene;
+	j1CreditsScene*		credits_scene;
 
 private:
 
