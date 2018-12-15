@@ -17,6 +17,8 @@
 #include "EntityEnemyGround.h"
 #include "j1Pathfinding.h"
 #include "j1Gui.h"
+#include "j1StartMenu.h"
+#include "UIButton.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -49,7 +51,7 @@ bool j1Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool j1Scene::Start()
 {
-
+	
 	
 	//if (App->map->Load(CurrentMap->data) == true)
 	if (App->map->Load("level1.tmx") == true)
@@ -91,10 +93,17 @@ bool j1Scene::Start()
 		}
 	}
 	
-	//App->entities->entities.add(App->entities->player);
-	App->audio->PlayMusic("audio/music/Mushroom_Theme.ogg");
+	texture = App->gui->atlas;
 
+	
 
+	//return to main menu button
+	back_to_menu_button = App->gui->CreateUIButton(870, 550, return_rect_off, return_rect_on, return_rect_off, texture);
+
+	//return button label
+	menu_label = App->gui->CreateUILabel(915, 575, "MENU");
+
+	
 	return true;
 }
 
@@ -164,6 +173,23 @@ bool j1Scene::Update(float dt)
 
 
 
+
+
+	iPoint mouse_position, mouse_pos;
+
+	mouse_pos = App->input->GetMousePosition(mouse_position);
+
+	if (mouse_pos.x > back_to_menu_button->x&&mouse_pos.x<back_to_menu_button->x + back_to_menu_button->button_on.w&&mouse_pos.y>back_to_menu_button->y&&mouse_pos.y < back_to_menu_button->y + back_to_menu_button->button_on.h)
+	{
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+		{
+			App->scene->active = false;
+			App->startmenu->active = true;
+			App->startmenu->Start();
+			App->scene->CleanUp();
+			App->entities->CleanUp();
+		}
+	}
 
 	//FadeToBlack
 

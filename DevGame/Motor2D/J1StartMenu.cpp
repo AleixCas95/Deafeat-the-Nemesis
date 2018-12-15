@@ -11,6 +11,7 @@
 #include "j1Entities.h"
 #include "j1Audio.h"
 #include "p2Log.h"
+#include "j1Fonts.h"
 
 j1StartMenu::j1StartMenu() : j1Module(){
 
@@ -90,8 +91,9 @@ bool j1StartMenu::Update(float) {
 		{
 			App->startmenu->active = false;
 			App->settings_scene->active = true;
-			App->settings_scene->Start();
 			App->startmenu->CleanUp();
+			App->settings_scene->Start();
+			
 		}
 	}
 	//check if mouse is on play button
@@ -101,9 +103,14 @@ bool j1StartMenu::Update(float) {
 		{
 			App->startmenu->active = false;
 			App->scene->active = true;
-			App->scene->Start();
+			App->entities->active = true;
+			
+			
 			App->startmenu->CleanUp();
+			App->scene->Start();
+			
 		}
+
 	}
 
 	return true;
@@ -120,5 +127,6 @@ bool j1StartMenu::PostUpdate() {
 bool j1StartMenu::CleanUp() {
 
 
+	App->gui->CleanUp();
 	return true;
 }

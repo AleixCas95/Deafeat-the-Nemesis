@@ -63,7 +63,13 @@ bool j1Gui::PostUpdate() {
 }
 
 bool j1Gui::CleanUp() {
-
+	p2List_item<UIObject*>* item = UIObjects.start;
+	while (item != nullptr)
+	{
+		delete item->data;
+		UIObjects.del(item);
+		item = item->next;
+	}
 	return true;
 }
 
