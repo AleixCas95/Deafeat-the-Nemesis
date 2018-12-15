@@ -67,6 +67,7 @@ public:
 	UIObject* text_settings = nullptr;
 	UIObject* text_main_menu = nullptr;
 	
+	iPoint mouse_position, mouse_pos;
 private:
 
 	p2List<const char*>  MapsList_String;

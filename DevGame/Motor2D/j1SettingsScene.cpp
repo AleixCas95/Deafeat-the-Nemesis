@@ -50,8 +50,6 @@ bool j1SettingsScene::PreUpdate()
 
 bool j1SettingsScene::Update(float)
 {
-	iPoint mouse_position, mouse_pos;
-
 	mouse_pos = App->input->GetMousePosition(mouse_position);
 
 		if (mouse_pos.x > return_button->x&&mouse_pos.x<return_button->x + return_button->button_on.w&&mouse_pos.y>return_button->y&&mouse_pos.y < return_button->y + return_button->button_on.h)

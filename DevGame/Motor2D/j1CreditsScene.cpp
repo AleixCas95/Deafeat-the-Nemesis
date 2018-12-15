@@ -21,24 +21,9 @@ bool j1CreditsScene::Start()
 {
 	SDL_Texture* texture = App->gui->atlas;
 
-	SDL_Rect back_rect;
-	back_rect.x = 39;
-	back_rect.y = 845;
-	back_rect.w = 1024;
-	back_rect.h = 770;
-
-	SDL_Rect return_rect_on;
-	return_rect_on.x = 1443;
-	return_rect_on.y = 298;
-	return_rect_on.w = 142;
-	return_rect_on.h = 58;
-
-	SDL_Rect return_rect_off;
-	return_rect_off.x = 1443;
-	return_rect_off.y = 222;
-	return_rect_off.w = 141;
-	return_rect_off.h = 58;
-
+	SDL_Rect back_rect = { 39,845,1024,770 };
+	SDL_Rect return_rect_on = { 1443,298,142,58 };
+	SDL_Rect return_rect_off = { 1443,222,141,58 };
 	SDL_Rect license_rect = { 1173,967,672,487 };
 
 	//background
@@ -63,7 +48,6 @@ bool j1CreditsScene::PreUpdate()
 
 bool j1CreditsScene::Update(float)
 {
-	iPoint mouse_position, mouse_pos;
 	mouse_pos = App->input->GetMousePosition(mouse_position);
 
 	////check if mouse is on menu button

@@ -70,7 +70,7 @@ bool j1StartMenu::Start() {
 	text_exit = App->gui->CreateUILabel(908, 585, "EXIT");
 
 	//title text
-	text_title = App->gui->CreateUILabel(30, 30, "D F E A T   T H E   N E M E S I S");
+	text_title = App->gui->CreateUILabel(30, 30, "D E F E A T   T H E   N E M E S I S");
 
 	return true;
 }
@@ -79,8 +79,6 @@ bool j1StartMenu::PreUpdate() {
 	return true;
 }
 bool j1StartMenu::Update(float) {
-
-	iPoint mouse_position, mouse_pos;
 
 	mouse_pos = App->input->GetMousePosition(mouse_position);
 

@@ -38,6 +38,8 @@ public:
 
 	SDL_Texture* texture;
 
+	iPoint mouse_position, mouse_pos;
+
 };
 
 

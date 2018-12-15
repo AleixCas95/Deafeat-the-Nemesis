@@ -197,7 +197,7 @@ bool j1Scene::Update(float dt)
 
 
 		//start text
-		text_resume = App->gui->CreateUILabel(455, 225, "RESUME");
+		text_resume = App->gui->CreateUILabel(450, 225, "RESUME");
 
 
 		//settings text
@@ -205,7 +205,7 @@ bool j1Scene::Update(float dt)
 
 
 		//main menu text
-		text_main_menu = App->gui->CreateUILabel(440, 385, "MAIN MENU");
+		text_main_menu = App->gui->CreateUILabel(430, 385, "MAIN MENU");
 
 		//continue text
 		text_exit = App->gui->CreateUILabel(420, 465, "SAVE & EXIT");
@@ -216,8 +216,6 @@ bool j1Scene::Update(float dt)
 		
 	}
 	
-	iPoint mouse_position, mouse_pos;
-
 	mouse_pos = App->input->GetMousePosition(mouse_position);
 
 	//check if mouse is on exit button

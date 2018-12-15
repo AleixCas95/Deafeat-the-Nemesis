@@ -2,6 +2,7 @@
 #define _J1_CREDITSSCENE_
 
 #include "j1Module.h"
+#include "p2Point.h"
 
 class UIImage;
 class UIObject;
@@ -26,6 +27,8 @@ public:
 	UIObject* return_button = nullptr;
 	UIObject* menu_text = nullptr;
 	UIObject* license = nullptr;
+
+	iPoint mouse_position, mouse_pos;
 
 };
 
