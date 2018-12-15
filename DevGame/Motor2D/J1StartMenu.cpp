@@ -55,22 +55,22 @@ bool j1StartMenu::Start() {
 	exit_button=App->gui->CreateUIButton(860, 560, return_rect_off, return_rect_on, return_rect_off, texture);
 	
 	//start text
-	text_start = App->gui->CreateUILabel(260, 175, "START");
+	text_start = App->gui->CreateUILabel(-App->render->camera.x + 260, 175, "START");
 
 	//continue text
-	text_continue = App->gui->CreateUILabel(240, 245, "CONTINUE");
+	text_continue = App->gui->CreateUILabel(-App->render->camera.x + 240, 245, "CONTINUE");
 
 	//settings text
-	text_settings = App->gui->CreateUILabel(240, 315, "SETTINGS");
+	text_settings = App->gui->CreateUILabel(-App->render->camera.x + 240, 315, "SETTINGS");
 
 	//credit text
-	text_credits = App->gui->CreateUILabel(245, 385, "CREDITS");
+	text_credits = App->gui->CreateUILabel(-App->render->camera.x + 245, 385, "CREDITS");
 
 	//exit text
-	text_exit = App->gui->CreateUILabel(908, 585, "EXIT");
+	text_exit = App->gui->CreateUILabel(-App->render->camera.x + 908, 585, "EXIT");
 
 	//title text
-	text_title = App->gui->CreateUILabel(30, 30, "D E F E A T   T H E   N E M E S I S");
+	text_title = App->gui->CreateUILabel(-App->render->camera.x + 30, 30, "D E F E A T   T H E   N E M E S I S");
 
 	return true;
 }

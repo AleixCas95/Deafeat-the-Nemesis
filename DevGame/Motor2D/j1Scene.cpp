@@ -123,7 +123,8 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
-	// TODO 6: Make the camera movement independent of framerate
+	
+	LOG("camera: %i", App->render->camera.x);
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 		LoadScene(1);
@@ -197,18 +198,18 @@ bool j1Scene::Update(float dt)
 
 
 		//start text
-		text_resume = App->gui->CreateUILabel(450, 225, "RESUME");
+		text_resume = App->gui->CreateUILabel(-App->render->camera.x + 450, 225, "RESUME");
 
 
 		//settings text
-		text_settings = App->gui->CreateUILabel(440, 305, "SETTINGS");
+		text_settings = App->gui->CreateUILabel(-App->render->camera.x + 440, 305, "SETTINGS");
 
 
 		//main menu text
-		text_main_menu = App->gui->CreateUILabel(430, 385, "MAIN MENU");
+		text_main_menu = App->gui->CreateUILabel(-App->render->camera.x + 435, 385, "MAIN MENU");
 
 		//continue text
-		text_exit = App->gui->CreateUILabel(420, 465, "SAVE & EXIT");
+		text_exit = App->gui->CreateUILabel(-App->render->camera.x + 420, 465, "SAVE & EXIT");
 
 	
 		

@@ -36,7 +36,7 @@ bool j1CreditsScene::Start()
 	license = App->gui->CreateUIImage(170, 60, license_rect, texture);
 
 	//return to menu label
-	menu_text = App->gui->CreateUILabel(65, 575, "MENU");
+	menu_text = App->gui->CreateUILabel(-App->render->camera.x + 65, 575, "MENU");
 
 	return true;
 }

@@ -30,14 +30,14 @@ bool j1SettingsScene::Start()
 	background = App->gui->CreateUIImage(0, 0, background_rect, texture);
 
 	//title (settings)
-	title = App->gui->CreateUILabel(20, 20, "S E T T I N G S");
+	title = App->gui->CreateUILabel(-App->render->camera.x + 20, 20, "S E T T I N G S");
 
 	//return to main menu button
 	return_button = App->gui->CreateUIButton(20, 550, return_rect_off, return_rect_on, return_rect_off, texture);
 
 
 	//return button label
-	menu_label = App->gui->CreateUILabel(65, 575, "MENU");
+	menu_label = App->gui->CreateUILabel(-App->render->camera.x + 65, 575, "MENU");
 	
 
 	return true;

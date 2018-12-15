@@ -17,6 +17,6 @@ UIImage::~UIImage(){}
 
 void UIImage::Draw() {
 
-	App->render->Blit(texture, x, y, &rect);
+	App->render->Blit(texture, x, y, &rect,0);
 
 }
