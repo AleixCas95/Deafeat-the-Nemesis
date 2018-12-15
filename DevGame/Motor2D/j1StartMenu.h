@@ -37,11 +37,6 @@ public:
 	UIObject* text_title = nullptr;
 	UIObject* text_exit = nullptr;
 
-	
-
-	//slider test
-	UIObject* slider_test = nullptr;
-
 	bool close_game=false;
 	
 	iPoint mouse_position, mouse_pos;

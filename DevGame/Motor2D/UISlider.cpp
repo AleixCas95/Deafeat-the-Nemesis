@@ -28,18 +28,18 @@ void UISlider::Update()
 	if (mouse_pos.x >= x && mouse_pos.x <= x + button_off.w && mouse_pos.y >= y && mouse_pos.y <= y + button_off.h) 
 	{
 		current_rect = button_off;
-		if ((App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) && x<=margin_right && x>=margin_left)
+		if ((App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) && x<margin_right-button_off.w && x>margin_left)
 		{
 			current_rect = button_on;
-			x = mouse_pos.x-70;
+			x = mouse_pos.x-40;
 		}
-		else if ((App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) && x >= margin_right) 
+		else if ((App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) && x >= margin_right-button_off.w) 
 		{
-			x -= 50;
+			x -= 1;
 		}
 		else if ((App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) && x <= margin_left)
 		{
-			x += 50;
+			x += 1;
 		}
 
 	}
