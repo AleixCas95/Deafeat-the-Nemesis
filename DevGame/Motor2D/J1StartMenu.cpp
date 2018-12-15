@@ -28,6 +28,9 @@ bool j1StartMenu::Awake(pugi::xml_node& cofing) {
 }
 bool j1StartMenu::Start() {
 
+	//music from http://www.tannerhelland.com/music-directory/
+	App->audio->PlayMusic("audio/music/Deeper.ogg");
+
 	SDL_Texture* texture = App->gui->atlas;
 
 	SDL_Rect background_rect = { 40,36,1024,768 };

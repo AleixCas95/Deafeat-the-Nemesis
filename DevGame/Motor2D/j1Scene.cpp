@@ -52,7 +52,7 @@ bool j1Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool j1Scene::Start()
 {
-	
+	App->audio->PlayMusic("audio/music/Mushroom_Theme.ogg");
 	
 	//if (App->map->Load(CurrentMap->data) == true)
 	if (App->map->Load("level1.tmx") == true)
@@ -322,6 +322,8 @@ bool j1Scene::CleanUp()
 	}
 	
 	App->map->CleanUp();
+
+	//App->audio->CleanUp();
 	
 
 	LOG("Freeing scene");
