@@ -31,8 +31,9 @@ public:
 	UIObject* menu_label = nullptr;
 	UIObject* return_game_button = nullptr;
 	UIObject* menu_game = nullptr;
-	UIObject* volumen_bar = nullptr;
-	UIObject* volumen_thumb = nullptr;
+	UIObject* volume_bar = nullptr;
+	UIObject* volume_thumb = nullptr;
+	UIObject* volume_music_label = nullptr;
 
 
 	SDL_Rect background_rect = { 40,36,1024,768 };

@@ -54,7 +54,7 @@ void UISlider::Update()
 
 void UISlider::Draw() 
 {
-	App->render->Blit(texture, x, y, &current_rect);
+	App->render->Blit(texture, x, y, &current_rect,0);
 }
 
 
