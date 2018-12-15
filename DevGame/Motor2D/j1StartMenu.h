@@ -39,6 +39,9 @@ public:
 
 	
 
+	//slider test
+	UIObject* slider_test = nullptr;
+
 	bool close_game=false;
 	
 	iPoint mouse_position, mouse_pos;

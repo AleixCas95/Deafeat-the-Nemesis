@@ -53,6 +53,9 @@ bool j1StartMenu::Start() {
 
 	//exit button
 	exit_button=App->gui->CreateUIButton(860, 560, return_rect_off, return_rect_on, return_rect_off, texture);
+
+	//slider test
+	slider_test = App->gui->CreateUISlider(100, 0, button_off_mouse, button_on_mouse, 300, 20, texture);
 	
 	//start text
 	text_start = App->gui->CreateUILabel(-App->render->camera.x + 260, 175, "START");

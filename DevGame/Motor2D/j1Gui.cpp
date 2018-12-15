@@ -8,6 +8,7 @@
 #include "UILabel.h"
 #include "UIButton.h"
 #include "UIObject.h"
+#include "UISlider.h"
 #include "p2List.h"
 #include "UISlider.h"
 
@@ -114,11 +115,10 @@ UIObject * j1Gui::CreateUIButton(int x, int y, SDL_Rect mouse_off, SDL_Rect mous
 	return button;
 }
 
-UIObject* j1Gui::CreateUISlider(int x, int y, SDL_Rect rect, SDL_Texture* texture) {
-
-	UISlider* slider = new UISlider(x, y, rect, texture);
+UIObject * j1Gui::CreateUISlider(int x, int y, SDL_Rect thumb_off, SDL_Rect thumb_on, int margin_right, int margin_left, SDL_Texture * tex)
+{
+	UISlider* slider = new UISlider(x, y, thumb_off, thumb_on, margin_right, margin_left, tex);
 	UIObjects.add(slider);
 
 	return slider;
-
 }

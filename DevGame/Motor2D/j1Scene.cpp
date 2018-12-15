@@ -244,6 +244,7 @@ bool j1Scene::Update(float dt)
 		{
 			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
 			{
+				pause_menu = false;
 				App->scene->active = false;
 				App->startmenu->active = true;
 				App->startmenu->Start();

@@ -41,12 +41,6 @@ void UIButton::Update()
 	
 }
 
-//void UIButton::UpdateMouse() 
-//{
-//
-//	if(App->input->GetMouseButtonDown(SDL_BUTTON_LEFT)==KEY_REPEAT)
-//
-//}
 void UIButton::Draw() 
 {
 	

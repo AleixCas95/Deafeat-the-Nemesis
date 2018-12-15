@@ -29,6 +29,8 @@ public:
 
 	int x;
 	int y;
+	int margin_right;
+	int margin_left;
 	iPoint uidimension = iPoint { 500,200 };
 	iPoint mouse_position;
 	iPoint mouse_pos;

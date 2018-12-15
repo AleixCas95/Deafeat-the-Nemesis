@@ -11,7 +11,7 @@ public:
 	~UIButton();
 	void Update();
 	void Draw();
-	void UpdateMouse();
+	
 
 
 

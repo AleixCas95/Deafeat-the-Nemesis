@@ -6,9 +6,11 @@
 class UISlider : public UIObject {
 
 public:
-	UISlider(int x, int y, SDL_Rect rect, SDL_Texture *texture);
+	UISlider(int x, int y, SDL_Rect thumb_off, SDL_Rect thumb_on, int margin_right, int margin_left, SDL_Texture *tex);
 	~UISlider();
-
+	void Update();
+	void Draw();
+	int x_difference = 0;
 };
 
 
