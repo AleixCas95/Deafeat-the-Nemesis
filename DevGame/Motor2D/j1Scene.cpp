@@ -320,7 +320,7 @@ bool j1Scene::CleanUp()
 
 		App->entities->player = nullptr;
 	}
-	
+	//App->map->CleanUp();
 	
 
 	LOG("Freeing scene");

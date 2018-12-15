@@ -28,6 +28,7 @@ bool j1StartMenu::Awake(pugi::xml_node& cofing) {
 }
 bool j1StartMenu::Start() {
 
+
 	SDL_Texture* texture = App->gui->atlas;
 
 	SDL_Rect background_rect = { 40,36,1024,768 };
