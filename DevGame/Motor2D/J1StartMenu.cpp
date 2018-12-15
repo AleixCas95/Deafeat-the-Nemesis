@@ -33,8 +33,8 @@ bool j1StartMenu::Start() {
 	SDL_Rect background_rect = { 40,36,1024,768 };
 	SDL_Rect button_off_mouse = { 1193,210,168,63 };
 	SDL_Rect button_on_mouse = { 1189,286,170,65 };
-	SDL_Rect return_rect_on = { 1443, 298,142,58 };
-	SDL_Rect return_rect_off = { 1443,222,141,58 };
+	SDL_Rect return_rect_on = { 1440,296,142,59 };
+	SDL_Rect return_rect_off = { 1440,220,141,59 };
 
 	//background
 	background = App->gui->CreateUIImage(0, 0, background_rect, texture);

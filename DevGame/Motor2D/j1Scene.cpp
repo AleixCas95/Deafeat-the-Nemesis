@@ -178,8 +178,9 @@ bool j1Scene::Update(float dt)
 			App->render->camera.x += camera_speed;
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN )
+	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && !pause_menu)
 	{
+		pause_menu = true;
 
 		App->entities->active = false;
 
@@ -233,7 +234,7 @@ bool j1Scene::Update(float dt)
 		{
 			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
 			{
-				
+				pause_menu = false;
 				App->gui->CleanUp();
 				App->entities->active = true;
 			}

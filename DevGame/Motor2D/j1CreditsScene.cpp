@@ -22,9 +22,9 @@ bool j1CreditsScene::Start()
 	SDL_Texture* texture = App->gui->atlas;
 
 	SDL_Rect back_rect = { 39,845,1024,770 };
-	SDL_Rect return_rect_on = { 1443,298,142,58 };
-	SDL_Rect return_rect_off = { 1443,222,141,58 };
-	SDL_Rect license_rect = { 1173,967,672,487 };
+	SDL_Rect return_rect_on = { 1440,296,142,59 };
+	SDL_Rect return_rect_off = { 1440,220,141,59 };
+	SDL_Rect license_rect = { 1170,962,672,487 };
 
 	//background
 	background = App->gui->CreateUIImage(0, 0, back_rect, texture);
