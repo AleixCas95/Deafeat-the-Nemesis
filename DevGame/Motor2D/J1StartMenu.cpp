@@ -13,6 +13,8 @@
 #include "j1Audio.h"
 #include "p2Log.h"
 #include "j1Fonts.h"
+#include "j1Entities.h"
+#include "EntityPlayer.h"
 
 j1StartMenu::j1StartMenu() : j1Module(){
 
@@ -131,6 +133,20 @@ bool j1StartMenu::Update(float) {
 
 	}
 
+	
+	//if (mouse_pos.x > continue_button->x&&mouse_pos.x<continue_button->x + continue_button->button_on.w&&mouse_pos.y>continue_button->y&&mouse_pos.y < continue_button->y + continue_button->button_on.h)
+	//{
+	//	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+	//	{
+	//	App->startmenu->active = false;
+	//	App->scene->active = true;
+	//	App->startmenu->CleanUp();
+	//	App->scene->Start();
+	//	}
+
+	//}
+
+
 	return true;
 }
 bool j1StartMenu::PostUpdate() {
@@ -146,5 +162,7 @@ bool j1StartMenu::CleanUp() {
 
 
 	App->gui->CleanUp();
+
+
 	return true;
 }

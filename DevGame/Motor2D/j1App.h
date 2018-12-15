@@ -23,7 +23,7 @@ class j1StartMenu;
 class j1Fonts;
 class j1SettingsScene;
 class j1CreditsScene;
-class j1PauseScene;
+
 
 class j1App
 {
@@ -109,8 +109,7 @@ public:
 	j1Fonts*			fonts;
 	j1SettingsScene*	settings_scene;
 	j1CreditsScene*		credits_scene;
-	j1PauseScene*		pause_scene;
-
+	
 private:
 
 	p2List<j1Module*>	modules;

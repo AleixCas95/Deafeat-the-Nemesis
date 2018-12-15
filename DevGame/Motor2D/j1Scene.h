@@ -48,14 +48,32 @@ public:
 	UIObject* menu_label = nullptr;
 
 
-	SDL_Rect background_rect = { 40,36,1024,768 };
+	SDL_Rect background_rect;
 	SDL_Rect return_rect_on = { 1443, 298,142,58 };
 	SDL_Rect return_rect_off = { 1443,222,141,58 };
+	
+	SDL_Rect button_off_mouse;
+	SDL_Rect button_on_mouse;
 	SDL_Texture* texture;
+
+
+	UIObject * resume_button = nullptr;
+	UIObject * exit_button = nullptr;
+	UIObject * settings_button = nullptr;
+	UIObject * main_menu_button = nullptr;
+
+	UIObject* text_resume = nullptr;
+	UIObject* text_exit = nullptr;
+	UIObject* text_settings = nullptr;
+	UIObject* text_main_menu = nullptr;
+	
 private:
 
 	p2List<const char*>  MapsList_String;
 	p2List_item<const char*>* CurrentMap = nullptr;
+	bool close_game = false;
+	bool pause_menu = false;
+	
 };
 
 #endif // __j1SCENE_H__

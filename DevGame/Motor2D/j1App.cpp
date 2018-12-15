@@ -20,7 +20,7 @@
 #include "j1Fonts.h"
 #include "j1SettingsScene.h"
 #include "j1CreditsScene.h"
-#include "j1PauseScene.h"
+
 #include "Brofiler/Brofiler.h"
 
 // Constructor
@@ -43,7 +43,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	startmenu = new j1StartMenu();
 	settings_scene = new j1SettingsScene();
 	credits_scene = new j1CreditsScene();
-	pause_scene = new j1PauseScene();
+	
 
 
 	// Ordered for awake / Start / Update
@@ -63,14 +63,14 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(fonts);
 	AddModule(settings_scene);
 	AddModule(credits_scene);
-	AddModule(pause_scene);
+
 
 	scene->active = false;
 	startmenu->active = true;
 	settings_scene->active = false;
 	entities->active = false;
 	credits_scene->active = false;
-	pause_scene->active = false;
+	
 	
 	PERF_PEEK(ptimer);
 }

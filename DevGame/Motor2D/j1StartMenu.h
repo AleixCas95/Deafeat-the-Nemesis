@@ -6,8 +6,8 @@
 
 class UIImage;
 class UILabel;
+class UIButton;
 class UIObject;
-
 
 class j1StartMenu : public j1Module {
 
@@ -36,6 +36,8 @@ public:
 	UIObject* text_credits = nullptr;
 	UIObject* text_title = nullptr;
 	UIObject* text_exit = nullptr;
+
+	
 
 	bool close_game=false;
 	

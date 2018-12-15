@@ -35,8 +35,10 @@ bool j1SettingsScene::Start()
 	//return to main menu button
 	return_button = App->gui->CreateUIButton(20, 550, return_rect_off, return_rect_on, return_rect_off, texture);
 
+
 	//return button label
 	menu_label = App->gui->CreateUILabel(65, 575, "MENU");
+	
 
 	return true;
 }
@@ -52,16 +54,16 @@ bool j1SettingsScene::Update(float)
 
 	mouse_pos = App->input->GetMousePosition(mouse_position);
 
-	if (mouse_pos.x > return_button->x&&mouse_pos.x<return_button->x + return_button->button_on.w&&mouse_pos.y>return_button->y&&mouse_pos.y < return_button->y + return_button->button_on.h)
-	{
-		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+		if (mouse_pos.x > return_button->x&&mouse_pos.x<return_button->x + return_button->button_on.w&&mouse_pos.y>return_button->y&&mouse_pos.y < return_button->y + return_button->button_on.h)
 		{
-			App->settings_scene->active = false;
-			App->startmenu->active = true;
-			App->startmenu->Start();
-			App->settings_scene->CleanUp();
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+			{
+				App->settings_scene->active = false;
+				App->startmenu->active = true;
+				App->startmenu->Start();
+				
+			}
 		}
-	}
 
 	return true;
 }

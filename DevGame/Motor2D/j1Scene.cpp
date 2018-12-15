@@ -18,7 +18,7 @@
 #include "j1Pathfinding.h"
 #include "j1Gui.h"
 #include "j1StartMenu.h"
-#include "j1PauseScene.h"
+#include "j1SettingsScene.h"
 #include "UIButton.h"
 
 j1Scene::j1Scene() : j1Module()
@@ -95,7 +95,12 @@ bool j1Scene::Start()
 	}
 	
 	texture = App->gui->atlas;
-
+	
+	background_rect = { 1944,847,1022,7680 };
+	button_off_mouse = { 1193,210,168,63 };
+	button_on_mouse = { 1189,286,170,65 };
+	//IF ESCAPE PAUSE THE GAME
+	
 	
 
 	////return to main menu button
@@ -138,6 +143,7 @@ bool j1Scene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
 		App->LoadGame("save_game.xml");
+
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN) {
@@ -171,35 +177,103 @@ bool j1Scene::Update(float dt)
 			App->render->camera.x += camera_speed;
 	}
 
+	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN )
+	{
+
+		App->entities->active = false;
+
+		//play button
+		resume_button = App->gui->CreateUIButton(400, 200, button_off_mouse, button_on_mouse, button_off_mouse, texture);
+
+		//settings button
+		settings_button = App->gui->CreateUIButton(400, 280, button_off_mouse, button_on_mouse, button_off_mouse, texture);
+
+		//exit button
+		main_menu_button = App->gui->CreateUIButton(400, 360, button_off_mouse, button_on_mouse, button_off_mouse, texture);
+
+		//exit button
+		exit_button = App->gui->CreateUIButton(400, 440, button_off_mouse, button_on_mouse, button_off_mouse, texture);
 
 
 
+		//start text
+		text_resume = App->gui->CreateUILabel(455, 225, "RESUME");
 
+
+		//settings text
+		text_settings = App->gui->CreateUILabel(440, 305, "SETTINGS");
+
+
+		//main menu text
+		text_main_menu = App->gui->CreateUILabel(440, 385, "MAIN MENU");
+
+		//continue text
+		text_exit = App->gui->CreateUILabel(420, 465, "SAVE & EXIT");
+
+	
+		
+
+		
+	}
+	
 	iPoint mouse_position, mouse_pos;
 
 	mouse_pos = App->input->GetMousePosition(mouse_position);
 
-	//IF ESCAPE PAUSE THE GAME
-	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-	{
-		App->scene->active = false;
-		App->pause_scene->active = true;
-		App->pause_scene->Start();
-		App->scene->CleanUp();
-		App->entities->CleanUp();
+	//check if mouse is on exit button
+	if (App->entities->active == false) {
+		if (mouse_pos.x > exit_button->x&&mouse_pos.x<exit_button->x + exit_button->button_on.w&&mouse_pos.y>exit_button->y&&mouse_pos.y < exit_button->y + exit_button->button_on.h)
+		{
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+			{
+				close_game = true;
+			}
+		}
+
+		if (mouse_pos.x > resume_button->x&&mouse_pos.x<resume_button->x + resume_button->button_on.w&&mouse_pos.y>resume_button->y&&mouse_pos.y < resume_button->y + resume_button->button_on.h)
+		{
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+			{
+				
+				App->gui->CleanUp();
+				App->entities->active = true;
+			}
+		}
+
+		if (mouse_pos.x > main_menu_button->x&&mouse_pos.x<main_menu_button->x + main_menu_button->button_on.w&&mouse_pos.y>main_menu_button->y&&mouse_pos.y < main_menu_button->y + main_menu_button->button_on.h)
+		{
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+			{
+				App->scene->active = false;
+				App->startmenu->active = true;
+				App->startmenu->Start();
+				App->scene->CleanUp();
+				App->entities->CleanUp();
+			
+				
+			}
+		}
+
+		if (mouse_pos.x > settings_button->x&&mouse_pos.x<settings_button->x + settings_button->button_on.w&&mouse_pos.y>settings_button->y&&mouse_pos.y < settings_button->y + settings_button->button_on.h)
+		{
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+			{
+				App->scene->active = false;
+				App->settings_scene->active = true;
+				App->settings_scene->Start();
+				App->scene->CleanUp();
+				App->entities->CleanUp();
+
+			}
+		}
+
+		
 	}
 
-	//if (mouse_pos.x > back_to_menu_button->x&&mouse_pos.x<back_to_menu_button->x + back_to_menu_button->button_on.w&&mouse_pos.y>back_to_menu_button->y&&mouse_pos.y < back_to_menu_button->y + back_to_menu_button->button_on.h)
-	//{
-	//	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
-	//	{
-	//		App->scene->active = false;
-	//		App->startmenu->active = true;
-	//		App->startmenu->Start();
-	//		App->scene->CleanUp();
-	//		App->entities->CleanUp();
-	//	}
-	//}
+	
+	
+
+	
 
 	//FadeToBlack
 
@@ -227,9 +301,11 @@ bool j1Scene::Update(float dt)
 // Called each loop iteration
 bool j1Scene::PostUpdate()
 {
+
 	bool ret = true;
 
-	
+	if (close_game)
+		ret = false;
 
 	return ret;
 }
@@ -244,7 +320,7 @@ bool j1Scene::CleanUp()
 		App->entities->player = nullptr;
 	}
 	
-
+	
 
 	LOG("Freeing scene");
 	return true;
@@ -252,9 +328,11 @@ bool j1Scene::CleanUp()
 
 bool j1Scene::LoadScene(int map)
 {
+	
 	App->map->CleanUp();
 	App->tex->FreeTextures();
 	App->entities->player->LoadTexture();
+
 	
 
 
@@ -355,6 +433,7 @@ bool j1Scene::Save(pugi::xml_node& data) const {
 
 	map.append_attribute("CurrentMap") = currmap;
 	App->entities->player->Save(data);
+	
 
 	return true;
 }
