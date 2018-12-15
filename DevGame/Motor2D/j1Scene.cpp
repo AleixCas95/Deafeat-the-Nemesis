@@ -18,6 +18,7 @@
 #include "j1Pathfinding.h"
 #include "j1Gui.h"
 #include "j1StartMenu.h"
+#include "j1PauseScene.h"
 #include "UIButton.h"
 
 j1Scene::j1Scene() : j1Module()
@@ -97,11 +98,11 @@ bool j1Scene::Start()
 
 	
 
-	//return to main menu button
-	back_to_menu_button = App->gui->CreateUIButton(870, 550, return_rect_off, return_rect_on, return_rect_off, texture);
+	////return to main menu button
+	//back_to_menu_button = App->gui->CreateUIButton(870, 550, return_rect_off, return_rect_on, return_rect_off, texture);
 
-	//return button label
-	menu_label = App->gui->CreateUILabel(915, 575, "MENU");
+	////return button label
+	//menu_label = App->gui->CreateUILabel(915, 575, "MENU");
 
 	
 	return true;
@@ -151,7 +152,6 @@ bool j1Scene::Update(float dt)
 		App->entities->player->is_jumping = false;
 
 	}
-
 	int camera_speed = 2;
 
 	if (App->entities->player->god_mode)
@@ -179,17 +179,27 @@ bool j1Scene::Update(float dt)
 
 	mouse_pos = App->input->GetMousePosition(mouse_position);
 
-	if (mouse_pos.x > back_to_menu_button->x&&mouse_pos.x<back_to_menu_button->x + back_to_menu_button->button_on.w&&mouse_pos.y>back_to_menu_button->y&&mouse_pos.y < back_to_menu_button->y + back_to_menu_button->button_on.h)
+	//IF ESCAPE PAUSE THE GAME
+	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 	{
-		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
-		{
-			App->scene->active = false;
-			App->startmenu->active = true;
-			App->startmenu->Start();
-			App->scene->CleanUp();
-			App->entities->CleanUp();
-		}
+		App->scene->active = false;
+		App->pause_scene->active = true;
+		App->pause_scene->Start();
+		App->scene->CleanUp();
+		App->entities->CleanUp();
 	}
+
+	//if (mouse_pos.x > back_to_menu_button->x&&mouse_pos.x<back_to_menu_button->x + back_to_menu_button->button_on.w&&mouse_pos.y>back_to_menu_button->y&&mouse_pos.y < back_to_menu_button->y + back_to_menu_button->button_on.h)
+	//{
+	//	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+	//	{
+	//		App->scene->active = false;
+	//		App->startmenu->active = true;
+	//		App->startmenu->Start();
+	//		App->scene->CleanUp();
+	//		App->entities->CleanUp();
+	//	}
+	//}
 
 	//FadeToBlack
 
@@ -219,8 +229,7 @@ bool j1Scene::PostUpdate()
 {
 	bool ret = true;
 
-	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		ret = false;
+	
 
 	return ret;
 }
