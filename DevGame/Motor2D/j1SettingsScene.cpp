@@ -36,7 +36,7 @@ bool j1SettingsScene::Start()
 	volume_bar = App->gui->CreateUIImage(20, 150, volumen_rect, texture,false);
 
 	//volumen slider
-	volume_thumb = App->gui->CreateUISlider(50, 150, thumb_rect_off, thumb_rect_on, volume_bar->x + volumen_rect.w, volume_bar->x, texture);
+	volume_thumb = App->gui->CreateUISlider(215, 150, thumb_rect_off, thumb_rect_on, volume_bar->x + volumen_rect.w, volume_bar->x, texture);
 
 
 	//title (settings)
@@ -58,6 +58,7 @@ bool j1SettingsScene::PreUpdate()
 
 bool j1SettingsScene::Update(float)
 {
+
 	mouse_pos = App->input->GetMousePosition(mouse_position);
 
 		if (mouse_pos.x > return_button->x&&mouse_pos.x<return_button->x + return_button->button_on.w&&mouse_pos.y>return_button->y&&mouse_pos.y < return_button->y + return_button->button_on.h)

@@ -2,6 +2,7 @@
 #include "UIObject.h"
 #include "p2Log.h"
 #include "j1App.h"
+#include "j1Audio.h"
 #include "j1Input.h"
 #include "j1Gui.h"
 #include "j1Fonts.h"
@@ -50,6 +51,11 @@ void UISlider::Update()
 	
 	}
 	
+
+	//new music volume
+	slider_volume = x / 3;
+	Mix_VolumeMusic(slider_volume);
+
 }
 
 void UISlider::Draw() 

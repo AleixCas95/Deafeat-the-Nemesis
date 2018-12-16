@@ -11,6 +11,8 @@ public:
 	void Update();
 	void Draw();
 	int x_difference = 0;
+	int slider_volume = 0;
+	
 };
 
 
