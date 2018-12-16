@@ -1,6 +1,7 @@
 #include "p2Defs.h"
 #include "p2Log.h"
 #include "j1Audio.h"
+#include "j1Input.h"
 #include "p2List.h"
 #include "j1App.h"
 
@@ -175,4 +176,25 @@ bool j1Audio::PlayFx(unsigned int id, int repeat)
 	}
 
 	return ret;
+}
+
+void j1Audio::ControlVolume()
+{
+
+	if (volume < 0) {
+		volume = 0;
+	}
+	if (volume > 128) {
+		volume = 128;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_T) == KEY_REPEAT)
+	{
+		Mix_VolumeMusic(volume -= 20);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_Y) == KEY_REPEAT)
+	{
+		Mix_VolumeMusic(volume += 20);
+	}
+
 }
