@@ -56,10 +56,10 @@ bool j1SettingsScene::Start()
 	menu_label = App->gui->CreateUILabel(-App->render->camera.x + 65, 575, "MENU",false);
 
 	//volume music label
-	volume_music_label = App->gui->CreateUILabel(-App->render->camera.x + 20, 120, "FX VOLUME",false);
+	volume_music_label = App->gui->CreateUILabel(-App->render->camera.x + 20, 120, "MUSIC VOLUME",false);
 
 	//volume music label
-	volume_fx_label = App->gui->CreateUILabel(-App->render->camera.x + 20, 320, "MUSIC VOLUME", false);
+	volume_fx_label = App->gui->CreateUILabel(-App->render->camera.x + 20, 320, "FX VOLUME", false);
 
 	return true;
 }

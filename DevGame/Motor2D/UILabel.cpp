@@ -34,11 +34,9 @@ UILabel::~UILabel()
 
 void UILabel::Draw() {
 
-	BROFILER_CATEGORY("UILabel", Profiler::Color::Green)
+	BROFILER_CATEGORY("UILabelDraw", Profiler::Color::Green)
 
 	App->render->Blit(texture_fonts, x, y);
-	if (App->startmenu->debug == true)
-	App->render->DrawQuad({ x,y,size.w,size.h }, 255, 0, 0, 255, false, false);
 
 
 }
