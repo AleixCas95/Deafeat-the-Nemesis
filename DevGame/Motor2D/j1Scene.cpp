@@ -190,10 +190,11 @@ bool j1Scene::Update(float dt)
 			App->render->camera.x += camera_speed;
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && !pause_menu)
+	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && !pause_menu && time_pause == false)
 	{
 		pause_menu = true;
-
+		time_pause = true;
+		
 		App->entities->active = false;
 
 		//play button
@@ -224,6 +225,7 @@ bool j1Scene::Update(float dt)
 
 		//text settings ingame
 		text_ingame_settings = App->gui->CreateUILabel(-App->render->camera.x+100, 480, "MUSIC VOLUME",false);
+		
 	}
 
 	
@@ -248,6 +250,7 @@ bool j1Scene::Update(float dt)
 			dash_on = App->gui->CreateUIImage(270, 100, dash_on_rect, texture, true);
 		}
 		points_text = App->gui->CreateUILabel(-App->render->camera.x + POINTS_X, POINTS_Y, points_string, true);
+		
 		time_text= App->gui->CreateUILabel(-App->render->camera.x + TIME_X, TIME_Y, time_string, true);
 		break;
 	case 2:
@@ -316,6 +319,8 @@ bool j1Scene::Update(float dt)
 				pause_menu = false;
 				App->gui->CleanUp();
 				App->entities->active = true;
+				time_pause = false;
+				
 			}
 		}
 
@@ -323,6 +328,7 @@ bool j1Scene::Update(float dt)
 		{
 			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
 			{
+				time_pause = true;
 				pause_menu = false;
 				App->scene->active = false;
 				App->startmenu->active = true;
@@ -339,9 +345,10 @@ bool j1Scene::Update(float dt)
 	
 	
 
-	
-	game_time = time.ReadSec();
-
+	if (time_pause == false) {
+		game_time = time.ReadSec();
+		
+	}
 	App->map->Draw();
 
 	

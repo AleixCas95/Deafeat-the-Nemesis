@@ -106,8 +106,11 @@ public:
 	int points = 0;
 
 	j1Timer time;
+	
 	float game_time = 0.0f;
 	
+	
+	bool time_pause = false;
 
 
 

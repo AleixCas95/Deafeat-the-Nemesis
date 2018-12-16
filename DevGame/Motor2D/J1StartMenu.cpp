@@ -121,7 +121,8 @@ bool j1StartMenu::Update(float) {
 			App->gui->HUDCleanUp();
 			App->startmenu->CleanUp();
 			App->scene->Start();
-			
+			App->scene->time_pause = false;
+		
 		}
 
 	}
@@ -152,6 +153,8 @@ bool j1StartMenu::Update(float) {
 			App->startmenu->CleanUp();
 			App->scene->Start();
 			App->LoadGame("save_game.xml");
+			App->scene->time_pause = false;
+			
 
 
 		}
