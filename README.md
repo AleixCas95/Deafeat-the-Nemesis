@@ -17,14 +17,14 @@ The maps have been made using tiled as the colliders.
 
 ## Authors 
 
- ### (Boy on the left) Aleix Castillo Arrià: [Aleix Castillo Arrià](https://github.com/AleixCas95)
+ ###  Aleix Castillo Arrià(Boy on the left): [Aleix Castillo Arrià](https://github.com/AleixCas95)
  
  * In charge of all the base of the systems.
  * Pathfinding aplication.
  * Interaccion beetween modules.
  * Q&A.
  
- ### (Boy on the right)Albert Cayuela Naval: [Albert Cayuela Naval](https://github.com/AlbertCayuela)
+ ### Albert Cayuela Naval(Boy on the right): [Albert Cayuela Naval](https://github.com/AlbertCayuela)
  
  * UI Scenes modules
  * System elements
