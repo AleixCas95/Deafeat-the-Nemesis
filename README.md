@@ -45,11 +45,11 @@ Once we have all the necessaries module, we used folders with diferents systems 
 
 ## Github repository link
 
-https://github.com/AleixCas95/DeafeatNemesis
+[Here]https://github.com/AleixCas95/DeafeatNemesis
 
 ## Download the last verision
 
-https://github.com/AleixCas95/Deafeat-the-Nemesis/releases/tag/3.0
+[Here]https://github.com/AleixCas95/Deafeat-the-Nemesis/releases/tag/3.0
 
 ## Gameplay Video
 
