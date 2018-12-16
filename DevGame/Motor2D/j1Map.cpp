@@ -61,6 +61,7 @@ void j1Map::Draw()
 					}
 					else if (layer_pointer->data->name == "Colliders" && draw_logic)
 						App->render->Blit(tileset_pointer->data->texture, coordinates.x, coordinates.y, &rect, 1.0f, 50.0f);
+					
 				}
 			}
 		}

@@ -7,6 +7,7 @@
 #include "j1Input.h"
 #include "p2Log.h"
 
+
 UIButton::UIButton(int x, int y, SDL_Rect mouse_off, SDL_Rect mouse_on, SDL_Rect mouse_click, SDL_Texture* tex) :UIObject( x, y)
 {
 	this->x = x;
@@ -45,5 +46,12 @@ void UIButton::Draw()
 {
 	
 		App->render->Blit(texture, x, y, &current_rect,0);
+		
+		if(App->startmenu->debug==true)
+		App->render->DrawQuad({ x,y,current_rect.w,current_rect.h }, 255, 0, 0, 100,false,false);
+			
+	
+		
 	
 }
+

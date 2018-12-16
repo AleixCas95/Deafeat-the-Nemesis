@@ -27,6 +27,7 @@ public:
 
 
 
+
 	int x;
 	int y;
 	int margin_right;
@@ -46,6 +47,7 @@ public:
 	bool is_hud;
 
 
+	bool debug = false;
 
 };
 

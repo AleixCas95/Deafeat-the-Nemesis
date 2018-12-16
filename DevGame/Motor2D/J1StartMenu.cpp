@@ -102,6 +102,8 @@ bool j1StartMenu::Update(float) {
 			App->startmenu->active = false;
 			App->settings_scene->active = true;
 			App->startmenu->CleanUp();
+			App->gui->CleanUp();
+			App->gui->HUDCleanUp();
 			App->settings_scene->Start();
 			
 		}
@@ -114,6 +116,8 @@ bool j1StartMenu::Update(float) {
 			App->startmenu->active = false;
 			App->scene->active = true;
 			App->entities->active = true;
+			App->gui->CleanUp();
+			App->gui->HUDCleanUp();
 			App->startmenu->CleanUp();
 			App->scene->Start();
 			
@@ -127,6 +131,8 @@ bool j1StartMenu::Update(float) {
 		{
 			App->startmenu->active = false;
 			App->credits_scene->active = true;
+			App->gui->CleanUp();
+			App->gui->HUDCleanUp();
 			App->startmenu->CleanUp();
 			App->credits_scene->Start();
 
@@ -161,7 +167,7 @@ bool j1StartMenu::Update(float) {
 
 	//}
 
-
+	CheckF8();
 	return true;
 }
 bool j1StartMenu::PostUpdate() {
@@ -181,3 +187,15 @@ bool j1StartMenu::CleanUp() {
 
 	return true;
 }
+
+void j1StartMenu::CheckF8()
+{
+	if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN && debug == false) {
+		debug = true;
+	}
+	else if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN && debug == true) {
+		debug = false;
+	}
+}
+
+

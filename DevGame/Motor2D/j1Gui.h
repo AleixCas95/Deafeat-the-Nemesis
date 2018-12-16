@@ -32,7 +32,7 @@ class j1Gui : public j1Module {
 		bool CleanUp();
 		bool HUDCleanUp();
 		
-
+		
 		UIObject* CreateUIImage(int x, int y, SDL_Rect rect, SDL_Texture* texture, bool is_hud);
 		UIObject* CreateUILabel(int x, int y, p2SString text, bool is_hud);
 		UIObject* CreateUIButton(int x, int y, SDL_Rect mouse_off, SDL_Rect mouse_on, SDL_Rect mouse_click, SDL_Texture* texture);
@@ -41,7 +41,8 @@ class j1Gui : public j1Module {
 
 		SDL_Texture* atlas = nullptr;
 	
-		
+		bool debug = false;
+
 
 	private:
 		

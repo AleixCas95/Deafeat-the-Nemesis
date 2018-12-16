@@ -10,7 +10,8 @@
 #include "UIObject.h"
 #include "UISlider.h"
 #include "p2List.h"
-#include "UISlider.h"
+#include "j1Input.h"
+
 
 j1Gui::j1Gui() : j1Module() {
 
@@ -54,7 +55,7 @@ bool j1Gui::Update(float dt) {
 			
 		}
 	}
-
+	
 	for (int i = 0; i < HUDObjects.count(); i++) 
 	{
 		if (HUDObjects.At(i) != nullptr)
@@ -68,7 +69,9 @@ bool j1Gui::Update(float dt) {
 }
 
 bool j1Gui::PostUpdate() {
+	
 
+	
 	return true;
 }
 

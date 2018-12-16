@@ -77,7 +77,7 @@ bool j1CreditsScene::Update(float)
 			system("start https://github.com/AleixCas95/Deafeat-the-Nemesis");
 		}
 	}
-
+	App->startmenu->CheckF8();
 	return true;
 }
 

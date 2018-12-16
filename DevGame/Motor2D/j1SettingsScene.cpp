@@ -71,6 +71,7 @@ bool j1SettingsScene::Update(float)
 			}
 		}
 
+		App->startmenu->CheckF8();
 	return true;
 }
 

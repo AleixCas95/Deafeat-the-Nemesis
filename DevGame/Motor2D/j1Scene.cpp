@@ -152,6 +152,9 @@ bool j1Scene::Update(float dt)
 
 	}
 
+	//F8 state
+	App->startmenu->CheckF8();
+
 	if (App->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN) {
 		App->map->draw_logic = !App->map->draw_logic;
 	}
@@ -279,9 +282,8 @@ bool j1Scene::Update(float dt)
 				App->startmenu->Start();
 				App->scene->CleanUp();
 				App->entities->CleanUp();
-				App->gui->HUDCleanUp();
-				points = 0;
-				lifes = 0;
+			
+				
 			}
 		}
 
@@ -294,7 +296,7 @@ bool j1Scene::Update(float dt)
 				App->settings_scene->Start();
 				App->scene->CleanUp();
 				App->entities->CleanUp();
-				App->gui->HUDCleanUp();
+
 			}
 		}
 
@@ -365,10 +367,9 @@ bool j1Scene::LoadScene(int map)
 {
 	
 	App->map->CleanUp();
-	App->tex->FreeTextures();
+	//App->tex->FreeTextures();
 	App->entities->player->LoadTexture();
-	App->gui->active = true;
-	App->gui->Start();
+
 	
 
 
@@ -435,7 +436,7 @@ bool j1Scene::LoadScene(int map)
 		}
 	}
 
-	//App->tex->Load(atlas_file_name.GetString());
+	
 
 	return true;
 }

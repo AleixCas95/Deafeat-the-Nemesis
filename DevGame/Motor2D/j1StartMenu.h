@@ -22,6 +22,7 @@ public:
 	bool Update(float);
 	bool PostUpdate();
 	bool CleanUp();
+	void CheckF8();
 
 	UIObject * background = nullptr;
 	UIObject * play_button = nullptr;
@@ -37,6 +38,7 @@ public:
 	UIObject* text_title = nullptr;
 	UIObject* text_exit = nullptr;
 
+	bool debug = false;
 	bool close_game=false;
 	
 	iPoint mouse_position, mouse_pos;
