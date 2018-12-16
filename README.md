@@ -17,14 +17,43 @@ The maps have been made using tiled as the colliders.
 
 ## Authors 
 
- * (Boy on the left) Aleix Castillo Arrià: [Aleix Castillo Arrià](https://github.com/AleixCas95)
-
- * (Boy on the right)Albert Cayuela Naval: [Albert Cayuela Naval](https://github.com/AlbertCayuela)
+ ### (Boy on the left) Aleix Castillo Arrià: [Aleix Castillo Arrià](https://github.com/AleixCas95)
  
-# Development of the Assignature
+ * In charge of all the base of the systems.
+ * Pathfinding aplication.
+ * Interaccion beetween modules.
+ * Q&A.
  
-We began with the creation of two map levels using tiled, after learning how to load those levels with tiled to the code, we start with  adding, saving and loading the player(with some basic movement). Once we got the player working, we iplemented enemies, their path using BFS, dijkstra and then the A*. After that the interaction with the player. At the same time we included the control of the framrate in the game capping the FPS or changing it with the dt of the game. We also used Brofiler to know how efficient is our code and finally we implemented the User Interface and the HUD of the game. One of the main recourses for this assignament was the implementation of entities system to controll all the modules and their caracteristics.
+ ### (Boy on the right)Albert Cayuela Naval: [Albert Cayuela Naval](https://github.com/AlbertCayuela)
+ 
+ * UI Scenes modules
+ * System elements
+ * Sprites
+ * Tools modules
+ * Pathfinding
+ 
+ 
+# The main core subsystems
 
+Our code is structured in modules.
+Paths, levels , animations and some textures are read and loaded through parsin xml files to avoid "magic numbers" or random variables, to make the reading and understanding easier.
+The main module is the j1App.cpp/j1App.h Module, that manages all the others modules by calling them with the respective functions. Some of those funcions are shared with the J1Module.
+Once we have all the necessaries module, we used folders with diferents systems for a better organization and perforance. Those systems are the Entities System and the UI sytem.
+
+
+
+
+## Github repository link
+
+https://github.com/AleixCas95/DeafeatNemesis
+
+## Download the last verision
+
+https://github.com/AleixCas95/Deafeat-the-Nemesis/releases/tag/3.0
+
+## Gameplay Video
+
+---------
 
 ## Controls
 
@@ -61,14 +90,6 @@ We began with the creation of two map levels using tiled, after learning how to 
 
 * F11 Cap FPS
 
-
-## Github repository link
-
-https://github.com/AleixCas95/DeafeatNemesis
-
-## Download the last verision
-
-link release
 
  # License
  
