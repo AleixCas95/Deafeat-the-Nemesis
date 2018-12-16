@@ -202,18 +202,18 @@ bool j1Scene::Update(float dt)
 
 
 		//start text
-		text_resume = App->gui->CreateUILabel(-App->render->camera.x + 450, 225, "RESUME");
+		text_resume = App->gui->CreateUILabel(-App->render->camera.x + 450, 225, "RESUME",false);
 
 
 		//settings text
-		text_settings = App->gui->CreateUILabel(-App->render->camera.x + 440, 305, "SETTINGS");
+		text_settings = App->gui->CreateUILabel(-App->render->camera.x + 440, 305, "SETTINGS",false);
 
 
 		//main menu text
-		text_main_menu = App->gui->CreateUILabel(-App->render->camera.x + 435, 385, "MAIN MENU");
+		text_main_menu = App->gui->CreateUILabel(-App->render->camera.x + 435, 385, "MAIN MENU",false);
 
 		//continue text
-		text_exit = App->gui->CreateUILabel(-App->render->camera.x + 420, 465, "SAVE & EXIT");
+		text_exit = App->gui->CreateUILabel(-App->render->camera.x + 420, 465, "SAVE & EXIT",false);
 		
 	}
 
@@ -221,16 +221,19 @@ bool j1Scene::Update(float dt)
 	switch (lifes) 
 	{
 	case 3:
-		three_lifes = App->gui->CreateUIImage(LIFES_X, LIFES_Y, three_lifes_rect, texture);
+		App->gui->HUDCleanUp();
+		three_lifes = App->gui->CreateUIImage(LIFES_X, LIFES_Y, three_lifes_rect, texture,true);
 		break;
 	case 2:
+		App->gui->HUDCleanUp();
 		//App->gui->CleanUp();//can be improved?
-		two_lifes = App->gui->CreateUIImage(LIFES_X, LIFES_Y, two_lifes_rect, texture);
+		two_lifes = App->gui->CreateUIImage(LIFES_X, LIFES_Y, two_lifes_rect, texture,true);
 	
 		break;
 	case 1:
+		App->gui->HUDCleanUp();
 		//App->gui->CleanUp();//can be improved?¿
-		one_life = App->gui->CreateUIImage(LIFES_X, LIFES_Y, one_lifes_rect, texture);
+		one_life = App->gui->CreateUIImage(LIFES_X, LIFES_Y, one_lifes_rect, texture,true);
 		
 		break;
 	case 0:

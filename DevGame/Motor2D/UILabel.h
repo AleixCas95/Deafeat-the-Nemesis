@@ -7,7 +7,7 @@ class UILabel : public UIObject {
 
 public:
 
-	UILabel(int x, int y, p2SString text);
+	UILabel(int x, int y, p2SString text, bool is_hud);
 	~UILabel();
 
 	void Draw();

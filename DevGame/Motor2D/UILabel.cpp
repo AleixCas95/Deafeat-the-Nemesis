@@ -7,12 +7,12 @@
 
 
 
-UILabel::UILabel(int x, int y, p2SString text) : UIObject(x, y)
+UILabel::UILabel(int x, int y, p2SString text, bool is_hud) : UIObject(x, y)
 {
 	this->x =  x;
 	this->y = y;
 	this->text = text;
-
+	this->is_hud = is_hud;
 
 	int w = 0, h = 0;
 	App->fonts->CalcSize(this->text.GetString(), w, h, App->fonts->default);
@@ -20,7 +20,6 @@ UILabel::UILabel(int x, int y, p2SString text) : UIObject(x, y)
 	size.h = h;
 	texture_fonts = App->fonts->Print(text.GetString(), { 255, 255, 255, 255 }, App->fonts->default);
 
-	
 }
 
 

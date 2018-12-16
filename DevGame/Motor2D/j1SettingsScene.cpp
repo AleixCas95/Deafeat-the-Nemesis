@@ -27,26 +27,26 @@ bool j1SettingsScene::Start()
 	texture = App->gui->atlas;
 
 	//background
-	background = App->gui->CreateUIImage(0, 0, background_rect, texture);
+	background = App->gui->CreateUIImage(0, 0, background_rect, texture,false);
 
 	//return to main menu button
 	return_button = App->gui->CreateUIButton(20, 550, return_rect_off, return_rect_on, return_rect_off, texture);
 
 	//volumen bar
-	volume_bar = App->gui->CreateUIImage(20, 150, volumen_rect, texture);
+	volume_bar = App->gui->CreateUIImage(20, 150, volumen_rect, texture,false);
 
 	//volumen slider
 	volume_thumb = App->gui->CreateUISlider(50, 150, thumb_rect_off, thumb_rect_on, volume_bar->x + volumen_rect.w, volume_bar->x, texture);
 
 
 	//title (settings)
-	title = App->gui->CreateUILabel(-App->render->camera.x + 20, 20, "S E T T I N G S");
+	title = App->gui->CreateUILabel(-App->render->camera.x + 20, 20, "S E T T I N G S",false);
 
 	//return button label
-	menu_label = App->gui->CreateUILabel(-App->render->camera.x + 65, 575, "MENU");
+	menu_label = App->gui->CreateUILabel(-App->render->camera.x + 65, 575, "MENU",false);
 
 	//volume music label
-	volume_music_label = App->gui->CreateUILabel(-App->render->camera.x + 20, 120, "MUSIC VOLUME");
+	volume_music_label = App->gui->CreateUILabel(-App->render->camera.x + 20, 120, "MUSIC VOLUME",false);
 
 	return true;
 }

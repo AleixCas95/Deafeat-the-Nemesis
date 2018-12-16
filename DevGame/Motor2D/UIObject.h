@@ -43,6 +43,7 @@ public:
 	SDL_Rect button_on;
 	SDL_Rect button_clicked;
 	SDL_Rect current_rect;
+	bool is_hud;
 
 
 

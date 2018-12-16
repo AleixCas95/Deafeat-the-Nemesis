@@ -27,16 +27,16 @@ bool j1CreditsScene::Start()
 	SDL_Rect license_rect = { 1170,962,672,487 };
 
 	//background
-	background = App->gui->CreateUIImage(0, 0, back_rect, texture);
+	background = App->gui->CreateUIImage(0, 0, back_rect, texture, false);
 
 	//return button
 	return_button = App->gui->CreateUIButton(20, 550, return_rect_off, return_rect_on, return_rect_off, texture);
 
 	//license
-	license = App->gui->CreateUIImage(170, 60, license_rect, texture);
+	license = App->gui->CreateUIImage(170, 60, license_rect, texture, false);
 
 	//return to menu label
-	menu_text = App->gui->CreateUILabel(-App->render->camera.x + 65, 575, "MENU");
+	menu_text = App->gui->CreateUILabel(-App->render->camera.x + 65, 575, "MENU", false);
 
 	return true;
 }

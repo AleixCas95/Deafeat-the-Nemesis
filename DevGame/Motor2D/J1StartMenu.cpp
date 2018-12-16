@@ -40,7 +40,7 @@ bool j1StartMenu::Start() {
 	SDL_Rect return_rect_off = { 1440,220,141,59 };
 
 	//background
-	background = App->gui->CreateUIImage(0, 0, background_rect, texture);
+	background = App->gui->CreateUIImage(0, 0, background_rect, texture,false);
 
 	//play button
 	play_button = App->gui->CreateUIButton(200, 150, button_off_mouse, button_on_mouse, button_off_mouse, texture);
@@ -58,22 +58,22 @@ bool j1StartMenu::Start() {
 	exit_button=App->gui->CreateUIButton(860, 560, return_rect_off, return_rect_on, return_rect_off, texture);
 
 	//start text
-	text_start = App->gui->CreateUILabel(-App->render->camera.x + 260, 175, "START");
+	text_start = App->gui->CreateUILabel(-App->render->camera.x + 260, 175, "START",false);
 
 	//continue text
-	text_continue = App->gui->CreateUILabel(-App->render->camera.x + 240, 245, "CONTINUE");
+	text_continue = App->gui->CreateUILabel(-App->render->camera.x + 240, 245, "CONTINUE",false);
 
 	//settings text
-	text_settings = App->gui->CreateUILabel(-App->render->camera.x + 240, 315, "SETTINGS");
+	text_settings = App->gui->CreateUILabel(-App->render->camera.x + 240, 315, "SETTINGS",false);
 
 	//credit text
-	text_credits = App->gui->CreateUILabel(-App->render->camera.x + 245, 385, "CREDITS");
+	text_credits = App->gui->CreateUILabel(-App->render->camera.x + 245, 385, "CREDITS",false);
 
 	//exit text
-	text_exit = App->gui->CreateUILabel(-App->render->camera.x + 908, 585, "EXIT");
+	text_exit = App->gui->CreateUILabel(-App->render->camera.x + 908, 585, "EXIT",false);
 
 	//title text
-	text_title = App->gui->CreateUILabel(-App->render->camera.x + 30, 30, "D E F E A T   T H E   N E M E S I S");
+	text_title = App->gui->CreateUILabel(-App->render->camera.x + 30, 30, "D E F E A T   T H E   N E M E S I S",false);
 
 	return true;
 }

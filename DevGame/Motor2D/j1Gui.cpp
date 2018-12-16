@@ -55,6 +55,15 @@ bool j1Gui::Update(float dt) {
 		}
 	}
 
+	for (int i = 0; i < HUDObjects.count(); i++) 
+	{
+		if (HUDObjects.At(i) != nullptr)
+		{
+			HUDObjects.At(i)->data->Draw();
+			HUDObjects.At(i)->data->Update();
+		}
+	}
+
 	return true;
 }
 
@@ -74,34 +83,66 @@ bool j1Gui::CleanUp() {
 	return true;
 }
 
+bool j1Gui::HUDCleanUp()
+{
+	p2List_item<UIObject*>* item = HUDObjects.start;
+	while (item != nullptr)
+	{
+		delete item->data;
+		HUDObjects.del(item);
+		item = item->next;
+	}
+	return true;
+}
 
-UIObject* j1Gui::CreateUIImage(int x, int y, SDL_Rect rect, SDL_Texture* texture) {
+
+UIObject* j1Gui::CreateUIImage(int x, int y, SDL_Rect rect, SDL_Texture* texture, bool is_hud) {
 
 	if (texture == nullptr) {
-		UIImage* image = new UIImage(x ,y, rect, atlas);
+		UIImage* image = new UIImage(x ,y, rect, atlas, is_hud);
 
-		UIObjects.add(image);
+		if (is_hud)
+		{
+			HUDObjects.add(image);
+		}
+		else if (!is_hud) 
+		{
+			UIObjects.add(image);
+		}
 		return image;
 
-	
 	}
 	else {
-		UIImage* image = new UIImage(x, y, rect, texture);
+		UIImage* image = new UIImage(x, y, rect, texture, is_hud);
 
-		UIObjects.add(image);
+		if (is_hud)
+		{
+			HUDObjects.add(image);
+		}
+		else if (!is_hud)
+		{
+			UIObjects.add(image);
+		}
 		return image;
-
 
 	}
 
 	
 }
 
-UIObject* j1Gui::CreateUILabel(int x, int y, p2SString text) {
+UIObject* j1Gui::CreateUILabel(int x, int y, p2SString text,bool is_hud) {
 
-	UILabel* label = new UILabel(x, y, text);
+	UILabel* label = new UILabel(x, y, text, is_hud);
 
-	UIObjects.add(label);
+	if (is_hud)
+	{
+		HUDObjects.add(label);
+	}
+	else if (!is_hud) 
+	{
+		UIObjects.add(label);
+	}
+	
 	return label;
 
 }
