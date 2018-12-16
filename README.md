@@ -53,7 +53,7 @@ https://github.com/AleixCas95/Deafeat-the-Nemesis/releases/tag/3.0
 
 ## Gameplay Video
 
----------
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MAiDKeBfwgA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Controls
 
