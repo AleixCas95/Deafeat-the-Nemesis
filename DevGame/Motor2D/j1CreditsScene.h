@@ -32,6 +32,8 @@ public:
 	UIObject* web_button = nullptr;
 	UIObject* web_label = nullptr;
 
+
+
 	iPoint mouse_position, mouse_pos;
 
 };

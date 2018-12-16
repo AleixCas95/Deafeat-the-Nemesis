@@ -10,6 +10,9 @@
 #include "j1StartMenu.h"
 #include "Brofiler/Brofiler.h"
 
+#define MAX_VOL 128
+#define VOL_CORRECTION 40
+
 UISlider::UISlider(int x, int y, SDL_Rect thumb_off, SDL_Rect thumb_on, int margin_right, int margin_left, SDL_Texture *tex, UIObject* object):UIObject(x,y)
 {
 	this->x = x;
@@ -28,9 +31,9 @@ UISlider::~UISlider(){}
 void UISlider::Update()
 {
 	BROFILER_CATEGORY("UISliderUpdate", Profiler::Color::Blue)
-
+		//get mouse pos
 	mouse_pos = App->input->GetMousePosition(mouse_position);
-
+	//check pos
 	if (mouse_pos.x >= x && mouse_pos.x <= x + button_off.w && mouse_pos.y >= y && mouse_pos.y <= y + button_off.h) 
 	{
 		current_rect = button_off;
@@ -57,9 +60,9 @@ void UISlider::Update()
 	}
 	
 	//new music volume
-	slider_volume = ((object->x + 128)*x) / (object->x + object->thumb_rect_off.w);
+	slider_volume = ((object->x + MAX_VOL)*x) / (object->x + object->thumb_rect_off.w);
 	final_volume = slider_volume - object->x;
-	Mix_VolumeMusic(final_volume-40);
+	Mix_VolumeMusic(final_volume-VOL_CORRECTION);
 
 }
 

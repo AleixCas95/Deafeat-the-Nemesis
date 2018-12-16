@@ -141,7 +141,7 @@ bool j1StartMenu::Update(float) {
 		}
 
 	}
-
+	//check if mouse is on continue button plus savegame
 	if (mouse_pos.x > continue_button->x&&mouse_pos.x<continue_button->x + continue_button->button_on.w&&mouse_pos.y>continue_button->y&&mouse_pos.y < continue_button->y + continue_button->button_on.h)
 	{
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
@@ -160,7 +160,7 @@ bool j1StartMenu::Update(float) {
 		}
 	}
 	
-
+	//debugdraw UI
 	CheckF8();
 	return true;
 }

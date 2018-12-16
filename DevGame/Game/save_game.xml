@@ -6,8 +6,8 @@
 	<audio />
 	<map />
 	<scene>
-		<Map CurrentMap="1" />
-		<position x="96" y="512.81366" />
+		<Map CurrentMap="2" />
+		<position x="257.440002" y="417.4534" />
 	</scene>
 	<pathfinding />
 	<entities />

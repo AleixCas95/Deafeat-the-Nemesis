@@ -25,7 +25,7 @@ void UIButton::Update()
 	BROFILER_CATEGORY("UpdateUIButton", Profiler::Color::Yellow)
 
 	mouse_pos = App->input->GetMousePosition(mouse_position);
-	//LOG("mousepos: %i  %i", mouse_pos.x, mouse_pos.y);
+	
 
 	//button_start position
 

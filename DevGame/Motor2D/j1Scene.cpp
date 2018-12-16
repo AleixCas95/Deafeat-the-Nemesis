@@ -107,16 +107,12 @@ bool j1Scene::Start()
 	background_rect = { 1944,847,1022,7680 };
 	button_off_mouse = { 1193,210,168,63 };
 	button_on_mouse = { 1189,286,170,65 };
-	//IF ESCAPE PAUSE THE GAME
 
-	
+
+	//timmer start
 	time.Start();
 
-	////return to main menu button
-	//back_to_menu_button = App->gui->CreateUIButton(870, 550, return_rect_off, return_rect_on, return_rect_off, texture);
 
-	////return button label
-	//menu_label = App->gui->CreateUILabel(915, 575, "MENU");
 
 	
 	return true;
@@ -176,8 +172,6 @@ bool j1Scene::Update(float dt)
 	if (App->entities->player->god_mode)
 		camera_speed = 4;
 
-	//App->render->camera.y = -550;
-
 	if (App->entities->player->pos.x - (-App->render->camera.x + (1 * App->render->camera.w / 2)) >= 0)
 	{
 		if (App->render->camera.x - App->render->camera.w > -(App->map->data.width*App->map->data.tile_width))
@@ -189,7 +183,7 @@ bool j1Scene::Update(float dt)
 		if (App->render->camera.x < 0)
 			App->render->camera.x += camera_speed;
 	}
-
+	//IN game pause menu
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && !pause_menu && time_pause == false)
 	{
 		pause_menu = true;
@@ -243,48 +237,47 @@ bool j1Scene::Update(float dt)
 		three_lifes = App->gui->CreateUIImage(LIFES_X, LIFES_Y, three_lifes_rect, texture,true);
 		dash_off = App->gui->CreateUIImage(270, 100, dash_off_rect, texture, true);
 		attack_off = App->gui->CreateUIImage(300, 100, attack_off_rect, texture, true);
+		points_text = App->gui->CreateUILabel(-App->render->camera.x + POINTS_X, POINTS_Y, points_string, true);
+		time_text = App->gui->CreateUILabel(-App->render->camera.x + TIME_X, TIME_Y, time_string, true);
+
 		if (App->entities->player->is_attacking == true) {
 			attack_on = App->gui->CreateUIImage(300, 100, attack_on_rect, texture, true);
 		}
 		if (App->entities->player->is_dashing == true) {
 			dash_on = App->gui->CreateUIImage(270, 100, dash_on_rect, texture, true);
 		}
-		points_text = App->gui->CreateUILabel(-App->render->camera.x + POINTS_X, POINTS_Y, points_string, true);
-		
-		time_text= App->gui->CreateUILabel(-App->render->camera.x + TIME_X, TIME_Y, time_string, true);
+	
 		break;
 	case 2:
 		App->gui->HUDCleanUp();
 		two_lifes = App->gui->CreateUIImage(LIFES_X, LIFES_Y, two_lifes_rect, texture,true);
 		dash_off = App->gui->CreateUIImage(270, 100, dash_off_rect, texture, true);
 		attack_off = App->gui->CreateUIImage(300, 100, attack_off_rect, texture, true);
+		points_text = App->gui->CreateUILabel(-App->render->camera.x + POINTS_X, POINTS_Y, points_string, true);
+		time_text = App->gui->CreateUILabel(-App->render->camera.x + TIME_X, TIME_Y, time_string, true);
 		if (App->entities->player->is_attacking == true) {
 			attack_on = App->gui->CreateUIImage(300, 100, attack_on_rect, texture, true);
 		}
 		if (App->entities->player->is_dashing == true) {
 			dash_on = App->gui->CreateUIImage(270, 100, dash_on_rect, texture, true);
 		}
-		points_text = App->gui->CreateUILabel(-App->render->camera.x + POINTS_X, POINTS_Y, points_string, true);
-		time_text = App->gui->CreateUILabel(-App->render->camera.x + TIME_X, TIME_Y, time_string, true);
 		break;
 	case 1:
 		App->gui->HUDCleanUp();
 		one_life = App->gui->CreateUIImage(LIFES_X, LIFES_Y, one_lifes_rect, texture,true);
 		dash_off = App->gui->CreateUIImage(270, 100, dash_off_rect, texture, true);
 		attack_off = App->gui->CreateUIImage(300, 100, attack_off_rect, texture, true);
+		points_text = App->gui->CreateUILabel(-App->render->camera.x + POINTS_X, POINTS_Y, points_string, true);
+		time_text = App->gui->CreateUILabel(-App->render->camera.x + TIME_X, TIME_Y, time_string, true);
 		if (App->entities->player->is_attacking == true) {
 			attack_on = App->gui->CreateUIImage(300, 100, attack_on_rect, texture, true);
 		}
 		if (App->entities->player->is_dashing == true) {
 			dash_on = App->gui->CreateUIImage(270, 100, dash_on_rect, texture, true);
 		}
-		points_text = App->gui->CreateUILabel(-App->render->camera.x + POINTS_X, POINTS_Y, points_string, true);
-		time_text = App->gui->CreateUILabel(-App->render->camera.x + TIME_X, TIME_Y, time_string, true);
 		break;
 	case 0:
-		/*time.Start();
-		lifes = 3;
-		points = 0;*/
+		//reset to main menu
 		pause_menu = false;
 		App->scene->active = false;
 		App->startmenu->active = true;
@@ -298,7 +291,7 @@ bool j1Scene::Update(float dt)
 
 		break;
 	}
-	
+	//get mouse pos
 	mouse_pos = App->input->GetMousePosition(mouse_position);
 
 	//check if mouse is on exit button
@@ -311,7 +304,7 @@ bool j1Scene::Update(float dt)
 				close_game = true;
 			}
 		}
-
+		//check if mouse is on resume button
 		if (mouse_pos.x > resume_button->x&&mouse_pos.x<resume_button->x + resume_button->button_on.w&&mouse_pos.y>resume_button->y&&mouse_pos.y < resume_button->y + resume_button->button_on.h)
 		{
 			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
@@ -323,7 +316,7 @@ bool j1Scene::Update(float dt)
 				
 			}
 		}
-
+		//check if mouse is on main_menu button
 		if (mouse_pos.x > main_menu_button->x&&mouse_pos.x<main_menu_button->x + main_menu_button->button_on.w&&mouse_pos.y>main_menu_button->y&&mouse_pos.y < main_menu_button->y + main_menu_button->button_on.h)
 		{
 			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
@@ -344,7 +337,7 @@ bool j1Scene::Update(float dt)
 
 	
 	
-
+	//stop showing time when pause ingame
 	if (time_pause == false) {
 		game_time = time.ReadSec();
 		
@@ -381,8 +374,7 @@ bool j1Scene::CleanUp()
 	
 	App->map->CleanUp();
 
-	//App->audio->CleanUp();
-	
+
 
 	LOG("Freeing scene");
 	return true;
@@ -392,7 +384,6 @@ bool j1Scene::LoadScene(int map)
 {
 	
 	App->map->CleanUp();
-	//App->tex->FreeTextures();
 	App->entities->player->LoadTexture();
 
 	

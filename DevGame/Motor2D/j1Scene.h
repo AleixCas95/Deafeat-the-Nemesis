@@ -64,6 +64,13 @@ public:
 	SDL_Rect thumb_rect_on = { 1642,125,84,85 };
 	SDL_Rect volumen_rect = { 1100,458,431,88 };
 
+	SDL_Rect attack_on_rect = { 1146, 145, 18,15 };
+	SDL_Rect attack_off_rect = { 1116,145,18,15 };
+	SDL_Rect dash_on_rect = { 1146,172,18,15 };
+	SDL_Rect dash_off_rect = { 1116,171,18,15 };
+
+	
+
 	SDL_Texture* texture;
 
 	UIObject * resume_button = nullptr;
@@ -87,15 +94,11 @@ public:
 	UIObject* points_text = nullptr;
 	UIObject* time_text = nullptr;
 	
-	SDL_Rect attack_on_rect = { 1146, 145, 18,15 };
-	SDL_Rect attack_off_rect = { 1116,145,18,15 };
-	SDL_Rect dash_on_rect = { 1146,172,18,15 };
-	SDL_Rect dash_off_rect = { 1116,171,18,15 };
-
 	UIObject* attack_off = nullptr;
 	UIObject* attack_on = nullptr;
 	UIObject* dash_off = nullptr;
 	UIObject* dash_on = nullptr;
+
 
 	iPoint mouse_position, mouse_pos;
 
