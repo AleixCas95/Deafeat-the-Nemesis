@@ -8,7 +8,7 @@
 #include "j1Fonts.h"
 #include "j1Render.h"
 
-UISlider::UISlider(int x, int y, SDL_Rect thumb_off, SDL_Rect thumb_on, int margin_right, int margin_left, SDL_Texture *tex):UIObject(x,y)
+UISlider::UISlider(int x, int y, SDL_Rect thumb_off, SDL_Rect thumb_on, int margin_right, int margin_left, SDL_Texture *tex, UIObject* object):UIObject(x,y)
 {
 	this->x = x;
 	this->y = y;
@@ -17,11 +17,13 @@ UISlider::UISlider(int x, int y, SDL_Rect thumb_off, SDL_Rect thumb_on, int marg
 	this->texture = tex;
 	this->margin_left = margin_left;
 	this->margin_right = margin_right;
+	this->object = object;
+
 }
 
 UISlider::~UISlider(){}
 
-void UISlider::Update() 
+void UISlider::Update()
 {
 
 	mouse_pos = App->input->GetMousePosition(mouse_position);
@@ -51,10 +53,10 @@ void UISlider::Update()
 	
 	}
 	
-
 	//new music volume
-	slider_volume = x / 3;
-	Mix_VolumeMusic(slider_volume);
+	slider_volume = ((object->x + 128)*x) / (object->x + object->thumb_rect_off.w);
+	final_volume = slider_volume - object->x;
+	Mix_VolumeMusic(final_volume-40);
 
 }
 

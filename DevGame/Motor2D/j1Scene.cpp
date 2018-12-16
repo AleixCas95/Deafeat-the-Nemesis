@@ -196,30 +196,28 @@ bool j1Scene::Update(float dt)
 		resume_button = App->gui->CreateUIButton(400, 200, button_off_mouse, button_on_mouse, button_off_mouse, texture);
 
 		//settings button
-		settings_button = App->gui->CreateUIButton(400, 280, button_off_mouse, button_on_mouse, button_off_mouse, texture);
+		main_menu_button = App->gui->CreateUIButton(400, 280, button_off_mouse, button_on_mouse, button_off_mouse, texture);
 
 		//exit button
-		main_menu_button = App->gui->CreateUIButton(400, 360, button_off_mouse, button_on_mouse, button_off_mouse, texture);
+		exit_button = App->gui->CreateUIButton(400, 360, button_off_mouse, button_on_mouse, button_off_mouse, texture);
 
-		//exit button
-		exit_button = App->gui->CreateUIButton(400, 440, button_off_mouse, button_on_mouse, button_off_mouse, texture);
+		//volume bar
+		volume_bar = App->gui->CreateUIImage(260, 440, volumen_rect, texture, false);
 
-
+		//volume slider
+		volume_pause_thumb = App->gui->CreateUISlider(430, 442, thumb_rect_off, thumb_rect_on, volume_bar->x + volumen_rect.w, volume_bar->x, texture, volume_bar);
 
 		//start text
 		text_resume = App->gui->CreateUILabel(-App->render->camera.x + 450, 225, "RESUME",false);
 
 
 		//settings text
-		text_settings = App->gui->CreateUILabel(-App->render->camera.x + 440, 305, "SETTINGS",false);
+		text_main_menu = App->gui->CreateUILabel(-App->render->camera.x + 430, 305, "MAIN MENU",false);
 
 
 		//main menu text
-		text_main_menu = App->gui->CreateUILabel(-App->render->camera.x + 435, 385, "MAIN MENU",false);
+		text_exit = App->gui->CreateUILabel(-App->render->camera.x + 415, 385, "SAVE & EXIT",false);
 
-		//continue text
-		text_exit = App->gui->CreateUILabel(-App->render->camera.x + 420, 465, "SAVE & EXIT",false);
-		
 	}
 
 	//int to string
@@ -281,27 +279,12 @@ bool j1Scene::Update(float dt)
 				App->startmenu->active = true;
 				App->startmenu->Start();
 				App->scene->CleanUp();
+				App->gui->HUDCleanUp();
 				App->entities->CleanUp();
 			
 				
 			}
-		}
-
-		if (mouse_pos.x > settings_button->x&&mouse_pos.x<settings_button->x + settings_button->button_on.w&&mouse_pos.y>settings_button->y&&mouse_pos.y < settings_button->y + settings_button->button_on.h)
-		{
-			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
-			{
-				App->scene->active = false;
-				App->settings_scene->active = true;
-				App->settings_scene->Start();
-				App->scene->CleanUp();
-				App->entities->CleanUp();
-
-			}
-		}
-
-		
-		
+		}	
 	}
 
 	

@@ -7,7 +7,7 @@
 	<map />
 	<scene>
 		<Map CurrentMap="1" />
-		<position x="96" y="512.662842" />
+		<position x="96" y="513.115234" />
 	</scene>
 	<pathfinding />
 	<entities />

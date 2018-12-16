@@ -36,7 +36,7 @@ bool j1SettingsScene::Start()
 	volume_bar = App->gui->CreateUIImage(20, 150, volumen_rect, texture,false);
 
 	//volumen slider
-	volume_thumb = App->gui->CreateUISlider(215, 150, thumb_rect_off, thumb_rect_on, volume_bar->x + volumen_rect.w, volume_bar->x, texture);
+	volume_thumb = App->gui->CreateUISlider(215, 150, thumb_rect_off, thumb_rect_on, volume_bar->x + volumen_rect.w, volume_bar->x, texture, volume_bar);
 
 
 	//title (settings)

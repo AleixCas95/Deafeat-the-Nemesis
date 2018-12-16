@@ -59,6 +59,10 @@ public:
 	SDL_Rect two_lifes_rect = { 1188,34,46,84 };
 	SDL_Rect one_lifes_rect = { 1187,122,44,85 };
 
+	SDL_Rect thumb_rect_off = { 1642,35,84,84 };
+	SDL_Rect thumb_rect_on = { 1642,125,84,85 };
+	SDL_Rect volumen_rect = { 1100,458,431,88 };
+
 	SDL_Texture* texture;
 
 	UIObject * resume_button = nullptr;
@@ -69,6 +73,9 @@ public:
 	UIObject* three_lifes = nullptr;
 	UIObject* two_lifes = nullptr;
 	UIObject* one_life = nullptr;
+
+	UIObject* volume_pause_thumb = nullptr;
+	UIObject* volume_bar = nullptr;
 
 	UIObject* text_resume = nullptr;
 	UIObject* text_exit = nullptr;

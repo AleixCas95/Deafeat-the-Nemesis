@@ -16,7 +16,6 @@ UIButton::UIButton(int x, int y, SDL_Rect mouse_off, SDL_Rect mouse_on, SDL_Rect
 	this->button_on = mouse_on;
 	this->button_clicked = mouse_click;
 	this->texture = tex;
-
 }
 
 UIButton::~UIButton() {}
