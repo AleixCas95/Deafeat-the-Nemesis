@@ -21,10 +21,6 @@ The maps have been made using tiled as the colliders.
 
  * (Boy on the right)Albert Cayuela Naval: [Albert Cayuela Naval](https://github.com/AlbertCayuela)
  
- # Development of the Assignature
- 
-We began with the creation of two map levels using tiled, after learning how to load those levels with tiled to the code, we start with  adding, saving and loading the player(with some basic movement). Once we got the player working, we iplemented enemies, their path using BFS, dijkstra and then the A*. After that the interaction with the player. At the same time we included the control of the framrate in the game capping the FPS or changing it with the dt of the game. We also used Brofiler to know how efficient is our code and finally we implemented the User Interface and the HUD of the game. One of the main recourses for this assignament was the implementation of entities system to controll all the modules and their caracteristics.
-
 
 ## Controls
 
