@@ -89,6 +89,7 @@ private:
 	p2List_item<const char*>* CurrentMap = nullptr;
 	bool close_game = false;
 	bool pause_menu = false;
+	p2SString atlas_file_name;
 	
 };
 

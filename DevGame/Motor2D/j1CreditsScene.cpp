@@ -62,7 +62,6 @@ bool j1CreditsScene::Update(float)
 	{
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
 		{
-			//system("start www.google.com");
 			App->credits_scene->active = false;
 			App->startmenu->active = true;
 			App->startmenu->Start();
