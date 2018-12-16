@@ -1,4 +1,5 @@
 ﻿# Defeat the Nemesis
+ ![](https://github.com/AleixCas95/Deafeat-the-Nemesis/blob/master/DevGame/Game/docs/startgame.PNG?raw=true)
 
 ## The game
 
@@ -7,7 +8,38 @@ For this assignment we have forked [Underground-Hero](https://github.com/MAtaur0
 This is a little game made by two students of the Videogame Desing and Develompent degree. It is a small plataformer with two levels, where the player can move right, left and jump, attack and dash to kill the enemy.
 The game has been made using C++, SDL and pugi libraries. 
 The maps have been made using tiled as the colliders.
+
 *Note: Player can kill all the enemies but sometimes, the enemy on the ground is hard to kill.
+
+ ![](https://github.com/AleixCas95/Deafeat-the-Nemesis/blob/master/DevGame/Game/docs/websitephoto.jpg?raw=true)
+
+
+
+## Authors 
+
+ * (Boy on the left) Aleix Castillo Arrià: [Aleix Castillo Arrià](https://github.com/AleixCas95)
+
+ * (Boy on the right)Albert Cayuela Naval: [Albert Cayuela Naval](https://github.com/AlbertCayuela)
+ 
+# Development of the Assignature
+ 
+We began with the creation of two map levels using tiled, after learning how to load those levels with tiled to the code, we start with  adding, saving and loading the player(with some basic movement). Once we got the player working, we iplemented enemies, their path using BFS, dijkstra and then the A*. After that the interaction with the player. At the same time we included the control of the framrate in the game capping the FPS or changing it with the dt of the game. We also used Brofiler to know how efficient is our code and finally we implemented the User Interface and the HUD of the game. One of the main recourses for this assignament was the implementation of entities system to controll all the modules and their caracteristics.
+
+
+## Controls
+
+* Left and Right arrows to move
+
+* Up arrow to jump.
+
+* Left or Right while falling if you have a wall in your left or right to slide down.
+
+* Up arrow to jump while sliding walls.
+
+* F to make a dash.
+
+* G to attack.
+
 
 ## Debugging Fucionalities
 
@@ -21,46 +53,24 @@ The maps have been made using tiled as the colliders.
 
 * F6  Load the previous state (even across levels)
 
+* F8  View UI Objects
+
 * F9  To view colliders / logic 
 
 * F10 God Mode
 
 * F11 Cap FPS
 
-## Controls
 
-* Left and Right arrows to move.
-* Up arrow to jump.
-* Left or Right while falling if you have a wall in your left or right to slide down.
-* Up arrow to jump while sliding walls.
-* F to make a dash.
-* G to attack.
+## Github repository link
 
-## Authors 
+https://github.com/AleixCas95/DeafeatNemesis
 
- * Aleix Castillo Arrià
- * GitHub Username: AleixCas95
- * Albert Cayuela Naval
- * GitHub Username: AlbertCayuela
- 
- ## Tasks done
- 
- ### Aleix Castillo Arrià:
- * Entities system
- * Enemy Air entity
- * Player dash/attack states
- * Enemies pathing
- * Player-enemies interaction
- * Profiling
- 
- ### Albert Cayuela Naval:
- * Enemy Ground entity
- * Timer 
- * Pathfinding
- * Enemies pathing
- * UML
+## Download the last verision
 
- ### License
+link release
+
+ # License
  
  MIT License
  
@@ -84,6 +94,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE
 
-## Github repository link
 
-https://github.com/AleixCas95/DeafeatNemesis
