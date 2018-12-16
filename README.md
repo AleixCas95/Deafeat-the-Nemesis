@@ -8,38 +8,22 @@ For this assignment we have forked [Underground-Hero](https://github.com/MAtaur0
 This is a little game made by two students of the Videogame Desing and Develompent degree. It is a small plataformer with two levels, where the player can move right, left and jump, attack and dash to kill the enemy.
 The game has been made using C++, SDL and pugi libraries. 
 The maps have been made using tiled as the colliders.
+
 *Note: Player can kill all the enemies but sometimes, the enemy on the ground is hard to kill.
 
  ![](https://github.com/AleixCas95/Deafeat-the-Nemesis/blob/master/DevGame/Game/docs/websitephoto.jpg?raw=true)
 
+
+
 ## Authors 
 
- * (Boy on the left)Aleix Castillo Arrià: [Aleix Castillo Arrià](https://github.com/AleixCas95)
+ * (Boy on the left) Aleix Castillo Arrià: [Aleix Castillo Arrià](https://github.com/AleixCas95)
 
  * (Boy on the right)Albert Cayuela Naval: [Albert Cayuela Naval](https://github.com/AlbertCayuela)
  
  # Development of the Assignature
  
 We began with the creation of two map levels using tiled, after learning how to load those levels with tiled to the code, we start with  adding, saving and loading the player(with some basic movement). Once we got the player working, we iplemented enemies, their path using BFS, dijkstra and then the A*. After that the interaction with the player. At the same time we included the control of the framrate in the game capping the FPS or changing it with the dt of the game. We also used Brofiler to know how efficient is our code and finally we implemented the User Interface and the HUD of the game. One of the main recourses for this assignament was the implementation of entities system to controll all the modules and their caracteristics.
- 
- 
- ## Tasks done
- 
- ### Aleix Castillo Arrià:
- * Entities system
- * Enemy Air entity
- * Player dash/attack states
- * Enemies pathing
- * Player-enemies interaction
- * Profiling
- 
- ### Albert Cayuela Naval:
- * Enemy Ground entity
- * Timer 
- * Pathfinding
- * Enemies pathing
- * UML
-
 
 
 ## Controls
