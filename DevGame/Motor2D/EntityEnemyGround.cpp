@@ -168,6 +168,7 @@ bool EntityEnemyGround::Update(float dt)
 		for (int i = 0; i < (layer->data->width * layer->data->height); i++) {
 			if (layer->data->data[i] == 82)
 			{
+				App->scene->lifes -= 1;
 				App->audio->PlayFx(2);
 				spawn = App->map->TileToWorld(i);
 				App->entities->SpawnEntity(spawn.x, spawn.y, PLAYER);

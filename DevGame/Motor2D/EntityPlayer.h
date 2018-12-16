@@ -84,6 +84,7 @@ public:
 	int dash_cont = 0;
 	int die_cont = 0;
 
+
 	bool is_jumping;
 	bool is_falling;
 	bool can_jump;

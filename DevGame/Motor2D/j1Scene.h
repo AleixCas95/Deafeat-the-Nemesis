@@ -54,20 +54,33 @@ public:
 	
 	SDL_Rect button_off_mouse;
 	SDL_Rect button_on_mouse;
-	SDL_Texture* texture;
 
+	SDL_Rect three_lifes_rect = { 1124,35,46,84 };
+	SDL_Rect two_lifes_rect = { 1188,34,46,84 };
+	SDL_Rect one_lifes_rect = { 1187,122,44,85 };
+
+	SDL_Texture* texture;
 
 	UIObject * resume_button = nullptr;
 	UIObject * exit_button = nullptr;
 	UIObject * settings_button = nullptr;
 	UIObject * main_menu_button = nullptr;
 
+	UIObject* three_lifes = nullptr;
+	UIObject* two_lifes = nullptr;
+	UIObject* one_life = nullptr;
+
 	UIObject* text_resume = nullptr;
 	UIObject* text_exit = nullptr;
 	UIObject* text_settings = nullptr;
 	UIObject* text_main_menu = nullptr;
+	UIObject* points_text = nullptr;
 	
 	iPoint mouse_position, mouse_pos;
+
+	int lifes = 3;
+	int points = 0;
+
 private:
 
 	p2List<const char*>  MapsList_String;

@@ -21,6 +21,9 @@
 #include "j1SettingsScene.h"
 #include "UIButton.h"
 
+#define LIFES_X 50
+#define LIFES_Y 40
+
 j1Scene::j1Scene() : j1Module()
 {
 	name.create("scene");
@@ -124,7 +127,7 @@ bool j1Scene::PreUpdate()
 bool j1Scene::Update(float dt)
 {
 	
-	LOG("camera: %i", App->render->camera.x);
+	LOG("lifes %i", lifes);
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 		LoadScene(1);
@@ -211,11 +214,26 @@ bool j1Scene::Update(float dt)
 
 		//continue text
 		text_exit = App->gui->CreateUILabel(-App->render->camera.x + 420, 465, "SAVE & EXIT");
-
-	
 		
+	}
 
-		
+	//check number of lifes and print ui
+	switch (lifes) 
+	{
+	case 3:
+		three_lifes = App->gui->CreateUIImage(LIFES_X, LIFES_Y, three_lifes_rect, texture);
+		break;
+	case 2:
+		App->gui->CleanUp();//can be improved?
+		two_lifes = App->gui->CreateUIImage(LIFES_X, LIFES_Y, two_lifes_rect, texture);
+		break;
+	case 1:
+		App->gui->CleanUp();//can be improved?¿
+		one_life = App->gui->CreateUIImage(LIFES_X, LIFES_Y, one_lifes_rect, texture);
+		break;
+	case 0:
+		lifes = 3;
+		break;
 	}
 	
 	mouse_pos = App->input->GetMousePosition(mouse_position);
@@ -268,6 +286,7 @@ bool j1Scene::Update(float dt)
 			}
 		}
 
+		
 		
 	}
 
@@ -334,7 +353,7 @@ bool j1Scene::LoadScene(int map)
 {
 	
 	App->map->CleanUp();
-	App->tex->FreeTextures();
+	//App->tex->FreeTextures();
 	App->entities->player->LoadTexture();
 
 	
