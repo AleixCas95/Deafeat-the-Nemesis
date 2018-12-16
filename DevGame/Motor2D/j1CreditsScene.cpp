@@ -36,13 +36,19 @@ bool j1CreditsScene::Start()
 	license = App->gui->CreateUIImage(170, 60, license_rect, texture, false);
 
 	//github repository button
-	github_button = App->gui->CreateUIButton(250, 550, return_rect_off, return_rect_on, return_rect_off, texture);
+	github_button = App->gui->CreateUIButton(20, 350, return_rect_off, return_rect_on, return_rect_off, texture);
+
+	//web button
+	web_button = App->gui->CreateUIButton(20, 450, return_rect_off, return_rect_on, return_rect_off, texture);
+
+	//web label
+	web_label = App->gui->CreateUILabel(-App->render->camera.x + 70, 475, "WEB", false);
 
 	//return to menu label
 	menu_text = App->gui->CreateUILabel(-App->render->camera.x + 65, 575, "MENU", false);
 
 	//github label
-	github_label = App->gui->CreateUILabel(-App->render->camera.x + 263, 575, "REPOSITORY", false);
+	github_label = App->gui->CreateUILabel(-App->render->camera.x + 32, 375, "REPOSITORY", false);
 
 
 	return true;
@@ -70,6 +76,15 @@ bool j1CreditsScene::Update(float)
 	}
 	//check if mouse is on repository button
 	if (mouse_pos.x > github_button->x&&mouse_pos.x<github_button->x + github_button->button_on.w&&mouse_pos.y>github_button->y&&mouse_pos.y < github_button->y + github_button->button_on.h)
+	{
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+		{
+			//go to the link
+			system("start https://github.com/AleixCas95/Deafeat-the-Nemesis");
+		}
+	}
+	//check if mouse is on web button
+	if (mouse_pos.x > web_button->x&&mouse_pos.x<web_button->x + web_button->button_on.w&&mouse_pos.y>web_button->y&&mouse_pos.y < web_button->y + web_button->button_on.h)
 	{
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
 		{
