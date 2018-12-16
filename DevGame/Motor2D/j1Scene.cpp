@@ -246,6 +246,7 @@ bool j1Scene::Update(float dt)
 		{
 			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
 			{
+				App->SaveGame("save_game.xml");
 				close_game = true;
 			}
 		}
