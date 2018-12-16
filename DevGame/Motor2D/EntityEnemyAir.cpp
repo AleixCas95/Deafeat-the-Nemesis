@@ -179,13 +179,14 @@ bool EntityEnemyAir::Update(float dt)
 	}
 	if (enemy_air_position.x == player_map_position.x && enemy_air_position.y == player_map_position.y && App->entities->player->god_mode != true && App->entities->player->is_attacking == true) {
 
+		App->scene->points += 20;
 		destroy_entity = true;
 
 	}
 	if (enemy_air_position.x == player_map_position.x && enemy_air_position.y == player_map_position.y && App->entities->player->god_mode != true && App->entities->player->is_dashing == true) {
-
+		
+		App->scene->points += 20;
 		destroy_entity = true;
-
 	}
 	die_cont++;
 		return true;

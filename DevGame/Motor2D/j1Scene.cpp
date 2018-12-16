@@ -23,6 +23,8 @@
 
 #define LIFES_X 50
 #define LIFES_Y 40
+#define POINTS_X 120
+#define POINTS_Y 100
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -217,27 +219,30 @@ bool j1Scene::Update(float dt)
 		
 	}
 
+	//int to string
+	points_string.create("%i", points);
+
 	//check number of lifes and print ui
 	switch (lifes) 
 	{
 	case 3:
 		App->gui->HUDCleanUp();
 		three_lifes = App->gui->CreateUIImage(LIFES_X, LIFES_Y, three_lifes_rect, texture,true);
+		points_text = App->gui->CreateUILabel(-App->render->camera.x + POINTS_X, POINTS_Y, points_string, true);
 		break;
 	case 2:
 		App->gui->HUDCleanUp();
-		//App->gui->CleanUp();//can be improved?
 		two_lifes = App->gui->CreateUIImage(LIFES_X, LIFES_Y, two_lifes_rect, texture,true);
-	
+		points_text = App->gui->CreateUILabel(-App->render->camera.x + POINTS_X, POINTS_Y, points_string, true);
 		break;
 	case 1:
 		App->gui->HUDCleanUp();
-		//App->gui->CleanUp();//can be improved?¿
 		one_life = App->gui->CreateUIImage(LIFES_X, LIFES_Y, one_lifes_rect, texture,true);
-		
+		points_text = App->gui->CreateUILabel(-App->render->camera.x + POINTS_X, POINTS_Y, points_string, true);
 		break;
 	case 0:
 		lifes = 3;
+		points = 0;
 		break;
 	}
 	

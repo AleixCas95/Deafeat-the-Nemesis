@@ -78,6 +78,8 @@ public:
 	
 	iPoint mouse_position, mouse_pos;
 
+	p2SString points_string = nullptr;
+
 	int lifes = 3;
 	int points = 0;
 
