@@ -89,7 +89,7 @@ bool j1CreditsScene::Update(float)
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
 		{
 			//go to the link
-			system("start https://github.com/AleixCas95/Deafeat-the-Nemesis");
+			system("start https://aleixcas95.github.io/Deafeat-the-Nemesis/");
 		}
 	}
 	App->startmenu->CheckF8();

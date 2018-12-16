@@ -11,10 +11,7 @@ public:
 	~UILabel();
 
 	void Draw();
-private:
-	/*SDL_Rect size = { 0,0,0,0 };
-	p2SString text;
-	SDL_Texture* texture_fonts = nullptr;*/
+
 };
 
 #endif 

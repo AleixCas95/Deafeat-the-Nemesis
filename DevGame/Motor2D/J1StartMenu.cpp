@@ -155,17 +155,7 @@ bool j1StartMenu::Update(float) {
 
 		}
 	}
-	//if (mouse_pos.x > continue_button->x&&mouse_pos.x<continue_button->x + continue_button->button_on.w&&mouse_pos.y>continue_button->y&&mouse_pos.y < continue_button->y + continue_button->button_on.h)
-	//{
-	//	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
-	//	{
-	//	App->startmenu->active = false;
-	//	App->scene->active = true;
-	//	App->startmenu->CleanUp();
-	//	App->scene->Start();
-	//	}
-
-	//}
+	
 
 	CheckF8();
 	return true;
