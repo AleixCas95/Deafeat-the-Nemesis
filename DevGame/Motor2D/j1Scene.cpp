@@ -9,7 +9,6 @@
 #include "j1Map.h"
 #include "j1Scene.h"
 #include "ModuleFadeToBlack.h"
-//#include "ModulePlayer.h"
 #include "j1Entities.h"
 #include "EntityPlayer.h"
 #include "Entity.h"
@@ -20,11 +19,15 @@
 #include "j1StartMenu.h"
 #include "j1SettingsScene.h"
 #include "UIButton.h"
+#include "j1Timer.h"
+#include "Brofiler/Brofiler.h"
 
 #define LIFES_X 50
 #define LIFES_Y 40
 #define POINTS_X 120
 #define POINTS_Y 100
+#define TIME_X 180
+#define TIME_Y 100
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -105,8 +108,9 @@ bool j1Scene::Start()
 	button_off_mouse = { 1193,210,168,63 };
 	button_on_mouse = { 1189,286,170,65 };
 	//IF ESCAPE PAUSE THE GAME
+
 	
-	
+	time.Start();
 
 	////return to main menu button
 	//back_to_menu_button = App->gui->CreateUIButton(870, 550, return_rect_off, return_rect_on, return_rect_off, texture);
@@ -128,7 +132,7 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
-	
+	BROFILER_CATEGORY("UpdateScene", Profiler::Color::OrangeRed)
 	LOG("lifes %i", lifes);
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
@@ -222,30 +226,73 @@ bool j1Scene::Update(float dt)
 		text_ingame_settings = App->gui->CreateUILabel(-App->render->camera.x+100, 480, "MUSIC VOLUME",false);
 	}
 
+	
 	//int to string
 	points_string.create("%i", points);
 
+	//float to string
+	time_string.create("%.3f", game_time);
+	
 	//check number of lifes and print ui
 	switch (lifes) 
 	{
 	case 3:
 		App->gui->HUDCleanUp();
 		three_lifes = App->gui->CreateUIImage(LIFES_X, LIFES_Y, three_lifes_rect, texture,true);
+		dash_off = App->gui->CreateUIImage(270, 100, dash_off_rect, texture, true);
+		attack_off = App->gui->CreateUIImage(300, 100, attack_off_rect, texture, true);
+		if (App->entities->player->is_attacking == true) {
+			attack_on = App->gui->CreateUIImage(300, 100, attack_on_rect, texture, true);
+		}
+		if (App->entities->player->is_dashing == true) {
+			dash_on = App->gui->CreateUIImage(270, 100, dash_on_rect, texture, true);
+		}
 		points_text = App->gui->CreateUILabel(-App->render->camera.x + POINTS_X, POINTS_Y, points_string, true);
+		time_text= App->gui->CreateUILabel(-App->render->camera.x + TIME_X, TIME_Y, time_string, true);
 		break;
 	case 2:
 		App->gui->HUDCleanUp();
 		two_lifes = App->gui->CreateUIImage(LIFES_X, LIFES_Y, two_lifes_rect, texture,true);
+		dash_off = App->gui->CreateUIImage(270, 100, dash_off_rect, texture, true);
+		attack_off = App->gui->CreateUIImage(300, 100, attack_off_rect, texture, true);
+		if (App->entities->player->is_attacking == true) {
+			attack_on = App->gui->CreateUIImage(300, 100, attack_on_rect, texture, true);
+		}
+		if (App->entities->player->is_dashing == true) {
+			dash_on = App->gui->CreateUIImage(270, 100, dash_on_rect, texture, true);
+		}
 		points_text = App->gui->CreateUILabel(-App->render->camera.x + POINTS_X, POINTS_Y, points_string, true);
+		time_text = App->gui->CreateUILabel(-App->render->camera.x + TIME_X, TIME_Y, time_string, true);
 		break;
 	case 1:
 		App->gui->HUDCleanUp();
 		one_life = App->gui->CreateUIImage(LIFES_X, LIFES_Y, one_lifes_rect, texture,true);
+		dash_off = App->gui->CreateUIImage(270, 100, dash_off_rect, texture, true);
+		attack_off = App->gui->CreateUIImage(300, 100, attack_off_rect, texture, true);
+		if (App->entities->player->is_attacking == true) {
+			attack_on = App->gui->CreateUIImage(300, 100, attack_on_rect, texture, true);
+		}
+		if (App->entities->player->is_dashing == true) {
+			dash_on = App->gui->CreateUIImage(270, 100, dash_on_rect, texture, true);
+		}
 		points_text = App->gui->CreateUILabel(-App->render->camera.x + POINTS_X, POINTS_Y, points_string, true);
+		time_text = App->gui->CreateUILabel(-App->render->camera.x + TIME_X, TIME_Y, time_string, true);
 		break;
 	case 0:
+		/*time.Start();
+		lifes = 3;
+		points = 0;*/
+		pause_menu = false;
+		App->scene->active = false;
+		App->startmenu->active = true;
+		App->startmenu->Start();
+		App->scene->CleanUp();
+		App->gui->HUDCleanUp();
+		App->entities->CleanUp();
+		time.Start();
 		lifes = 3;
 		points = 0;
+
 		break;
 	}
 	
@@ -293,11 +340,11 @@ bool j1Scene::Update(float dt)
 	
 
 	
-
+	game_time = time.ReadSec();
 
 	App->map->Draw();
 
-
+	
 	
 
 	return true;

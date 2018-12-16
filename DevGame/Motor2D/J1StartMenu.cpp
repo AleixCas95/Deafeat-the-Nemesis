@@ -15,6 +15,7 @@
 #include "j1Fonts.h"
 #include "j1Entities.h"
 #include "EntityPlayer.h"
+#include "Brofiler/Brofiler.h"
 
 j1StartMenu::j1StartMenu() : j1Module(){
 
@@ -82,7 +83,7 @@ bool j1StartMenu::PreUpdate() {
 	return true;
 }
 bool j1StartMenu::Update(float) {
-
+	BROFILER_CATEGORY("UpdateStartMenu", Profiler::Color::White)
 	mouse_pos = App->input->GetMousePosition(mouse_position);
 
 

@@ -5,7 +5,7 @@
 #include "p2Log.h"
 #include "j1Render.h"
 #include "j1StartMenu.h"
-
+#include "Brofiler/Brofiler.h"
 
 UILabel::UILabel(int x, int y, p2SString text, bool is_hud) : UIObject(x, y)
 {
@@ -33,6 +33,9 @@ UILabel::~UILabel()
 }
 
 void UILabel::Draw() {
+
+	BROFILER_CATEGORY("UILabel", Profiler::Color::Green)
+
 	App->render->Blit(texture_fonts, x, y);
 	if (App->startmenu->debug == true)
 	App->render->DrawQuad({ x,y,size.w,size.h }, 255, 0, 0, 255, false, false);

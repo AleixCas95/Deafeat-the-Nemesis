@@ -2,6 +2,7 @@
 #define __j1SCENE_H__
 
 #include "j1Module.h"
+#include "j1Timer.h"
 
 struct SDL_Texture;
 class UIObject;
@@ -70,6 +71,7 @@ public:
 	UIObject * settings_button = nullptr;
 	UIObject * main_menu_button = nullptr;
 	UIObject * text_ingame_settings = nullptr;
+	
 
 	UIObject* three_lifes = nullptr;
 	UIObject* two_lifes = nullptr;
@@ -83,13 +85,31 @@ public:
 	UIObject* text_settings = nullptr;
 	UIObject* text_main_menu = nullptr;
 	UIObject* points_text = nullptr;
+	UIObject* time_text = nullptr;
 	
+	SDL_Rect attack_on_rect = { 1146, 145, 18,15 };
+	SDL_Rect attack_off_rect = { 1116,145,18,15 };
+	SDL_Rect dash_on_rect = { 1146,172,18,15 };
+	SDL_Rect dash_off_rect = { 1116,171,18,15 };
+
+	UIObject* attack_off = nullptr;
+	UIObject* attack_on = nullptr;
+	UIObject* dash_off = nullptr;
+	UIObject* dash_on = nullptr;
+
 	iPoint mouse_position, mouse_pos;
 
 	p2SString points_string = nullptr;
+	p2SString time_string = nullptr;
 
 	int lifes = 3;
 	int points = 0;
+
+	j1Timer time;
+	float game_time = 0.0f;
+	
+
+
 
 private:
 
@@ -98,6 +118,9 @@ private:
 	bool close_game = false;
 	bool pause_menu = false;
 	p2SString atlas_file_name;
+
+
+
 	
 };
 

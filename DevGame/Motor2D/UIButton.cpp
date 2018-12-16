@@ -6,7 +6,7 @@
 #include "j1Window.h"
 #include "j1Input.h"
 #include "p2Log.h"
-
+#include "Brofiler/Brofiler.h"
 
 UIButton::UIButton(int x, int y, SDL_Rect mouse_off, SDL_Rect mouse_on, SDL_Rect mouse_click, SDL_Texture* tex) :UIObject( x, y)
 {
@@ -22,6 +22,8 @@ UIButton::~UIButton() {}
 
 void UIButton::Update()
 {
+	BROFILER_CATEGORY("UpdateUIButton", Profiler::Color::Yellow)
+
 	mouse_pos = App->input->GetMousePosition(mouse_position);
 	//LOG("mousepos: %i  %i", mouse_pos.x, mouse_pos.y);
 
@@ -43,7 +45,8 @@ void UIButton::Update()
 
 void UIButton::Draw() 
 {
-	
+	BROFILER_CATEGORY("DrawUIButton", Profiler::Color::Brown)
+
 		App->render->Blit(texture, x, y, &current_rect,0);
 		
 		if(App->startmenu->debug==true)

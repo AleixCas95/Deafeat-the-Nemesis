@@ -6,6 +6,7 @@
 #include "j1Input.h"
 #include "j1Gui.h"
 #include "j1Render.h"
+#include "Brofiler/Brofiler.h"
 
 j1CreditsScene::j1CreditsScene()
 {
@@ -61,6 +62,7 @@ bool j1CreditsScene::PreUpdate()
 
 bool j1CreditsScene::Update(float)
 {
+	BROFILER_CATEGORY("UpdateCreditsScene", Profiler::Color::BurlyWood)
 	mouse_pos = App->input->GetMousePosition(mouse_position);
 
 	////check if mouse is on menu button

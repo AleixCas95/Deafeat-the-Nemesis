@@ -11,6 +11,7 @@
 #include "j1Audio.h"
 #include "p2Log.h"
 #include "j1SettingsScene.h"
+#include "Brofiler/Brofiler.h"
 
 j1SettingsScene::j1SettingsScene()
 {
@@ -55,10 +56,10 @@ bool j1SettingsScene::Start()
 	menu_label = App->gui->CreateUILabel(-App->render->camera.x + 65, 575, "MENU",false);
 
 	//volume music label
-	volume_music_label = App->gui->CreateUILabel(-App->render->camera.x + 20, 120, "MUSIC VOLUME",false);
+	volume_music_label = App->gui->CreateUILabel(-App->render->camera.x + 20, 120, "FX VOLUME",false);
 
 	//volume music label
-	volume_fx_label = App->gui->CreateUILabel(-App->render->camera.x + 20, 320, "FX VOLUME", false);
+	volume_fx_label = App->gui->CreateUILabel(-App->render->camera.x + 20, 320, "MUSIC VOLUME", false);
 
 	return true;
 }
@@ -70,7 +71,7 @@ bool j1SettingsScene::PreUpdate()
 
 bool j1SettingsScene::Update(float)
 {
-
+	BROFILER_CATEGORY("UpdateSettingsScene", Profiler::Color::PeachPuff)
 	mouse_pos = App->input->GetMousePosition(mouse_position);
 
 		if (mouse_pos.x > return_button->x&&mouse_pos.x<return_button->x + return_button->button_on.w&&mouse_pos.y>return_button->y&&mouse_pos.y < return_button->y + return_button->button_on.h)

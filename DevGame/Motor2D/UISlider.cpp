@@ -8,6 +8,7 @@
 #include "j1Fonts.h"
 #include "j1Render.h"
 #include "j1StartMenu.h"
+#include "Brofiler/Brofiler.h"
 
 UISlider::UISlider(int x, int y, SDL_Rect thumb_off, SDL_Rect thumb_on, int margin_right, int margin_left, SDL_Texture *tex, UIObject* object):UIObject(x,y)
 {
@@ -26,6 +27,7 @@ UISlider::~UISlider(){}
 
 void UISlider::Update()
 {
+	BROFILER_CATEGORY("UISliderUpdate", Profiler::Color::Blue)
 
 	mouse_pos = App->input->GetMousePosition(mouse_position);
 
@@ -63,6 +65,8 @@ void UISlider::Update()
 
 void UISlider::Draw() 
 {
+	BROFILER_CATEGORY("UISliderDraw", Profiler::Color::Beige)
+
 	App->render->Blit(texture, x, y, &current_rect,0);
 	if (App->startmenu->debug == true)
 		App->render->DrawQuad({ x,y,rect.w,rect.h }, 255, 0, 0, 255, false, false);
