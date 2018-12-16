@@ -224,12 +224,14 @@ bool j1Scene::Update(float dt)
 		three_lifes = App->gui->CreateUIImage(LIFES_X, LIFES_Y, three_lifes_rect, texture);
 		break;
 	case 2:
-		App->gui->CleanUp();//can be improved?
+		//App->gui->CleanUp();//can be improved?
 		two_lifes = App->gui->CreateUIImage(LIFES_X, LIFES_Y, two_lifes_rect, texture);
+	
 		break;
 	case 1:
-		App->gui->CleanUp();//can be improved?¿
+		//App->gui->CleanUp();//can be improved?¿
 		one_life = App->gui->CreateUIImage(LIFES_X, LIFES_Y, one_lifes_rect, texture);
+		
 		break;
 	case 0:
 		lifes = 3;
