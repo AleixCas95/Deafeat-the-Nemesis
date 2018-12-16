@@ -35,8 +35,15 @@ bool j1CreditsScene::Start()
 	//license
 	license = App->gui->CreateUIImage(170, 60, license_rect, texture, false);
 
+	//github repository button
+	github_button = App->gui->CreateUIButton(250, 550, return_rect_off, return_rect_on, return_rect_off, texture);
+
 	//return to menu label
 	menu_text = App->gui->CreateUILabel(-App->render->camera.x + 65, 575, "MENU", false);
+
+	//github label
+	github_label = App->gui->CreateUILabel(-App->render->camera.x + 263, 575, "REPOSITORY", false);
+
 
 	return true;
 }
@@ -55,10 +62,20 @@ bool j1CreditsScene::Update(float)
 	{
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
 		{
+			//system("start www.google.com");
 			App->credits_scene->active = false;
 			App->startmenu->active = true;
 			App->startmenu->Start();
 			App->credits_scene->CleanUp();
+		}
+	}
+	//check if mouse is on repository button
+	if (mouse_pos.x > github_button->x&&mouse_pos.x<github_button->x + github_button->button_on.w&&mouse_pos.y>github_button->y&&mouse_pos.y < github_button->y + github_button->button_on.h)
+	{
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+		{
+			//go to the link
+			system("start https://github.com/AleixCas95/Deafeat-the-Nemesis");
 		}
 	}
 

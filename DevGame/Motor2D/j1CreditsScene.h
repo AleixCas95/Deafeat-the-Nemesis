@@ -27,6 +27,8 @@ public:
 	UIObject* return_button = nullptr;
 	UIObject* menu_text = nullptr;
 	UIObject* license = nullptr;
+	UIObject* github_button = nullptr;
+	UIObject* github_label = nullptr;
 
 	iPoint mouse_position, mouse_pos;
 
