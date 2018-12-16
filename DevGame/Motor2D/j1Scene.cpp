@@ -218,6 +218,8 @@ bool j1Scene::Update(float dt)
 		//main menu text
 		text_exit = App->gui->CreateUILabel(-App->render->camera.x + 415, 385, "SAVE & EXIT",false);
 
+		//text settings ingame
+		text_ingame_settings = App->gui->CreateUILabel(-App->render->camera.x+100, 480, "MUSIC VOLUME",false);
 	}
 
 	//int to string
@@ -292,25 +294,11 @@ bool j1Scene::Update(float dt)
 
 	
 
-	//FadeToBlack
 
-	//if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-	//{
-	//
-	//	App->fade->FadeToBlack(App->map, App->map,1.5f);
-	//}
-
-	//App->render->Blit(img, 0, 0);
 	App->map->Draw();
 
 
-	// "Map:%dx%d Tiles:%dx%d Tilesets:%d"
-	/*p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
-		App->map->data.width, App->map->data.height,
-		App->map->data.tile_width, App->map->data.tile_height,
-		App->map->data.tilesets.count());
-
-	App->win->SetTitle(title.GetString());*/
+	
 
 	return true;
 }

@@ -69,6 +69,7 @@ public:
 	UIObject * exit_button = nullptr;
 	UIObject * settings_button = nullptr;
 	UIObject * main_menu_button = nullptr;
+	UIObject * text_ingame_settings = nullptr;
 
 	UIObject* three_lifes = nullptr;
 	UIObject* two_lifes = nullptr;

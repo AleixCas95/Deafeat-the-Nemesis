@@ -34,6 +34,9 @@ public:
 	UIObject* volume_bar = nullptr;
 	UIObject* volume_thumb = nullptr;
 	UIObject* volume_music_label = nullptr;
+	UIObject* volume_fx_label = nullptr;
+	UIObject* volume_thumb_fx = nullptr;
+	UIObject* volume_bar_fx = nullptr;
 
 
 	SDL_Rect background_rect = { 40,36,1024,768 };
